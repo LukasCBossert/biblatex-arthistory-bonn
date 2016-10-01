@@ -1,0 +1,52 @@
+\documentclass[ngerman]{scrbook}
+\usepackage{babel}
+\usepackage{libertine}
+
+\usepackage{csquotes}
+\usepackage{filecontents}
+
+\begin{filecontents}{\jobname.bib}
+
+@Book{Amm,
+  author        = {Ammianus <Marcellinus>},
+  editor        = {Seyfarth, Wolfgang},
+  title         = {Römische Geschichte},
+  publisher     = WBG,
+  location      = Munich,
+  origlanguage  = {latin},
+  translator    = {Gerhard Wirth},
+  shorthand     = {Amm.},
+  shortauthor   = {Ammian},
+  keywords      = {ancient},
+  options       = {ancient},
+  commentator   = {Gerhard Wirth},
+  date          = {1970/1974},
+  file          = {:Quellen/Ammian/Ammianus__Marcellinus__(Amm)_Römische Geschichte.pdf:PDF},
+  introduction  = {Gerhard Wirth},
+  owner         = {Lukas C. Bossert},
+  sortshorthand = {Amm.},
+  timestamp     = {2015-02-24},
+}
+
+\end{filecontents}
+\usepackage[           
+  backend=biber,
+%  style=../biblatex-archaeologie/archaeologie,
+  style=authoryear,
+%  lstpublishers,
+ % lstabbrv,
+ % width=6em,
+  dashed,
+]{biblatex}
+
+  
+  
+  
+\addbibresource{\jobname.bib}
+%\addbibresource{archaeologie-examples.bib}
+\begin{document}
+\nocite{*}
+\printbibliography
+\end{document}
+
+
