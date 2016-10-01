@@ -12,7 +12,7 @@
   [2016/09/25 v0.1  arthistory, bbx-file]
 \RequireBibliographyStyle{authoryear-ibid}
 \AtBeginDocument{%
-  \RequirePackage{csquotes}
+%  \RequirePackage{csquotes}
   \urlstyle{sf}%
   \typeout{* * * arthistory * * *}
 }
@@ -28,25 +28,175 @@
   dateabbrev=false, %
   sorting=nyt,%
   labeldateparts=true,
-  maxnames=2,% 
+  maxnames=3,% 
   minnames=1,%
   maxitems=3,%
   maxbibnames=999,%
 }
 
 \newbool{bbx:width}
+\newtoggle{bbx:jstor}
+\newtoggle{bbx:zenon}
+\newtoggle{bbx:urn}
+\newtoggle{bbx:arthist}
 
 \newsavebox\arthist@labelbox
 \newlength{\labwidthsameline}
 \setlength{\labwidthsameline}{4em}
 \setlength{\biblabelsep}{0em}
 \renewcommand*\bibnamedash{\rule[0.48ex]{3em}{0.14ex}\space}
-
+%%-----------------------
 \DeclareBibliographyOption{width}[]{%
   \csuse{booltrue}{bbx:width}% 
   \setlength{\labwidthsameline}{#1}}
-  
-  
+\DeclareBibliographyOption[boolean]{jstor}[true]{%
+  \settoggle{bbx:jstor}{#1}}
+\DeclareBibliographyOption[boolean]{urn}[true]{%
+  \settoggle{bbx:urn}{#1}}
+\DeclareBibliographyOption[boolean]{arthist}[true]{%
+  \settoggle{bbx:arthist}{#1}}
+\ExecuteBibliographyOptions{%
+  jstor,%
+  urn,%
+  arthist,%
+  }
+%%-----------------------  
+\DeclareFieldFormat{eprint:urn}{%
+  \textsc{urn}%
+  \addcolon\space%
+  \ifhyperref%
+    {\href{http://www.nbn-resolving.org/#1}{\nolinkurl{#1}}}%
+    {\nolinkurl{#1}}}
+
+\DeclareFieldFormat{eprint:zenon}{%
+  \textsc{zenon (opac)}%
+  \addcolon\space%
+  \ifhyperref%
+    {\href{http://zenon.dainst.org/Record/#1}{\nolinkurl{#1}}}%
+    {\nolinkurl{#1}}}
+
+\DeclareFieldFormat{eprint:jstor}{%
+  \textsc{jstor}%
+  \addcolon\space%
+  \ifhyperref%
+    {\href{http://www.jstor.org/stable/#1}{\nolinkurl{#1}}}%
+    {\nolinkurl{#1}}}
+
+\DeclareFieldFormat{eprint:arthist}{%
+  \textsc{h-arthist}%
+  \addcolon\space%
+  \ifhyperref%
+    {\href{http://arthist.net/reviews/#1}{\nolinkurl{#1}}}%
+    {\nolinkurl{#1}}}  
+
+%-----------------------
+\DeclareFieldAlias{zenon}{eprint:zenon}
+\DeclareFieldAlias{jstor}{eprint:jstor}
+\DeclareFieldAlias{urn}{eprint:urn}
+\DeclareFieldAlias{arthist}{eprint:arthist}
+%%-----------------------
+\DeclareRedundantLanguages{ngerman}{german,ngerman,austrian,naustrian}
+\DeclareRedundantLanguages{english,american}{english,american,british,%
+ canadian,australian,newzealand,USenglish,UKenglish}
+\DeclareLanguageMapping{ngerman}{arthistory-ngerman}
+\DeclareLanguageMapping{english}{arthistory-english}
+%-----------------------
+\DeclareSortingScheme{shortseries}{\sort{\field{shortseries}}}
+\DeclareSortingScheme{shortjournal}{\sort{\field{shortjournal}}}
+%-----------------------
+\defbibcheck{shortseries}{% 
+  \iffieldundef{shortseries}%
+    {\skipentry}%
+    {}%
+ \iffieldundef{series}%
+  {\skipentry}%
+  {\ifcsdef{\strfield{series}}%
+    {\skipentry}%
+    {\savefieldcs{series}{\strfield{series}}}%
+  }%
+} 
+\defbibcheck{shortjournal}{%
+  \iffieldundef{shortjournal}%
+    {\skipentry}%
+    {}%
+  \iffieldundef{journaltitle}%
+    {\skipentry}%
+    {\ifcsdef{\strfield{journaltitle}}%
+    {\skipentry}%
+    {\savefieldcs{journaltitle}{\strfield{journaltitle}}}%
+    }%
+}
+%-----------------------     
+\newbibmacro*{bbx:parunit}{%
+ \ifbibliography{%
+ \setunit{\bibpagerefpunct}%
+ \newblock
+ \usebibmacro{pageref}%
+ \clearlist{pageref}%
+ \setunit{\addcomma\newline\nobreak}%
+ }%
+ {}%
+}
+ %----------------------- 
+\renewbibmacro*{eprint}{%
+ \usebibmacro{bbx:parunit}%
+ \iffieldundef{eprinttype}%
+ {\printfield{eprint}}%
+ {\printfield[eprint:\strfield{eprinttype}]{eprint}}%
+}
+%----------------------- 
+\newbibmacro*{zenon}{%
+ \iffieldundef{zenon}%
+ {}%
+ {\usebibmacro{bbx:parunit}%
+ \printfield{zenon}%
+ } 
+}
+%----------------------- 
+\newbibmacro*{jstor}{%
+ \iffieldundef{jstor}%
+ {}%
+ {\usebibmacro{bbx:parunit}%
+ \printfield{jstor}%
+ }
+}
+%----------------------- 
+\newbibmacro*{urn}{%
+ \iffieldundef{urn}
+ {} 
+ {\usebibmacro{bbx:parunit}%
+ \printfield{urn}%
+ }
+}
+%----------------------- 
+\newbibmacro*{arthist}{%
+ \iffieldundef{arthist}
+ {} 
+ {\usebibmacro{bbx:parunit}%
+ \printfield{arthist}%
+ \setunit*{\addspace}%
+ \printtext{\printarthistdate}
+ }
+}
+%-----------------------
+\renewbibmacro*{url+urldate}{%
+ \usebibmacro{bbx:parunit}%
+ \iffieldundef{url}{}{\printfield{url}%
+ \setunit*{\addspace}%
+ \printtext{\printurldate}%
+}}
+%----------------------- 
+\renewbibmacro*{doi+eprint+url}{%
+ \usebibmacro{bbx:parunit}%
+ \iftoggle{bbx:doi}{\printfield{doi}}{}%
+ \iftoggle{bbx:eprint}{\usebibmacro{eprint}}{}%
+ \iftoggle{bbx:jstor}{\usebibmacro{jstor}}{}%
+ \iftoggle{bbx:urn}{\usebibmacro{urn}}{}%
+ \iftoggle{bbx:zenon}{\usebibmacro{zenon}}{}%
+ \iftoggle{bbx:url}{\usebibmacro{url+urldate}}{}%
+ \iftoggle{bbx:arthist}{\usebibmacro{arthist}}{}%
+}
+%-----------------------
 \renewcommand{\multinamedelim}{\addslash}
 \renewcommand{\finalnamedelim}{\addslash}
 %%-----------------------

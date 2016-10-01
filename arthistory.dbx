@@ -12,16 +12,17 @@
   [2016/09/25 v0.1  arthistory, dbx-Datei]
                 
 \DeclareDatamodelEntrytypes{catalogue}
-\DeclareDatamodelEntryfields[catalogue]{
-date,editor,venue,institution,
-eventtitle,eventsubtitle,eventtitleaddon,eventdate,
+\DeclareDatamodelEntryfields[catalogue]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
 url,urldate,note,year,volume,volumes}
 
 \DeclareDatamodelEntrytypes{incatalogue}
-\DeclareDatamodelEntryfields[incatalogue]{author,title,subtitle,titleaddon,pages,url,urldate,note,volume,volumes,crossref}
+\DeclareDatamodelEntryfields[incatalogue]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{urn}
 \DeclareDatamodelEntryfields{urn}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
 \DeclareDatamodelEntryfields{jstor}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{arthist}
+\DeclareDatamodelFields[type=field,datatype=date]{arthistdate}
+\DeclareDatamodelEntryfields[review]{arthist,arthistdate}
 \endinput
 %% End of file `arthistory.dbx'.
