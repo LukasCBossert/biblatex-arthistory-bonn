@@ -22,7 +22,6 @@ url,urldate,note,year,volume,volumes}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
 \DeclareDatamodelEntryfields{jstor}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{arthist}
-\DeclareDatamodelFields[type=field,datatype=date]{arthistdate}
-\DeclareDatamodelEntryfields[review]{arthist,arthistdate}
+\DeclareDatamodelEntryfields{arthist}
 \endinput
 %% End of file `arthistory.dbx'.

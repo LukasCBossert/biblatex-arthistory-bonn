@@ -44,12 +44,17 @@
 \newlength{\labwidthsameline}
 \setlength{\labwidthsameline}{10em}
 \setlength{\biblabelsep}{0em}
-\renewcommand{\multinamedelim}{\addslash}
-\renewcommand{\finalnamedelim}{\addslash}
+\renewcommand{\multinamedelim}{\thinspace\slash\addnbthinspace}
+\renewcommand{\finalnamedelim}{\multinamedelim}
 \renewcommand{\nametitledelim}{\addcolon\addspace}
-
-
+\newcommand*{\volnumdelim}{\addslash}
+\newcommand*{\jourvoldelim}{\addnbspace}
+\renewcommand*\relateddelim{\addnbspace\slash\addspace}
+\renewcommand*{\multilistdelim}{\multinamedelim}
+\renewcommand*{\finallistdelim}{\multinamedelim}
 \renewcommand{\finentrypunct}{}
+\renewcommand*{\newunitpunct}{\addcomma\space}
+%\DeclareDelimFormat{namelabeldelim}{\slash}
 %%-----------------------
 \DeclareBibliographyOption{width}[]{%
   \csuse{booltrue}{bbx:width}% 
@@ -60,12 +65,114 @@
   \settoggle{bbx:urn}{#1}}
 \DeclareBibliographyOption[boolean]{arthist}[true]{%
   \settoggle{bbx:arthist}{#1}}
-\ExecuteBibliographyOptions{%
-  jstor,%
-  urn,%
-  arthist,%
-  }
+\ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
+
+% merge date/issue with date label
+\def\bbx@opt@mergedate@maximum{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{labelyear}
+      {}
+      {\printtext[parens]{%
+         \printfield{issue}%
+         \setunit*{\addspace}%
+         \iffieldsequal{year}{labelyear}
+           {\printlabeldateextra}%
+           {\printfield{labelyear}%
+            \printfield{extrayear}}}}}%
+  \renewbibmacro*{date}{}%
+  \renewbibmacro*{issue+date}{}}
+
+% merge date with date label
+\def\bbx@opt@mergedate@compact{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{labelyear}
+      {}
+      {\printtext{%
+         \iffieldsequal{year}{labelyear}
+           {\printlabeldateextra}%
+           {\printfield{labelyear}%
+            \printfield{extrayear}}}}}%
+  \renewbibmacro*{date}{}%
+  \renewbibmacro*{issue+date}{%
+    \iffieldundef{issue}
+      {}
+      {\printtext[parens]{\printfield{issue}}}%
+    \newunit}}
+
+% merge year-only date with date label
+\def\bbx@opt@mergedate@basic{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{labelyear}
+      {}
+      {\printtext{%
+         \printfield{labelyear}%
+         \printfield{extrayear}}}}%
+  \renewbibmacro*{date}{%
+    \iffieldundef{month}
+      {}
+      {\printdate}}%
+  \renewbibmacro*{issue+date}{%
+    \ifboolexpr{
+      test {\iffieldundef{issue}}
+      and
+      test {\iffieldundef{month}}
+    }
+      {}
+      {\printtext[parens]{%
+         \printfield{issue}%
+         \setunit*{\addspace}%
+         \printdate}}%
+    \newunit}}
+
+% merge year-only date with year-only date label
+\def\bbx@opt@mergedate@minimum{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{labelyear}
+      {}
+      {\printtext{%
+         \printfield{labelyear}%
+         \printfield{extrayear}}}}%
+  \renewbibmacro*{date}{%
+    \ifboolexpr{
+      test {\iffieldundef{month}}
+      and
+      test {\iffieldundef{extrayear}}
+    }
+      {}
+      {\printdate}}%
+  \renewbibmacro*{issue+date}{%
+    \ifboolexpr{
+      test {\iffieldundef{issue}}
+      and
+      test {\iffieldundef{month}}
+      and
+      test {\iffieldundef{extrayear}}
+    }
+      {}
+      {\printtext[parens]{%
+         \printfield{issue}%
+         \setunit*{\addspace}%
+         \printdate}}%
+    \newunit}}
+
+% don't merge date/issue with date label
+\def\bbx@opt@mergedate@false{%
+  \renewbibmacro*{date+extrayear}{%
+    \iffieldundef{labelyear}
+      {}
+      {\printtext{%
+         \printfield{labelyear}%
+         \printfield{extrayear}}}}%
+  \renewbibmacro*{date}{\printdate}%
+  \renewbibmacro*{issue+date}{%
+    \printtext[parens]{%
+      \printfield{issue}%
+      \setunit*{\addspace}%
+      \printdate}%
+    \newunit}}
+
+%---------------
 \DeclareFieldFormat*{title}{#1}
 \DeclareFieldFormat{subtitle}{#1}
 \DeclareFieldFormat{booktitle}{#1}
@@ -79,19 +186,11 @@
 \DeclareFieldFormat{parens}{\mkbibparens{#1}}
 \DeclareFieldFormat{brackets}{\mkbibbrackets{#1}}
 \DeclareFieldFormat{urldate}{\mkbibparens{#1}}
-%%-----------------------  
 \DeclareFieldFormat{eprint:urn}{%
   \textsc{urn}%
   \addcolon\space%
   \ifhyperref%
     {\href{http://www.nbn-resolving.org/#1}{\nolinkurl{#1}}}%
-    {\nolinkurl{#1}}}
-
-\DeclareFieldFormat{eprint:zenon}{%
-  \textsc{zenon (opac)}%
-  \addcolon\space%
-  \ifhyperref%
-    {\href{http://zenon.dainst.org/Record/#1}{\nolinkurl{#1}}}%
     {\nolinkurl{#1}}}
 
 \DeclareFieldFormat{eprint:jstor}{%
@@ -107,13 +206,12 @@
   \ifhyperref%
     {\href{http://arthist.net/reviews/#1}{arthist.net/reviews/\nolinkurl{#1}}}%
     {arthist.net/reviews/\nolinkurl{#1}}}  
-
 %-----------------------
-\DeclareFieldAlias{zenon}{eprint:zenon}
+\DeclareNameAlias{sortname}{family-given}
+%-----------------------
 \DeclareFieldAlias{jstor}{eprint:jstor}
 \DeclareFieldAlias{urn}{eprint:urn}
 \DeclareFieldAlias{arthist}{eprint:arthist}
-\DeclareFieldAlias[article]{arthistdate}{date}
 %%-----------------------
 \DeclareRedundantLanguages{ngerman}{german,ngerman,austrian,naustrian}
 \DeclareRedundantLanguages{english,american}{english,american,british,%
@@ -218,7 +316,7 @@
 }
 %-----------------------
 \renewbibmacro*{in:}{%
-\setunit{\addcomma\addspace}
+\newunit
   \printtext{%
     \bibstring{in}\intitlepunct}}
 %-----------------------  
@@ -256,19 +354,88 @@
   \labwidthsameline\leavevmode\newline\fi
 }
 %-----------------------
-
+\renewbibmacro{journal+number+year}{%
+ \usebibmacro{journal}%
+ \setunit{\jourvoldelim}%
+ \printfield{volume}%
+\iffieldundef{number}{}{\setunit{\volnumdelim}%
+ \printfield{number}}% 
+ \setunit{\addspace}%
+\usebibmacro{pubstate+year}%
+}
+%-----------------------
+\renewbibmacro*{addendum+pubstate}{\printfield{addendum}}
 %-----------------------    
 \newbibmacro*{related:reviewof}[1]{%
  \usebibmacro*{related:default}{#1}%
 }
+%-----------------------    
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\printnames{author}%
+     \iffieldundef{authortype}
+       {}
+       {\setunit{\addcomma\space}%
+        \usebibmacro{authorstrg}}}
+    {}}
 %-----------------------
+\newbibmacro*{editor}{%
+  \ifboolexpr{
+    test \ifuseeditor
+    and
+    not test {\ifnameundef{editor}}
+  }
+    {\printnames{editor}%
+     \setunit{\addcomma\space}%
+     \usebibmacro{editorstrg}%
+     \clearname{editor}}
+    {}}
+%-----------------------
+\newbibmacro*{translator}{%
+  \ifboolexpr{
+    test \ifusetranslator
+    and
+    not test {\ifnameundef{translator}}
+  }
+    {\printnames{translator}%
+     \setunit{\addcomma\space}%
+     \usebibmacro{translatorstrg}%
+     \clearname{translator}}
+    {}}
+%-----------------------
+\renewbibmacro*{series+number}{%
+\iffieldundef{series}{}{\printtext[parens]{\printfield{series}%
+  \setunit*{\addspace}%
+  \printfield{number}}}%
+ \newunit}
+%-----------------------  
+\newbibmacro{pubstate+year}{%
+ \iffieldundef{pubstate}%
+ {\usebibmacro{date+extrayear}}%
+ {\printfield{pubstate}}}
+%-----------------------   
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{location}%
+%  \iflistundef{publisher}
+%    {\setunit*{\space}}
+%    {\setunit*{\space}}%
+%  \printlist{publisher}%
+  \setunit*{\space}%
+  \usebibmacro{pubstate+year}%
+  \newunit}
+%-----------------------  
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{incollection}{inbook}
+\DeclareBibliographyAlias{review}{article}
 %-----------------------
 \DeclareBibliographyDriver{article}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \usebibmacro{author/translator+others}%
+  \usebibmacro{author}%
   \setunit{\nametitledelim}\newblock
   \iftoggle{bbx:related}
     {\usebibmacro{related:init}%
@@ -285,7 +452,7 @@
   \printfield{version}%
   \newunit\newblock
   \usebibmacro{in:}%
-  \usebibmacro{journal+issuetitle}%
+  \usebibmacro{journal+number+year}%
   \newunit
   \usebibmacro{byeditor+others}%
   \newunit
@@ -326,7 +493,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -354,15 +520,16 @@
 \DeclareBibliographyDriver{catalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \usebibmacro{author/editor+others/translator+others}%
+%  \usebibmacro{editor+others}%
   \setunit{\nametitledelim}\newblock
-  \usebibmacro{maintitle+title}%
-  \newunit
-  \printlist{language}%
-  \newunit\newblock
-  \usebibmacro{byauthor}%
+  \printfield{eventtitle}%
   \newunit\newblock
   \usebibmacro{byeditor+others}%
+  \setunit{\addspace}%
+  \printtext[parens]{\bibstring{catalog}%
+  \setunit{\addspace}%
+  \printfield{eventtitleaddon}}%
+ \setunit{\addspace}%
   \newunit\newblock
   \printfield{edition}%
   \newunit
@@ -374,7 +541,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -420,7 +586,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -473,7 +638,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -510,7 +674,7 @@
   \usebibmacro{in:}%
   \usebibmacro{bybookauthor}%
   \newunit\newblock
-  \usebibmacro{maintitle+booktitle}%
+  \usebibmacro{event+venue+date}%
   \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
@@ -524,7 +688,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -573,7 +736,6 @@
   \printfield{volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
-  \newunit\newblock
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
