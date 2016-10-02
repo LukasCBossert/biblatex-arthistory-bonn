@@ -32,7 +32,10 @@
   minnames=1,%
   maxitems=3,%
   maxbibnames=999,%
+  isbn=false,
 }
+\AtEveryBibitem{\clearfield{issn}}
+\AtEveryCitekey{\clearfield{issn}}
 
 \newbool{bbx:width}
 \newtoggle{bbx:jstor}
@@ -415,7 +418,9 @@
 %-----------------------  
 \newbibmacro{pubstate+year}{%
  \iffieldundef{pubstate}%
- {\usebibmacro{date+extrayear}}%
+  {\iffieldundef{year}
+    {\usebibmacro{date+extrayear}}
+    {\printfield{year}}}
  {\printfield{pubstate}}}
 %-----------------------   
 \renewbibmacro*{publisher+location+date}{%
@@ -425,8 +430,8 @@
 %    {\setunit*{\space}}%
 %  \printlist{publisher}%
   \setunit*{\space}%
-  \usebibmacro{pubstate+year}%
-  \newunit}
+  \usebibmacro*{pubstate+year}%
+\newunit}
 %-----------------------  
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{incollection}{inbook}
