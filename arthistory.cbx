@@ -13,7 +13,30 @@
   \RequireCitationStyle{authoryear-ibid}
 %-----------------------
 
-\renewcommand*{\multicitedelim}{\addslash}
+
+
+
+\renewbibmacro*{cite}{%
+  \global\boolfalse{cbx:loccit}%
+  \iffieldundef{shorthand}
+    {\ifthenelse{\ifciteibid\AND\NOT\iffirstonpage}
+       {\usebibmacro{cite:ibid}}
+       {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+          {\usebibmacro{cite:label}%
+           \setunit{\printdelim{nonameyeardelim}}}
+          {\ifentrytype{catalog}
+          	{\usebibmacro{cite:catalog}}
+          	{\printnames{labelname}}%
+           \setunit{\printdelim{nameyeardelim}}}%
+        \usebibmacro{cite:labelyear+extrayear}}}
+    {\usebibmacro{cite:shorthand}}}
+    
+\newbibmacro{cite:catalog}{%
+  \bibstring{catalog}%
+  \setunit{\addspace}%
+  \printfield{venue}%
+}  
+
 
 \endinput
 %% End of file `arthistory.cbx'.

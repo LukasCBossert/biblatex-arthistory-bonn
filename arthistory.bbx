@@ -64,6 +64,7 @@
 \renewcommand*{\finallistdelim}{\multinamedelim}
 \renewcommand{\finentrypunct}{}
 \renewcommand*{\newunitpunct}{\addcomma\space}
+\renewcommand*{\subtitlepunct}{\adddotspace}
 %\DeclareDelimFormat{namelabeldelim}{\slash}
 %%-----------------------
 \DeclareBibliographyOption{width}[]{%
@@ -78,109 +79,6 @@
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
 
-% merge date/issue with date label
-\def\bbx@opt@mergedate@maximum{%
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{labelyear}
-      {}
-      {\printtext[parens]{%
-         \printfield{issue}%
-         \setunit*{\addspace}%
-         \iffieldsequal{year}{labelyear}
-           {\printlabeldateextra}%
-           {\printfield{labelyear}%
-            \printfield{extrayear}}}}}%
-  \renewbibmacro*{date}{}%
-  \renewbibmacro*{issue+date}{}}
-
-% merge date with date label
-\def\bbx@opt@mergedate@compact{%
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{labelyear}
-      {}
-      {\printtext{%
-         \iffieldsequal{year}{labelyear}
-           {\printlabeldateextra}%
-           {\printfield{labelyear}%
-            \printfield{extrayear}}}}}%
-  \renewbibmacro*{date}{}%
-  \renewbibmacro*{issue+date}{%
-    \iffieldundef{issue}
-      {}
-      {\printtext[parens]{\printfield{issue}}}%
-    \newunit}}
-
-% merge year-only date with date label
-\def\bbx@opt@mergedate@basic{%
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{labelyear}
-      {}
-      {\printtext{%
-         \printfield{labelyear}%
-         \printfield{extrayear}}}}%
-  \renewbibmacro*{date}{%
-    \iffieldundef{month}
-      {}
-      {\printdate}}%
-  \renewbibmacro*{issue+date}{%
-    \ifboolexpr{
-      test {\iffieldundef{issue}}
-      and
-      test {\iffieldundef{month}}
-    }
-      {}
-      {\printtext[parens]{%
-         \printfield{issue}%
-         \setunit*{\addspace}%
-         \printdate}}%
-    \newunit}}
-
-% merge year-only date with year-only date label
-\def\bbx@opt@mergedate@minimum{%
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{labelyear}
-      {}
-      {\printtext{%
-         \printfield{labelyear}%
-         \printfield{extrayear}}}}%
-  \renewbibmacro*{date}{%
-    \ifboolexpr{
-      test {\iffieldundef{month}}
-      and
-      test {\iffieldundef{extrayear}}
-    }
-      {}
-      {\printdate}}%
-  \renewbibmacro*{issue+date}{%
-    \ifboolexpr{
-      test {\iffieldundef{issue}}
-      and
-      test {\iffieldundef{month}}
-      and
-      test {\iffieldundef{extrayear}}
-    }
-      {}
-      {\printtext[parens]{%
-         \printfield{issue}%
-         \setunit*{\addspace}%
-         \printdate}}%
-    \newunit}}
-
-% don't merge date/issue with date label
-\def\bbx@opt@mergedate@false{%
-  \renewbibmacro*{date+extrayear}{%
-    \iffieldundef{labelyear}
-      {}
-      {\printtext{%
-         \printfield{labelyear}%
-         \printfield{extrayear}}}}%
-  \renewbibmacro*{date}{\printdate}%
-  \renewbibmacro*{issue+date}{%
-    \printtext[parens]{%
-      \printfield{issue}%
-      \setunit*{\addspace}%
-      \printdate}%
-    \newunit}}
 
 %---------------
 \DeclareFieldFormat*{title}{#1}
@@ -232,6 +130,8 @@
 \DeclareSortingScheme{shortseries}{\sort{\field{shortseries}}}
 \DeclareSortingScheme{shortjournal}{\sort{\field{shortjournal}}}
 %-----------------------
+
+%-----------------------     
 \defbibcheck{shortseries}{% 
   \iffieldundef{shortseries}%
     {\skipentry}%
@@ -273,14 +173,6 @@
  {\printfield[eprint:\strfield{eprinttype}]{eprint}}%
 }
 %----------------------- 
-\newbibmacro*{zenon}{%
- \iffieldundef{zenon}%
- {}%
- {\usebibmacro{bbx:parunit}%
- \printfield{zenon}%
- } 
-}
-%----------------------- 
 \newbibmacro*{jstor}{%
  \iffieldundef{jstor}%
  {}%
@@ -320,7 +212,6 @@
  \iftoggle{bbx:eprint}{\usebibmacro{eprint}}{}%
  \iftoggle{bbx:jstor}{\usebibmacro{jstor}}{}%
  \iftoggle{bbx:urn}{\usebibmacro{urn}}{}%
- \iftoggle{bbx:zenon}{\usebibmacro{zenon}}{}%
  \iftoggle{bbx:url}{\usebibmacro{url+urldate}}{}%
  \iftoggle{bbx:arthist}{\usebibmacro{arthist}}{}%
 }
@@ -417,18 +308,25 @@
      \clearname{translator}}
     {}}
 %-----------------------
-\renewbibmacro*{series+number}{%
-\iffieldundef{series}{}{\printtext[parens]{\printfield{series}%
-  \setunit*{\addspace}%
-  \printfield{number}%
-  \newunit%
-  \bibstring{zugl}\addspace%
+\newbibmacro{diss+date}{%
+\setunit*{\addsemicolon\addspace}%
+  \iffieldequalstr{options}{tzugl}%
+    {\bibstring{tzugl}}%
+    {\bibstring{zugl}}%
+  \addspace%
 \printlist{institution}%
     \newunit%
  \printfield{type}%
  \newunit%
 \printdate%
-  }}%
+}
+\renewbibmacro*{series+number}{%
+\iffieldundef{series}{}{\printtext[parens]{\printfield{series}%
+\newunit
+  \printfield{number}%
+  \iflistundef{institution}
+  {}
+  {\usebibmacro{diss+date}}}}%
  \newunit}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
@@ -462,8 +360,6 @@
      \usebibmacro{related}}
     {}%
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
@@ -496,8 +392,6 @@
   \usebibmacro{author/editor+others/translator+others}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{maintitle+title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
@@ -518,8 +412,6 @@
   \usebibmacro{publisher+location+date}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
-  \newunit
-  \printfield{pagetotal}%
   \newunit\newblock
   \iftoggle{bbx:isbn}
     {\printfield{isbn}}
@@ -540,7 +432,6 @@
 \DeclareBibliographyDriver{catalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-%  \usebibmacro{editor+others}%
   \setunit{\nametitledelim}\newblock
   \printfield{eventtitle}%
   \newunit\newblock
@@ -566,8 +457,6 @@
   \usebibmacro{publisher+location+date}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
-  \newunit
-  \printfield{pagetotal}%
   \newunit\newblock
   \iftoggle{bbx:isbn}
     {\printfield{isbn}}
@@ -591,8 +480,6 @@
   \usebibmacro{editor+others}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{maintitle+title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
@@ -611,8 +498,6 @@
   \usebibmacro{publisher+location+date}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
-  \newunit
-  \printfield{pagetotal}%
   \newunit\newblock
   \iftoggle{bbx:isbn}
     {\printfield{isbn}}
@@ -636,8 +521,6 @@
   \usebibmacro{author/translator+others}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
@@ -686,8 +569,6 @@
   \usebibmacro{author/translator+others}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
@@ -736,8 +617,6 @@
   \usebibmacro{author/translator+others}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
@@ -784,16 +663,11 @@
   \usebibmacro{author}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{title}%
-  \newunit
-  \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
   \newunit\newblock
   \printfield{note}%
-  \newunit\newblock
-  \printfield{type}%
-  \newunit
-  \usebibmacro{institution+location+date}%
+  \printtext[parens]{\usebibmacro{diss+date}}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
   \newunit
