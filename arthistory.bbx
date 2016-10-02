@@ -34,8 +34,15 @@
   maxbibnames=999,%
   isbn=false,
 }
-\AtEveryBibitem{\clearfield{issn}}
-\AtEveryCitekey{\clearfield{issn}}
+\AtEveryBibitem{
+	\clearfield{issn}
+	\clearfield{pagetotal}
+	}
+\AtEveryCitekey{
+	\clearfield{issn}
+	\clearfield{pagetotal}
+	}
+	
 
 \newbool{bbx:width}
 \newtoggle{bbx:jstor}
@@ -413,7 +420,15 @@
 \renewbibmacro*{series+number}{%
 \iffieldundef{series}{}{\printtext[parens]{\printfield{series}%
   \setunit*{\addspace}%
-  \printfield{number}}}%
+  \printfield{number}%
+  \newunit%
+  \bibstring{zugl}\addspace%
+\printlist{institution}%
+    \newunit%
+ \printfield{type}%
+ \newunit%
+\printdate%
+  }}%
  \newunit}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
