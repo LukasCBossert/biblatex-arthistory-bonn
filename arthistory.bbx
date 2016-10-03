@@ -345,7 +345,16 @@
   \setunit*{\space}%
   \usebibmacro*{pubstate+year}%
 \newunit}
-%-----------------------  
+%----------------------- 
+\newbibmacro*{maintitle+volume}{%
+ \iffieldundef{volume}
+	  {}
+	  {\printfield{volume}%
+           \printfield{part}%
+           \setunit{\addcolon\space}}%
+           \usebibmacro{maintitle}%
+	\newunit\newblock}
+%----------------------- 
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{incollection}{inbook}
 \DeclareBibliographyAlias{review}{article}
@@ -386,23 +395,24 @@
   \usebibmacro{finentry}}
  
 
+  
 \DeclareBibliographyDriver{book}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \usebibmacro{author/editor+others/translator+others}%
   \setunit{\nametitledelim}\newblock
-  \usebibmacro{maintitle+title}%
+  \usebibmacro{title}%
   \newunit\newblock
   \usebibmacro{byauthor}%
-  \newunit\newblock
+   \newunit
+  \iffieldundef{maintitle}
+    {\printfield{volume}%
+     \printfield{part}}%
+    {\usebibmacro{maintitle+volume}}%
+      \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
   \printfield{edition}%
-  \newunit
-  \iffieldundef{maintitle}
-    {\printfield{volume}%
-     \printfield{part}}
-    {}%
   \newunit
   \printfield{volumes}%
   \newunit\newblock
