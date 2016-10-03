@@ -1,31 +1,45 @@
 \documentclass[italian,english,ngerman]{scrbook}
 \usepackage{babel}
 \usepackage{libertine}
-\usepackage[scaled=0.88]{beraserif}
-\usepackage[scaled=0.85]{berasans}
-\usepackage[scaled=0.84]{beramono}
-
-\usepackage[T1]{fontenc}
-\usepackage{mathpazo}
-\linespread{1.05}
-\usepackage[T1,small,euler-digits]{eulervm}
 
 \usepackage{csquotes}
 \usepackage[           
   backend=biber,
   style=arthistory,
+%  firstcitefull=true,
+%style=archaeologie,seenote,
 %style=authoryear-ibid,
-  dashed=false,
+%citestyle=verbose-ibid,
+%  dashed=false,
   width=5em,
 ]{biblatex}
 \addbibresource{arthistory-examples.bib}
+
+%	\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+%	  {\usebibmacro{prenote}}%
+%	  {\usebibmacro{citeindex}%
+%	  \usebibmacro{cite}}%
+%	  {\multicitedelim}%
+%	  {\ifboolexpr{%
+%	  test{\ifbool{bbx:inreferences}}%
+%	  and%
+%	  test{\ifentrytype{inreference}}%
+%	  }{}{\usebibmacro{postnote}}}%
+
+
 \usepackage{hyperref}
 \begin{document}
-\footcite{AusstellungBern2000,AusstellungBonn2005}
-\footcite{AusstellungBonn2005}
-\footcite{Brossette2002}
-\footcite{Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}
-\footcite{fagiolodellarco1967}
+\footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
+\footnote{\cite{AusstellungBern2000}; \cite{AusstellungBonn2005}}
+\footnote{\cites{AusstellungBonn2005}}
+\footnote{\cites{AusstellungBonn2005}}
+\footnote{\cites{Brossette2002}}
+\footnote{\cites{Brossette2002}}
+\footnote{\cites{Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
+\footnote{\cites{fagiolodellarco1967}}
+
+
+
 \nocite{*}
 \printbibliography
 \end{document}

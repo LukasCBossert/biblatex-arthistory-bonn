@@ -34,13 +34,13 @@
   maxbibnames=999,%
   isbn=false,
 }
-\AtEveryBibitem{
-	\clearfield{issn}
-	\clearfield{pagetotal}
+\AtEveryBibitem{%
+	\clearfield{issn}%
+	\clearfield{pagetotal}%
 	}
-\AtEveryCitekey{
-	\clearfield{issn}
-	\clearfield{pagetotal}
+\AtEveryCitekey{%
+	\clearfield{issn}%
+	\clearfield{pagetotal}%
 	}
 	
 
@@ -56,7 +56,7 @@
 \setlength{\biblabelsep}{0em}
 \renewcommand{\multinamedelim}{\thinspace\slash\addnbthinspace}
 \renewcommand{\finalnamedelim}{\multinamedelim}
-\renewcommand{\nametitledelim}{\addcolon\addspace}
+\renewcommand*{\nametitledelim}{\addcolon\addspace}
 \newcommand*{\volnumdelim}{\addslash}
 \newcommand*{\jourvoldelim}{\addnbspace}
 \renewcommand*\relateddelim{\addnbspace\slash\addspace}
@@ -78,7 +78,7 @@
   \settoggle{bbx:arthist}{#1}}
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
-
+\DeclareEntryOption{tzugl}[true]{\csuse{bool#1}{cbx:tzugl}}
 
 %---------------
 \DeclareFieldFormat*{title}{#1}
@@ -284,7 +284,7 @@
         \usebibmacro{authorstrg}}}
     {}}
 %-----------------------
-\newbibmacro*{editor}{%
+\renewbibmacro*{editor}{%
   \ifboolexpr{
     test \ifuseeditor
     and
@@ -296,7 +296,7 @@
      \clearname{editor}}
     {}}
 %-----------------------
-\newbibmacro*{translator}{%
+\renewbibmacro*{translator}{%
   \ifboolexpr{
     test \ifusetranslator
     and
@@ -309,8 +309,7 @@
     {}}
 %-----------------------
 \newbibmacro{diss+date}{%
-\setunit*{\addsemicolon\addspace}%
-  \iffieldequalstr{options}{tzugl}%
+  \iffieldequalstr{disstype}{tzugl}%
     {\bibstring{tzugl}}%
     {\bibstring{zugl}}%
   \addspace%
@@ -318,15 +317,22 @@
     \newunit%
  \printfield{type}%
  \newunit%
-\printdate%
+\printdissdate%
 }
-\renewbibmacro*{series+number}{%
-\iffieldundef{series}{}{\printtext[parens]{\printfield{series}%
+%-----------------------
+\renewbibmacro*{series+number+diss+date}{%
+\setunit{\addspace}%
+  \iffieldundef{series}
+    {\iflistundef{institution}
+    {}
+    {\printtext[parens]{\usebibmacro{diss+date}}}}
+  {\printtext[parens]{\printfield{series}%
 \newunit
   \printfield{number}%
   \iflistundef{institution}
   {}
-  {\usebibmacro{diss+date}}}}%
+  {\setunit*{\addsemicolon\addspace}%
+  \usebibmacro{diss+date}}}}%
  \newunit}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
@@ -335,6 +341,15 @@
     {\usebibmacro{date+extrayear}}
     {\printfield{year}}}
  {\printfield{pubstate}}}
+%-----------------------   
+\renewbibmacro*{series+number}{%
+\setunit{\addspace}%
+  \iffieldundef{series}
+  {}
+  {\printtext[parens]{\printfield{series}%
+  \newunit%
+  \printfield{number}}}%
+  \newunit}
 %-----------------------   
 \renewbibmacro*{publisher+location+date}{%
   \printlist{location}%
@@ -355,6 +370,34 @@
            \usebibmacro{maintitle}%
 	\newunit\newblock}
 %----------------------- 
+\newbibmacro*{ineditor}{%
+  \ifboolexpr{
+    test \ifuseeditor
+    and
+    not test {\ifnameundef{editor}}
+  }
+    {\printnames[given-family]{editor}%
+     \setunit{\space}%
+     \usebibmacro{editorstrg}%
+     \clearname{editor}%
+     \setunit*{\nametitledelim}}
+    {}}
+%-----------------------     
+\newbibmacro*{exhibcat}{%
+  \printfield{eventtitle}%
+%  \iffieldundef{eventsubtitle}%
+   % {}%
+    {\setunit{\subtitlepunct}%
+     \printfield{eventsubtitle}}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \setunit{\addspace}%
+  \printtext[parens]{\bibstring{catalog}%
+  \setunit{\addspace}%
+  \printfield{eventtitleaddon}}%
+  \newunit%
+ }
+%-----------------------     
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{incollection}{inbook}
 \DeclareBibliographyAlias{review}{article}
@@ -399,7 +442,7 @@
 \DeclareBibliographyDriver{book}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \usebibmacro{author/editor+others/translator+others}%
+  \usebibmacro{author/editor}%
   \setunit{\nametitledelim}\newblock
   \usebibmacro{title}%
   \newunit\newblock
@@ -415,9 +458,10 @@
   \printfield{edition}%
   \newunit
   \printfield{volumes}%
-  \newunit\newblock
-  \usebibmacro{series+number}%
-  \printfield{note}%
+\setunit{\addspace}%
+  \usebibmacro{series+number+diss+date}%
+   \newunit\newblock
+  \printfield{note}% 
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
   \newunit\newblock
@@ -442,16 +486,9 @@
 \DeclareBibliographyDriver{catalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \setunit{\nametitledelim}\newblock
-  \printfield{eventtitle}%
-  \newunit\newblock
-  \usebibmacro{byeditor+others}%
-  \setunit{\addspace}%
-  \printtext[parens]{\bibstring{catalog}%
-  \setunit{\addspace}%
-  \printfield{eventtitleaddon}}%
- \setunit{\addspace}%
-  \newunit\newblock
+  \setunit{\nametitledelim}%
+  \newblock
+\usebibmacro{exhibcat}%
   \printfield{edition}%
   \newunit
   \iffieldundef{maintitle}
@@ -501,7 +538,6 @@
     {}%
   \newunit
   \printfield{volumes}%
-  \newunit\newblock
   \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
@@ -535,11 +571,10 @@
   \usebibmacro{byauthor}%
   \newunit\newblock
   \usebibmacro{in:}%
-  \usebibmacro{bybookauthor}%
-  \newunit\newblock
+    \usebibmacro{ineditor}%
+ % \usebibmacro{bybookauthor}%
+%  \newunit\newblock
   \usebibmacro{maintitle+booktitle}%
-  \newunit\newblock
-  \usebibmacro{byeditor+others}%
   \newunit\newblock
   \printfield{edition}%
   \newunit
@@ -549,8 +584,7 @@
     {}%
   \newunit
   \printfield{volumes}%
-  \newunit\newblock
-  \usebibmacro{series+number}%
+\usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
   \usebibmacro{publisher+location+date}%
@@ -583,11 +617,7 @@
   \usebibmacro{byauthor}%
   \newunit\newblock
   \usebibmacro{in:}%
-  \usebibmacro{bybookauthor}%
-  \newunit\newblock
-  \usebibmacro{event+venue+date}%
-  \newunit\newblock
-  \usebibmacro{byeditor+others}%
+\usebibmacro{exhibcat}%
   \newunit\newblock
   \printfield{edition}%
   \newunit
@@ -597,7 +627,6 @@
     {}%
   \newunit
   \printfield{volumes}%
-  \newunit\newblock
   \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
@@ -621,51 +650,6 @@
     {}%
   \usebibmacro{finentry}}
 
-\DeclareBibliographyDriver{incollection}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author/translator+others}%
-  \setunit{\nametitledelim}\newblock
-  \usebibmacro{title}%
-  \newunit\newblock
-  \usebibmacro{byauthor}%
-  \newunit\newblock
-  \usebibmacro{in:}%
-  \usebibmacro{maintitle+booktitle}%
-  \newunit\newblock
-  \usebibmacro{byeditor+others}%
-  \newunit\newblock
-  \printfield{edition}%
-  \newunit
-  \iffieldundef{maintitle}
-    {\printfield{volume}%
-     \printfield{part}}
-    {}%
-  \newunit
-  \printfield{volumes}%
-  \newunit\newblock
-  \usebibmacro{series+number}%
-  \printfield{note}%
-  \newunit\newblock
-  \usebibmacro{publisher+location+date}%
-  \newunit\newblock
-  \usebibmacro{chapter+pages}%
-  \newunit\newblock
-  \iftoggle{bbx:isbn}
-    {\printfield{isbn}}
-    {}%
-  \newunit\newblock
-  \usebibmacro{doi+eprint+url}%
-  \newunit\newblock
-  \usebibmacro{addendum+pubstate}%
-  \setunit{\bibpagerefpunct}\newblock
-  \usebibmacro{pageref}%
-  \newunit\newblock
-  \iftoggle{bbx:related}
-    {\usebibmacro{related:init}%
-     \usebibmacro{related}}
-    {}%
-  \usebibmacro{finentry}}
 
 \DeclareBibliographyDriver{thesis}{%
   \usebibmacro{bibindex}%
@@ -675,8 +659,6 @@
   \usebibmacro{title}%
   \newunit\newblock
   \usebibmacro{byauthor}%
-  \newunit\newblock
-  \printfield{note}%
   \printtext[parens]{\usebibmacro{diss+date}}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%

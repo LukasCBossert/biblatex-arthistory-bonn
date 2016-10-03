@@ -13,11 +13,57 @@
   \RequireCitationStyle{authoryear-ibid}
 %-----------------------
 
+\newbool{cbx:firstcitefull}
+\newbool{cbx:seen}
 
+\DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
 
+\newcommand*{\cbx@fseen@names}{}
+\newcommand*{\cbx@tseen@names}{}
+\newrobustcmd*{\cbx@nameseen}[1]{%
+  \iftoggle{blx@footnote}
+  {\listcsxadd{cbx@fseen@names}{#1}}
+  {\listcsxadd{cbx@tseen@names}{#1}}}
+\newrobustcmd*{\cbx@ifnameseen}[1]{%
+  \iftoggle{blx@footnote}%
+  {\xifinlistcs{#1}{cbx@fseen@names}}%
+  {\xifinlistcs{#1}{cbx@tseen@names}}}
+ 
+  
+\newbibmacro{cite:catalog}{%
+  \printtext[bibhyperref]{\bibstring{catalog}%
+  \setunit{\addspace}%
+  \printfield{venue}%
+    \setunit{\addspace}%
+    \printeventdate}%
+}  
 
-\renewbibmacro*{cite}{%
-  \global\boolfalse{cbx:loccit}%
+ 
+\newbibmacro{cite}{%
+  \ifbool{cbx:firstcitefull}
+    {\usebibmacro{cite:firstcitefull}}
+    {\usebibmacro{cite:normal}}%
+  \ifciteseen{\global\booltrue{cbx:seen}}%
+  {\global\boolfalse{cbx:seen}}%
+%  \usebibmacro{savestuff}%
+}
+ 
+\newbibmacro*{cite:firstcitefull}{%
+  \ifciteseen
+    {\usebibmacro{{cite:normal}}}
+    {\printtext[bibhypertarget]{%
+   \ifentrytype{catalog}
+      {\usebibmacro{cite:catalog}
+       \setunit{\printdelim{nameyeardelim}}%
+       \usebibmacro{cite:labelyear+extrayear}}
+       {}%
+    \usedriver
+      {\DeclareNameAlias{sortname}{default}}
+      {\thefield{entrytype}}}%
+}}
+
+\newbibmacro*{cite:normal}{%
+ \global\boolfalse{cbx:loccit}%
   \iffieldundef{shorthand}
     {\ifthenelse{\ifciteibid\AND\NOT\iffirstonpage}
        {\usebibmacro{cite:ibid}}
@@ -26,17 +72,11 @@
            \setunit{\printdelim{nonameyeardelim}}}
           {\ifentrytype{catalog}
           	{\usebibmacro{cite:catalog}}
-          	{\printnames{labelname}}%
-           \setunit{\printdelim{nameyeardelim}}}%
-        \usebibmacro{cite:labelyear+extrayear}}}
+          	{\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+        \usebibmacro{cite:labelyear+extrayear}}%
+        }}}
     {\usebibmacro{cite:shorthand}}}
-    
-\newbibmacro{cite:catalog}{%
-  \bibstring{catalog}%
-  \setunit{\addspace}%
-  \printfield{venue}%
-}  
-
-
+ 
 \endinput
 %% End of file `arthistory.cbx'.

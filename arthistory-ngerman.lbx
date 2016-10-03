@@ -26,17 +26,155 @@
 
 
 \DeclareBibliographyStrings{%
-  inherit          = {ngerman},
+  inherit  = {ngerman},
   zugl = {{zugelassen}{zugl\adddot}},
-    tzugl = {{teilweise\addspace zugelassen}{teilw\adddotspace zugl\adddot}},
+  tzugl = {{teilweise\addspace zugelassen}{teilw\adddotspace zugl\adddot}},
   habil = {{Habilitations-Schrift}{Habil\adddot-Schr\adddot}},
   catalog = {{Ausstellungs-Katalog}{Ausst\adddot-Kat\adddot}},
- byeditor         = {{herausgegeben von}{hg\adddotspace von}},
+  byeditor = {{herausgegeben von}{hg\adddotspace von}},
   editor = {{Herausgeber}{Hg\adddot}},
   editors= {{Herausgeber}{Hg\adddot}},
   reviewof = {{[Rezension\addspace zu]}{[Rezension\addspace zu]}},
   seenote = {{Anmerkung}{Anm\adddot}},
   loccit = {{am\addabthinspace Ort}{a\adddot\addabthinspace O\adddot}},
   translationof = {{\"Ubersetzung\addspace von}{\"Ubers\adddot\addspace von}},
+   editortr         = {{Herausgeber und \"Ubersetzer}%
+                      {Hg\adddot\ und \"Ubers\adddot}},
+  editorstr        = {{Herausgeber und \"Ubersetzer}%
+                      {Hg\adddot\ und \"Ubers\adddot}},
+  editorco         = {{Herausgeber und Kommentator}%
+                      {Hg\adddot\ und Komm\adddot}},
+  editorsco        = {{Herausgeber und Kommentatoren}%
+                      {Hg\adddot\ und Komm\adddot}},
+  editoran         = {{Herausgeber und Kommentator}%
+                      {Hg\adddot\ und Komm\adddot}},
+  editorsan        = {{Herausgeber und Kommentatoren}%
+                      {Hg\adddot\ und Komm\adddot}},
+  editorin         = {{Herausgabe und Einleitung}%
+                      {Hg\adddot\ und Einl\adddot}},
+  editorsin        = {{Herausgeber und Einleitung}%
+                      {Hg\adddot\ und Einl\adddot}},
+  editorfo         = {{Herausgeber und Vorwort}%
+                      {Hg\adddot\ und Vorw\adddot}},
+  editorsfo        = {{Herausgabe und Vorwort}%
+                      {Hg\adddot\ und Vorw\adddot}},
+  editoraf         = {{Herausgabe und Nachwort}%
+                      {Hg\adddot\ und Nachw\adddot}},
+  editorsaf        = {{Herausgabe und Nachwort}%
+                      {Hg\adddot\ und Nachw\adddot}},
+  editortrco       = {{Herausgeber, \"Ubersetzer und Kommentator}%
+                      {Hg., \"Ubers\adddot\ und Komm\adddot}},
+  editorstrco      = {{Herausgeber, \"Ubersetzer und Kommentatoren}%
+                      {Hg., \"Ubers\adddot\ und Komm\adddot}},
+  editortran       = {{Herausgeber, \"Ubersetzer und Kommentator}%
+                      {Hg., \"Ubers\adddot\ und Komm\adddot}},
+  editorstran      = {{Herausgeber, \"Ubersetzer und Kommentatoren}%
+                      {Hg., \"Ubers\adddot\ und Komm\adddot}},
+  editortrin       = {{Herausgabe, \"Ubersetzung und Einleitung}%
+                      {Hg., \"Ubers\adddot\ und Einl\adddot}},
+  editorstrin      = {{Herausgabe, \"Ubersetzung und Einleitung}%
+                      {Hg., \"Ubers\adddot\ und Einl\adddot}},
+  editortrfo       = {{Herausgabe, \"Ubersetzung und Vorwort}%
+                      {Hg., \"Ubers\adddot\ und Vorw\adddot}},
+  editorstrfo      = {{Herausgabe, \"Ubersetzung und Vorwort}%
+                      {Hg., \"Ubers\adddot\ und Vorw\adddot}},
+  editortraf       = {{Herausgabe, \"Ubersetzung und Nachwort}%
+                      {Hg., \"Ubers\adddot\ und Nachw\adddot}},
+  editorstraf      = {{Herausgabe, \"Ubersetzung und Nachwort}%
+                      {Hg., \"Ubers\adddot\ und Nachw\adddot}},
+  editorcoin       = {{Herausgabe, Kommentar und Einleitung}%
+                      {Hg., Komm\adddot\ und Einl\adddot}},
+  editorscoin      = {{Herausgabe, Kommentar und Einleitung}%
+                      {Hg., Komm\adddot\ und Einl\adddot}},
+  editorcofo       = {{Herausgabe, Kommentar und Vorwort}%
+                      {Hg., Komm\adddot\ und Vorw\adddot}},
+  editorscofo      = {{Herausgabe, Kommentar und Vorwort}%
+                      {Hg., Komm\adddot\ und Vorw\adddot}},
+  editorcoaf       = {{Herausgabe, Kommentar und Nachwort}%
+                      {Hg., Komm\adddot\ und Nachw\adddot}},
+  editorscoaf      = {{Herausgabe, Kommentar und Nachwort}%
+                      {Hg., Komm\adddot\ und Nachw\adddot}},
+  editoranin       = {{Herausgabe, Erl\"auterungen und Einleitung}%
+                      {Hg., Erl\"aut\adddot\ und Einl\adddot}},
+  editorsanin      = {{Herausgabe, Erl\"auterungen und Einleitung}%
+                      {Hg., Erl\"aut\adddot\ und Einl\adddot}},
+  editoranfo       = {{Herausgabe, Erl\"auterungen und Vorwort}%
+                      {Hg., Erl\"aut\adddot\ und Vorw\adddot}},
+  editorsanfo      = {{Herausgabe, Erl\"auterungen und Vorwort}%
+                      {Hg., Erl\"aut\adddot\ und Vorw\adddot}},
+  editoranaf       = {{Herausgabe, Erl\"auterungen und Nachwort}%
+                      {Hg., Erl\"aut\adddot\ und Nachw\adddot}},
+  editorsanaf      = {{Herausgabe, Erl\"auterungen und Nachwort}%
+                      {Hg., Erl\"aut\adddot\ und Nachw\adddot}},
+  editortrcoin     = {{Herausgabe, \"Ubersetzung, Kommentar und Einleitung}%
+                      {Hg., \"Ubers., Komm\adddot\ und Einl\adddot}},
+  editorstrcoin    = {{Herausgabe, \"Ubersetzung, Kommentar und Einleitung}%
+                      {Hg., \"Ubers., Komm\adddot\ und Einl\adddot}},
+  editortrcofo     = {{Herausgabe, \"Ubersetzung, Kommentar und Vorwort}%
+                      {Hg., \"Ubers., Komm\adddot\ und Vorw\adddot}},
+  editorstrcofo    = {{Herausgabe, \"Ubersetzung, Kommentar und Vorwort}%
+                      {Hg., \"Ubers., Komm\adddot\ und Vorw\adddot}},
+  editortrcoaf     = {{Herausgabe, \"Ubersetzung, Kommentar und Nachwort}%
+                      {Hg., \"Ubers., Komm\adddot\ und Nachw\adddot}},
+  editorstrcoaf    = {{Herausgabe, \"Ubersetzung, Kommentar und Nachwort}%
+                      {Hg., \"Ubers., Komm\adddot\ und Nachw\adddot}},
+  editortranin     = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Einleitung}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Einl\adddot}},
+  editorstranin    = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Einleitung}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Einl\adddot}},
+  editortranfo     = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Vorwort}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Vorw\adddot}},
+  editorstranfo    = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Vorwort}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Vorw\adddot}},
+  editortranaf     = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Nachwort}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Nachw\adddot}},
+  editorstranaf    = {{Herausgabe, \"Ubersetzung, Erl\"auterungen und Nachwort}%
+                      {Hg., \"Ubers., Erl\"aut\adddot\ und Nachw\adddot}},
+ byeditortr       = {{herausgegeben und \lbx@lfromlang \"ubersetzt von}%
+                      {hg\adddotspace und \lbx@sfromlang \"ubers\adddot\ von}},
+  byeditorco       = {{herausgegeben und kommentiert von}%
+                      {hg\adddotspace und komm\adddot\ von}},
+  byeditoran       = {{herausgegeben und erl\"autert von}%
+                      {hg\adddotspace und erl\"aut\adddot\ von}},
+  byeditorin       = {{herausgegeben und mit einer Einleitung versehen von}%
+                      {hg\adddotspace und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditorfo       = {{herausgegeben und mit einem Vorwort versehen von}%
+                      {hg\adddotspace und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditoraf       = {{herausgegeben und mit einem Nachwort versehen von}%
+                      {hg\adddotspace und mit einem Nachw\adddot\ vers\adddot\ von}},
+  byeditortrco     = {{herausgegeben, \lbx@lfromlang \"ubersetzt und kommentiert von}%
+                      {hg., \lbx@sfromlang \"ubers\adddot\ und komm\adddot\ von}},
+  byeditortran     = {{herausgegeben, \lbx@lfromlang \"ubersetzt und erl\"autert von}%
+                      {hg., \lbx@sfromlang \"ubers\adddot\ und erl\"aut\adddot\ von}},
+  byeditortrin     = {{herausgegeben, \lbx@lfromlang \"ubersetzt und mit einer Einleitung versehen von}%
+                      {hg., \lbx@sfromlang \"ubers\adddot\ und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditortrfo     = {{herausgegeben, \lbx@lfromlang \"ubersetzt und mit einem Vorwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers\adddot\ und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditortraf     = {{herausgegeben, \lbx@lfromlang \"ubersetzt und mit einem Nachwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers\adddot\ und mit einem Nachw\adddot\ vers\adddot\ von}},
+  byeditorcoin     = {{herausgegeben, kommentiert und mit einer Einleitung versehen von}%
+                      {hg., komm\adddot\ und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditorcofo     = {{herausgegeben, kommentiert und mit einem Vorwort versehen von}%
+                      {hg., komm\adddot\ und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditorcoaf     = {{herausgegeben, kommentiert und mit einem Nachwort versehen von}%
+                      {hg., komm\adddot\ und mit einem Nachw\adddot\ vers\adddot\ von}},
+  byeditoranin     = {{herausgegeben, erl\"autert und mit einer Einleitung versehen von}%
+                      {hg., erl\"aut\adddot\ und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditoranfo     = {{herausgegeben, erl\"autert und mit einem Vorwort versehen von}%
+                      {hg., erl\"aut\adddot\ und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditoranaf     = {{herausgegeben, erl\"autert und mit einem Nachwort versehen von}%
+                      {hg., erl\"aut\adddot\ und mit einem Nachw\adddot\ vers\adddot\ von}},
+  byeditortrcoin   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, kommentiert und mit einer Einleitung versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., komm\adddot\ und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditortrcofo   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, kommentiert und mit einem Vorwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., komm\adddot\ und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditortrcoaf   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, kommentiert und mit einem Nachwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., komm\adddot\ und mit einem Nachw\adddot\ vers\adddot\ von}},
+  byeditortranin   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, erl\"autert und mit einer Einleitung versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., erl\"aut\adddot\ und mit einer Einl\adddot\ vers\adddot\ von}},
+  byeditortranfo   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, erl\"autert und mit einem Vorwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., erl\"aut\adddot\ und mit einem Vorw\adddot\ vers\adddot\ von}},
+  byeditortranaf   = {{herausgegeben, \lbx@lfromlang \"ubersetzt, erl\"autert und mit einem Nachwort versehen von}%
+                      {hg., \lbx@sfromlang \"ubers., erl\"aut\adddot\ und mit einem Nachw\adddot\ vers\adddot\ von}},                      
  }
 \endinput

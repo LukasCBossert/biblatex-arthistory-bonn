@@ -11,12 +11,17 @@
 \ProvidesFile{arthistory.dbx}%
   [2016/09/25 v0.1  arthistory, dbx-Datei]
                 
+\DeclareDatamodelFields[type=field,datatype=verbatim]{eventsubtitle}                
 \DeclareDatamodelEntrytypes{catalog}
 \DeclareDatamodelEntryfields[catalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
 url,urldate,note,year,volume,volumes}
 
+
 \DeclareDatamodelEntrytypes{incatalog}
-\DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref}
+\DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
+\DeclareDatamodelEntryfields[book]{dissdate,disstype}
+\DeclareDatamodelFields[type=field,datatype=date]{dissdate}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{disstype}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{urn}
 \DeclareDatamodelEntryfields{urn}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
