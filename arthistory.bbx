@@ -25,9 +25,10 @@
   language=auto,%
   autolang=other,%
   bibencoding=utf8,%
-  dateabbrev=false, %
+  %abbreviate=true,%
+  urldate=long,%
   sorting=nyt,%
-  labeldateparts=true,
+%  labeldateparts=true,
   maxnames=3,% 
   minnames=1,%
   maxitems=3,%
@@ -59,6 +60,7 @@
 \renewcommand*{\nametitledelim}{\addcolon\addspace}
 \newcommand*{\volnumdelim}{\addslash}
 \newcommand*{\jourvoldelim}{\addnbspace}
+\newcommand*{\volissuedelim}{\addslash}
 \renewcommand*\relateddelim{\addnbspace\slash\addspace}
 \renewcommand*{\multilistdelim}{\multinamedelim}
 \renewcommand*{\finallistdelim}{\multinamedelim}
@@ -85,15 +87,17 @@
 \DeclareFieldFormat{subtitle}{#1}
 \DeclareFieldFormat{booktitle}{#1}
 \DeclareFieldFormat{editortype}{\mkbibparens{#1}}
+\DeclareFieldFormat[article]{year}{\mkbibparens{#1}}
 \DeclareFieldFormat{booksubtitle}{#1}
 \DeclareFieldFormat{titlecase}{#1}
 \DeclareFieldFormat*{maintitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1}
 \DeclareFieldFormat{seriestitle}{#1}
 \DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat[inreference]{volume}{#1}
 \DeclareFieldFormat{parens}{\mkbibparens{#1}}
 \DeclareFieldFormat{brackets}{\mkbibbrackets{#1}}
-\DeclareFieldFormat{urldate}{\mkbibparens{#1}}
+\DeclareFieldFormat{urldate}{#1}
 \DeclareFieldFormat{eprint:urn}{%
   \textsc{urn}%
   \addcolon\space%
@@ -202,8 +206,8 @@
 \renewbibmacro*{url+urldate}{%
  \usebibmacro{bbx:parunit}%
  \iffieldundef{url}{}{\printfield{url}%
- \setunit*{\addspace}%
- \printtext{\printurldate}%
+% \setunit*{\addspace}%
+% \printtext{\printurldate}%
 }}
 %----------------------- 
 \renewbibmacro*{doi+eprint+url}{%
@@ -257,10 +261,19 @@
 %-----------------------
 \renewbibmacro{journal+number+year}{%
  \usebibmacro{journal}%
- \setunit{\jourvoldelim}%
- \printfield{volume}%
-\iffieldundef{number}{}{\setunit{\volnumdelim}%
- \printfield{number}}% 
+ \iffieldundef{volume}
+   {\setunit{\addspace}}
+   {\setunit{\jourvoldelim}%
+   \printfield{volume}}%
+  \iffieldundef{number}
+    {}
+    {\newunit\bibstring{number}%
+     \setunit{\addthinspace}%
+     \printfield{number}}% 
+  \iffieldundef{issue}
+    {}
+    {\setunit{\volissuedelim}
+     \printfield{issue}}% 
  \setunit{\addspace}%
 \usebibmacro{pubstate+year}%
 }
@@ -307,7 +320,7 @@
      \usebibmacro{translatorstrg}%
      \clearname{translator}}
     {}}
-%-----------------------
+%-----------------------      
 \newbibmacro{diss+date}{%
   \iffieldequalstr{disstype}{tzugl}%
     {\bibstring{tzugl}}%
@@ -358,7 +371,7 @@
 %    {\setunit*{\space}}%
 %  \printlist{publisher}%
   \setunit*{\space}%
-  \usebibmacro*{pubstate+year}%
+  \usebibmacro{pubstate+year}%
 \newunit}
 %----------------------- 
 \newbibmacro*{maintitle+volume}{%
@@ -369,6 +382,14 @@
            \setunit{\addcolon\space}}%
            \usebibmacro{maintitle}%
 	\newunit\newblock}
+%----------------------- 
+\newbibmacro*{inreference:maintitle+volume}{%
+\usebibmacro{maintitle}%
+  \iffieldundef{volume}%
+    {}%
+    {\setunit{\space}%
+    \printfield{volume}}%
+\newunit\newblock}
 %----------------------- 
 \newbibmacro*{ineditor}{%
   \ifboolexpr{
@@ -524,8 +545,8 @@
 \DeclareBibliographyDriver{reference}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \usebibmacro{editor+others}%
-  \setunit{\nametitledelim}\newblock
+  \printlist{publisher}%
+  \newunit%
   \usebibmacro{maintitle+title}%
   \newunit\newblock
   \usebibmacro{byeditor+others}%
@@ -607,6 +628,52 @@
     {}%
   \usebibmacro{finentry}}
 
+\DeclareBibliographyDriver{inreference}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\nametitledelim}\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{in:}%
+    \usebibmacro{ineditor}%
+ % \usebibmacro{bybookauthor}%
+%  \newunit\newblock
+  \usebibmacro{inreference:maintitle+volume}%
+  \newunit\newblock
+  \printfield{edition}%
+  \newunit
+  \iffieldundef{maintitle}
+    {\printfield{volume}%
+     \printfield{part}}
+    {}%
+  \newunit
+  \printfield{volumes}%
+\usebibmacro{series+number}%
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{publisher+location+date}%
+  \newunit\newblock
+  \usebibmacro{chapter+pages}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+  
 \DeclareBibliographyDriver{incatalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%

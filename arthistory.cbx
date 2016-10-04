@@ -72,11 +72,28 @@
            \setunit{\printdelim{nonameyeardelim}}}
           {\ifentrytype{catalog}
           	{\usebibmacro{cite:catalog}}
-          	{\printnames{labelname}%
+          	{\ifentrytype{reference}%
+          	  {\usebibmacro{cite:reference}}%
+          	  {\printnames{labelname}%
            \setunit{\printdelim{nameyeardelim}}%
-        \usebibmacro{cite:labelyear+extrayear}}%
+        \usebibmacro{cite:labelyear+extrayear}}}%
         }}}
     {\usebibmacro{cite:shorthand}}}
- 
+
+\newbibmacro*{cite:reference}{%
+\printfield[bibhyperref]{title}%
+}
+\renewbibmacro*{cite:postnote}{%
+  \ifbool{cbx:loccit}
+    {}
+    {\iffieldundef{urlyear}
+      {\usebibmacro{postnote}}
+      {\usebibmacro{postnote}%
+      \newunit%
+      \bibstring{urlseen}%
+      \setunit{\addspace}%
+      \usebibmacro{urldate}}}%
+}
+    
 \endinput
 %% End of file `arthistory.cbx'.
