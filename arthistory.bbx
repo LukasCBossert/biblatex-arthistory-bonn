@@ -95,10 +95,15 @@
 \DeclareFieldFormat{journaltitle}{#1}
 \DeclareFieldFormat{seriestitle}{#1}
 \DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat{edition}{%
+    \ifinteger{#1}
+    {\textsuperscript{#1}}
+    {\printtext[brackets]{#1}}}
 \DeclareFieldFormat[inreference]{volume}{#1}
 \DeclareFieldFormat{parens}{\mkbibparens{#1}}
 \DeclareFieldFormat{brackets}{\mkbibbrackets{#1}}
 \DeclareFieldFormat{urldate}{#1}
+\DeclareFieldFormat{superedition}{\textsuperscript{#1}}
 \DeclareFieldFormat{eprint:urn}{%
   \textsc{urn}%
   \addcolon\space%
@@ -403,8 +408,8 @@ test {\iffieldundef{mainsubtitle}}
 \newbibmacro{pubstate+year}{%
  \iffieldundef{pubstate}%
   {\iffieldundef{year}
-    {\usebibmacro{date+extrayear}}
-    {\printfield{year}}}
+    {\usebibmacro{date+extrayear}}%
+    {\printfield{year}}}%
  {\printfield{pubstate}}}
 %-----------------------   
 \renewbibmacro*{series+number}{%
@@ -423,7 +428,8 @@ test {\iffieldundef{mainsubtitle}}
 %    {\setunit*{\space}}%
 %  \printlist{publisher}%
   \setunit*{\space}%
-  \usebibmacro{pubstate+year}%
+  %\usebibmacro{pubstate+year}%
+  \usebibmacro{edition+year}%
 \newunit}
 %----------------------- 
 \newbibmacro*{maintitle+volume}{%
@@ -455,6 +461,20 @@ test {\iffieldundef{mainsubtitle}}
      \clearname{editor}%
      \setunit*{\nametitledelim}}
     {}}
+%-----------------------
+\newbibmacro*{edition+year}{%
+  \iffieldnum{edition}%
+    {\setunit*{\addspace}%
+    \printfield[superedition]{edition}%
+   \global\clearfield{edition}%
+    \usebibmacro{pubstate+year}}%
+  {\usebibmacro{pubstate+year}%
+  \setunit{\addspace}%
+ % \printtext[brackets]{
+  \printfield{edition}%
+  %}%
+  \newunit}
+}
 %-----------------------     
 \newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
@@ -523,8 +543,6 @@ test {\iffieldundef{mainsubtitle}}
       \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
-  \printfield{edition}%
-  \newunit
 \iffieldundef{maintitle}
 {\printfield{volume}%
 \printfield{part}}
@@ -561,7 +579,6 @@ test {\iffieldundef{mainsubtitle}}
   \setunit{\nametitledelim}%
   \newblock
 \usebibmacro{exhibcat}%
-  \printfield{edition}%
   \newunit
   \iffieldundef{maintitle}
     {\printfield{volume}%
@@ -602,8 +619,6 @@ test {\iffieldundef{mainsubtitle}}
   \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
-  \printfield{edition}%
-  \newunit
   \iffieldundef{maintitle}
     {\printfield{volume}%
      \printfield{part}}
@@ -648,8 +663,6 @@ test {\iffieldundef{mainsubtitle}}
 %  \newunit\newblock
   \usebibmacro{maintitle+booktitle}%
   \newunit\newblock
-  \printfield{edition}%
-  \newunit
   \iffieldundef{maintitle}
     {\printfield{volume}%
      \printfield{part}}
@@ -694,8 +707,6 @@ test {\iffieldundef{mainsubtitle}}
 %  \newunit\newblock
   \usebibmacro{inreference:maintitle+volume}%
   \newunit\newblock
-  \printfield{edition}%
-  \newunit
   \iffieldundef{maintitle}
     {\printfield{volume}%
      \printfield{part}}
@@ -737,8 +748,6 @@ test {\iffieldundef{mainsubtitle}}
   \usebibmacro{in:}%
 \usebibmacro{exhibcat}%
   \newunit\newblock
-  \printfield{edition}%
-  \newunit
   \iffieldundef{maintitle}
     {\printfield{volume}%
      \printfield{part}}
