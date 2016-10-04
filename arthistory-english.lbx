@@ -12,14 +12,22 @@
 \ProvidesFile{arthistory-english.lbx}%
 \InheritBibliographyExtras{english}
 
-\NewBibliographyString{reference}
+\NewBibliographyString{reviewof}
 \NewBibliographyString{catalog}
-\NewBibliographyString{subvoce}
+\NewBibliographyString{exhibcatalog}
+\NewBibliographyString{habil}
+\NewBibliographyString{zugl}
+\NewBibliographyString{tzugl}
 
 \DeclareBibliographyStrings{%
   inherit          = {english},
-    catalog = {{exhibition\addspace catalog}{exhib\adddot cat\adddot}},
+    zugl = {{approved}{appr\adddot}},
+  tzugl = {{partly\addspace approved}{pt\adddotspace appr\adddot}},
   reviewof={{[Review\addspace of]}{[Review\addspace of]}}
+ catalog = {{Catalog}{Cat\adddot}},
+   habil = {{habilitation\addspace treatise}{habilitation\addspace treatise}},
+  exhibcatalog =  {{Exhibition\addspace catalog}{Exhib\adddotspace cat\adddot}},
+%---------
   fromamerican     ={{from\addspace American} {from\addspace American}},
   frombrazilian    = {{from\addspace Brazilian}{from\addspace Brazilian}},
   fromcroatian     = {{from\addspace Croatian}{from\addspace Croatian}},

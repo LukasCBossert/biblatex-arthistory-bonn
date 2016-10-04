@@ -17,12 +17,13 @@ english
 \def\thisarthistoryversion{0.1}
 \def\thisarthistorydate{2016-09-25}
 \input{arthistory-preamble.tex}
+
 \begin{document}
 \title{\texttt{arthistory} -- \\\texttt{bib\LaTeX} for art historian\footnote{The development of the code is done at \url{https://github.com/LukasCBossert/biblatex-arthistory}: 
 Comments and criticisms are welcome.
 }}
 \author{Lukas C. Bossert\thanks{\href{mailto:lukas@digitales-altertum.de}{lukas@digitales-altertum.de}} \and Thorsten Kemper}
-\date{Version: \arthistoryversion{} (\arthistorydate)} 
+\date{Version: \thisarthistoryversion{} (\thisarthistorydate)} 
  \maketitle
  \begin{abstract}
 \noindent This citation-style covers the citation and bibliography rules of the Kunsthistorisches Institut der Universität Bonn.
@@ -181,6 +182,53 @@ Furthermore and in addition to the ›normal‹ \cs{cite}-commands one can also 
 \begin{code}
 \citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
 \end{code} 
+
+\section{Entry types}
+\subsection{article}
+\DescribeMacro{@article}
+\begin{bibexample}[label=Schlegel1992]{{@}Article\{Schlegel1992,…\}}
+@Article{Schlegel1992,
+  author       = {Schlegel, Ursula},
+  title        = {Ein Terracottamodell des Bartolomeo Ammannati},
+  journaltitle = {Paragona/Arte},
+  volume       = {43},
+  pages        = {25--30},
+  year         = {1992},
+  number       = {503},
+}
+\end{bibexample}
+
+\printbib[6em]{Schlegel1992}
+
+\subsection{book}
+\DescribeMacro{@book}
+\begin{bibexample}[label=vonrosen2009]{{@}Book\{vonrosen2009,…\}}
+@Book{vonrosen2009,
+  author   = {von Rosen, Valeska},
+  title    = {Caravaggio und die Grenzen des Darstellbaren},
+  subtitle = {Ambiguität, Ironie und Performativität in der Malerei um 1600},
+  location = {Berlin},
+  year     = {2009},
+}
+\end{bibexample}
+\printbib[6em]{vonrosen2009}
+
+\subsection{exhibition catalog}
+\DescribeMacro{@exhibcatalog}
+\begin{bibexample}[label=AusstellungBonn2005]{{@}exhibcatalog\{AusstellungBonn2005,…\}}
+@Exhibcatalog{AusstellungBonn2005,
+  editor          = {Jutta Frings},
+  year            = {2005},
+  location        = {Leipzig},
+  eventdate       = {2005/2006},
+  eventsubtitle   = {Kunst und Kultur der Päpste II 1572--1676},
+  eventtitle      = {Barock im Vatikan},
+  eventtitleaddon = {Bonn, Kunst- und Ausstellungshalle der Bundesrepublik Deutschland, 25. November 2005 bis 19. März 2006; Berlin, Martin-Gropius-Bau, 12. April bis 10. Juli 2006},
+  keywords        = {Ausstellung},
+  venue           = {Bonn/Berlin},
+}
+\end{bibexample}
+\printbib[6em]{AusstellungBonn2005}
 
 
 \end{document}
