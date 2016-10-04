@@ -360,8 +360,8 @@ test {\iffieldundef{mainsubtitle}}
     and
     not test {\ifnameundef{editor}}
   }
-    {\printnames{editor}%
-     \setunit{\addcomma\space}%
+    {\printnames[given-family]{editor}%
+     \setunit{\space}%
      \usebibmacro{editorstrg}%
      \clearname{editor}}
     {}}
