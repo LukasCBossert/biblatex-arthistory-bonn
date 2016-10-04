@@ -11,14 +11,30 @@
 \ProvidesFile{arthistory.dbx}%
   [2016/09/25 v0.1  arthistory, dbx-Datei]
                 
-\DeclareDatamodelFields[type=field,datatype=verbatim]{eventsubtitle}                
+\DeclareDatamodelFields[type=field,datatype=literal]{eventsubtitle}                
+%%%%%%---- @exhibcatalog = Ausstellungskatalog
+\DeclareDatamodelEntrytypes{exhibcatalog}
+\DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
+url,urldate,note,year,volume,volumes}
+\DeclareDatamodelEntrytypes{exhibcatalog}
+\DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
+url,urldate,note,year,volume,volumes}
+
+\DeclareDatamodelEntrytypes{inexhibcatalog}
+\DeclareDatamodelEntryfields[inexhibcatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
+%%%%%%---- @catalog = Bestandskatalog
+\DeclareDatamodelEntrytypes{catalog}
+\DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
+url,urldate,note,year,volume,volumes}
 \DeclareDatamodelEntrytypes{catalog}
 \DeclareDatamodelEntryfields[catalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
 url,urldate,note,year,volume,volumes}
-
-
 \DeclareDatamodelEntrytypes{incatalog}
 \DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
+
+
+
+
 \DeclareDatamodelEntryfields[book]{dissdate,disstype}
 \DeclareDatamodelFields[type=field,datatype=date]{dissdate}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{disstype}
@@ -26,7 +42,7 @@ url,urldate,note,year,volume,volumes}
 \DeclareDatamodelEntryfields{urn}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
 \DeclareDatamodelEntryfields{jstor}
-\DeclareDatamodelFields[type=field,datatype=verbatim]{arthist}
+\DeclareDatamodelFields[type=field,datatype=integer]{arthiast}
 \DeclareDatamodelEntryfields{arthist}
 \endinput
 %% End of file `arthistory.dbx'.

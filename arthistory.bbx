@@ -58,6 +58,7 @@
 \renewcommand{\multinamedelim}{\thinspace\slash\addnbthinspace}
 \renewcommand{\finalnamedelim}{\multinamedelim}
 \renewcommand*{\nametitledelim}{\addcolon\addspace}
+\newcommand*{\titleaddondelim}{\addsemicolon\addspace}
 \newcommand*{\volnumdelim}{\addslash}
 \newcommand*{\jourvoldelim}{\addnbspace}
 \newcommand*{\volissuedelim}{\addslash}
@@ -259,7 +260,58 @@
   \labwidthsameline\leavevmode\newline\fi
 }
 %-----------------------
-\renewbibmacro{journal+number+year}{%
+\renewbibmacro*{title}{%
+\ifboolexpr{
+test {\iffieldundef{title}}
+and
+test {\iffieldundef{subtitle}}
+}
+{}
+{\printtext[title]{%
+\printfield[titlecase]{title}%
+\setunit{\subtitlepunct}%
+\printfield[titlecase]{subtitle}}%
+\newunit}%
+\iffieldundef{titleaddon}%
+{}
+{\setunit{\titleaddondelim}%
+\printfield{titleaddon}}}
+%-----------------------
+\renewbibmacro*{booktitle}{%
+\ifboolexpr{
+test {\iffieldundef{booktitle}}
+and
+test {\iffieldundef{booksubtitle}}
+}
+{}
+{\printtext[booktitle]{%
+\printfield[titlecase]{booktitle}%
+\setunit{\subtitlepunct}%
+\printfield[titlecase]{booksubtitle}}%
+\newunit}%
+\iffieldundef{booktitleaddon}%
+{}
+{\setunit{\titleaddondelim}%
+\printfield{booktitleaddon}}}
+%-----------------------
+\renewbibmacro*{maintitle}{%
+\ifboolexpr{
+test {\iffieldundef{maintitle}}
+and
+test {\iffieldundef{mainsubtitle}}
+}
+{}
+{\printtext[maintitle]{%
+\printfield[titlecase]{maintitle}%
+\setunit{\subtitlepunct}%
+\printfield[titlecase]{mainsubtitle}}%
+\newunit}%
+\iffieldundef{maintitleaddon}%
+{}
+{\setunit{\titleaddondelim}%
+\printfield{mainttitleaddon}}}
+%-----------------------
+\newbibmacro{journal+number+year}{%
  \usebibmacro{journal}%
  \iffieldundef{volume}
    {\setunit{\addspace}}
@@ -333,7 +385,7 @@
 \printdissdate%
 }
 %-----------------------
-\renewbibmacro*{series+number+diss+date}{%
+\newbibmacro*{series+number+diss+date}{%
 \setunit{\addspace}%
   \iffieldundef{series}
     {\iflistundef{institution}
@@ -420,7 +472,9 @@
  }
 %-----------------------     
 \DeclareBibliographyAlias{collection}{book}
+\DeclareBibliographyAlias{catalog}{book}
 \DeclareBibliographyAlias{incollection}{inbook}
+\DeclareBibliographyAlias{incatalog}{inbook}
 \DeclareBibliographyAlias{review}{article}
 %-----------------------
 \DeclareBibliographyDriver{article}{%
@@ -465,19 +519,16 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/editor}%
   \setunit{\nametitledelim}\newblock
-  \usebibmacro{title}%
-  \newunit\newblock
-  \usebibmacro{byauthor}%
-   \newunit
-  \iffieldundef{maintitle}
-    {\printfield{volume}%
-     \printfield{part}}%
-    {\usebibmacro{maintitle+volume}}%
+\usebibmacro{maintitle+title}%
       \newunit\newblock
   \usebibmacro{byeditor+others}%
   \newunit\newblock
   \printfield{edition}%
   \newunit
+\iffieldundef{maintitle}
+{\printfield{volume}%
+\printfield{part}}
+{}%
   \printfield{volumes}%
 \setunit{\addspace}%
   \usebibmacro{series+number+diss+date}%
@@ -504,7 +555,7 @@
     {}%
   \usebibmacro{finentry}}
 
-\DeclareBibliographyDriver{catalog}{%
+\DeclareBibliographyDriver{exhibcatalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \setunit{\nametitledelim}%
@@ -674,7 +725,7 @@
     {}%
   \usebibmacro{finentry}}
   
-\DeclareBibliographyDriver{incatalog}{%
+\DeclareBibliographyDriver{inexhibcatalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
