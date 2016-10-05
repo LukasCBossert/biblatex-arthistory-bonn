@@ -42,7 +42,9 @@ url,urldate,note,year,volume,volumes}
 \DeclareDatamodelEntryfields{urn}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
 \DeclareDatamodelEntryfields{jstor}
-\DeclareDatamodelFields[type=field,datatype=integer]{arthiast}
+\DeclareDatamodelFields[type=field,datatype=integer]{arthist}
 \DeclareDatamodelEntryfields{arthist}
+\DeclareDatamodelFields[type=field,datatype=date]{arthistdate}
+\DeclareDatamodelEntryfields{arthistdate}
 \endinput
 %% End of file `arthistory.dbx'.
