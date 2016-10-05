@@ -16,6 +16,9 @@
 \newbool{cbx:firstcitefull}
 \newbool{cbx:seen}
 
+\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat{postnote}{#1}
+
 \DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
 
 \newcommand*{\cbx@fseen@names}{}

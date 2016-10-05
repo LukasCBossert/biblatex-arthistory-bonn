@@ -161,7 +161,7 @@ Beside the listed \cs{cite} commands above there is a third way of citing:
 \cs{textcite} is useful if the author should be mentioned in the text and
 the remaining components such as year and page will immediately follow in parentheses. 
 \begin{code}
-\textcite*@\oarg{postnote}\marg{bibtex-key}%@*
+\textcite*@\oarg{postnote}\marg{bibtex-key}@*
 \end{code} 
 
 \DescribeMacro{\textcites}
@@ -173,14 +173,51 @@ And again there is also a \cs{textcites} in case of several authors:
   *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
 \end{code}
 
+
+
+Futhermore you can use following \cs{cite} commands:
+\DescribeMacro{\footcite} 
+\begin{code}
+\footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+\end{code} 
+
+\begin{example}
+\footcite{Schlegel1992}
+\end{example}
+
+
+\DescribeMacro{\footcitetext} 
+\begin{code}
+\footcitetext*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+\end{code} 
+
+\begin{example}
+\footcitetext{Schlegel1992}
+\end{example}
+
+
+\DescribeMacro{\smartcite} 
+\begin{code}
+\smartcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+\end{code} 
+
+\begin{example}
+\smartcite{Schlegel1992}
+\end{example}
+
+
+
+
+
+
 \DescribeMacro{\citeauthor}\DescribeMacro{\citetitle}\label{citeauthor}%
 Furthermore and in addition to the ›normal‹ \cs{cite}-commands one can also cite only the author or the work title in the text and in the footnotes.
 \begin{code}
-\citeauthor*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
+\citeauthor*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
 \end{code} 
   and for the works 
 \begin{code}
-\citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
+\citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
 \end{code} 
 
 \section{Entry types}
@@ -214,6 +251,7 @@ Furthermore and in addition to the ›normal‹ \cs{cite}-commands one can also 
 \printbib[6em]{vonrosen2009}
 
 \subsection{exhibition catalog}
+This is for catalogs of temporary exhibitions.
 \DescribeMacro{@exhibcatalog}
 \begin{bibexample}[label=AusstellungBonn2005]{{@}exhibcatalog\{AusstellungBonn2005,…\}}
 @Exhibcatalog{AusstellungBonn2005,

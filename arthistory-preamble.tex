@@ -206,19 +206,20 @@ breakable,
 listing and text,
 }
 
-\newcommand{\printbib}[2][5em]{%
-\begingroup
-\begin{bibbox}{#2}
-\begin{refsection}
-\setlength{\labwidthsameline}{#1} 
-\nocite{#2}
-\printbibliography[heading=none]
-\end{refsection}
-\end{bibbox}
-\endgroup
-}
+%\newcommand{\printbib}[2][5em]{%
+%\begingroup
+%\begin{bibbox}{#2}
+%\begin{refsection}
+%\setlength{\labwidthsameline}{#1} 
+%\nocite{#2}
+%\printbibliography[heading=none]
+%\end{refsection}
+%\end{bibbox}
+%\endgroup
+%}
 
-\newcommand{\printbiball}[2][5em]{%
+%\newcommand{\printbiball}[2][5em]{%
+\newcommand{\printbib}[2][5em]{%
 \begingroup
 \setlength{\labwidthsameline}{#1} 
 \begin{bibbox}{#2}
@@ -228,9 +229,9 @@ listing and text,
 \nocite{#2}%
 \item[English:]{\printbibliography[heading=none]}
 \item[German:]\foreignlanguage{ngerman}{\printbibliography[heading=none]}
-\item[Italian:]\foreignlanguage{italian}{\printbibliography[heading=none]}
-\item[French:]\foreignlanguage{french}{\printbibliography[heading=none]}
-\item[Spanish:]\foreignlanguage{spanish}{\printbibliography[heading=none]}
+%\item[Italian:]\foreignlanguage{italian}{\printbibliography[heading=none]}
+%\item[French:]\foreignlanguage{french}{\printbibliography[heading=none]}
+%\item[Spanish:]\foreignlanguage{spanish}{\printbibliography[heading=none]}
 \end{footnotesize}
 \end{refsection}
 \end{itemize}%
