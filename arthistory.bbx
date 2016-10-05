@@ -8,16 +8,24 @@
 % http://www.latex-project.org/lppl.txt
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
+\def\arthist@date{2016-10-06}
+\def\arthist@version{0.1}
+\def\arthist@bbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory bibliography style (LCB)}
+\def\arthist@cbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory  citation style (LCB)}
+%\def\arch@dbxid{\arthist@date\space v\arthist@version\space biblatex-archaeologie  data (LCB)}
+\def\arthist@lbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory localization (LCB)}
+
 \ProvidesFile{arthistory.bbx}%
-  [2016/09/25 v0.1  arthistory, bbx-file]
+  [\arthist@bbxid]
 \RequireBibliographyStyle{authoryear}
 \AtBeginDocument{%
 %  \RequirePackage{csquotes}
   \urlstyle{sf}%
   \typeout{* * * arthistory * * *}
 }
-\def\arthistoryversion{0.1}
-\def\arthistorydate{2016-09-25}
+
+\def\arthistoryversion{\arthist@version}
+\def\arthistorydate{\arthist@date}
 \ExecuteBibliographyOptions{%
   pagetracker=true,%
   citecounter=true,%

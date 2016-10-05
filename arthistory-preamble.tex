@@ -1,7 +1,7 @@
 \listfiles
 \usepackage[oldstyle]{libertine}
-%\renewcommand*\ttdefault{lmvtt}
-%\usepackage{inconsolata}
+\renewcommand*\ttdefault{lmvtt}
+\usepackage{inconsolata}
 \usepackage[
 	backend=biber,
 	style=arthistory,
@@ -40,8 +40,11 @@ draft=false,
 ]{scrlayer-scrpage} 
 \pagestyle{scrheadings}
 \clearscrheadfoot
-	\ihead{\normalfont\footnotesize \texttt{bib}\LaTeX-style \texttt{arthistory \arthistoryversion} \copyright\ by Lukas C. Bossert | Thorsten Kemper}%
-\rofoot{\large\footnotesize  \textbf{\sffamily \thepage}}
+
+\ihead{\normalfont\footnotesize \texttt{bib}\LaTeX-style \texttt{arthistory \arthistoryversion
+} \copyright\ by Lukas C. Bossert | Thorsten Kemper}%
+\rofoot{\normalfont\footnotesize  \textbf{\sffamily \thepage}}
+\lofoot{\normalfont\footnotesize  \href{digitales-altertum.de}{digitales-altertum.de}}
 
 \usepackage[%
 %  flushmargin, %
