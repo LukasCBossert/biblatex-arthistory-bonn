@@ -53,9 +53,7 @@
 \newbibmacro*{cite:firstcitefull}{%
   \ifciteseen%
     {\usebibmacro{{cite:normal}}}%
-    {\usebibmacro{cite:various}%
-    \setunit{\addcolon\addspace}%
-    \usedriver
+    {\usedriver
       {\DeclareNameAlias{sortname}{default}}
       {\thefield{entrytype}}}}
 
