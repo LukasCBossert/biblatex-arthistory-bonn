@@ -77,14 +77,14 @@
 
 \newbibmacro*{cite:normal}{%
  \global\boolfalse{cbx:loccit}%
-  \iffieldundef{shorthand}
-    {\ifthenelse{\ifciteibid\AND\NOT\iffirstonpage}
-       {\usebibmacro{cite:ibid}}
-       {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
-          {\usebibmacro{cite:label}%
-           \setunit{\printdelim{nonameyeardelim}}}%
-          {\usebibmacro{cite:various}}}%
-    {\usebibmacro{cite:shorthand}}}}
+ \ifthenelse{\ifciteibid\AND\NOT\iffirstonpage}%
+   {\usebibmacro{cite:ibid}}%
+   {\iffieldundef{shorthand}%
+     {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}%
+     {\usebibmacro{cite:label}%
+         \setunit{\printdelim{nonameyeardelim}}}%
+     {\usebibmacro{cite:various}}}%
+   {\usebibmacro{cite:shorthand}}}}
 
 \renewbibmacro*{cite}{%
   \ifbool{cbx:firstcitefull}
