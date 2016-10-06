@@ -210,7 +210,7 @@
  \clearlist{pageref}%
  \setunit{\addcomma\newline\nobreak}%
  }%
- {}%
+ {\setunit{\addcomma\addspace}}%
 }
  %----------------------- 
 \renewbibmacro*{eprint}{%
@@ -369,8 +369,7 @@ test {\iffieldundef{mainsubtitle}}
     {\setunit{\volissuedelim}
      \printfield{issue}}% 
  \setunit{\addspace}%
-\usebibmacro{pubstate+year}%
-}
+\usebibmacro{pubstate+year}}
 %-----------------------
 \renewbibmacro*{addendum+pubstate}{\printfield{addendum}}
 %-----------------------    
@@ -378,6 +377,21 @@ test {\iffieldundef{mainsubtitle}}
  \usebibmacro*{related:default}{#1}%
 }
 %-----------------------    
+\newbibmacro{savestuff}{%
+ \savename{editor}{\bbx@lasteditor}%
+ \savefield{namehash}{\bbx@lasthash}%
+ \savefield{booktitle}{\bbx@lastbooktitle}%
+}
+%----------------------- 
+\DeclareLabeldate{%
+  \field{date}
+  \field{year}
+  \field{eventdate}
+  \field{origdate}
+  \field{urldate}
+  \field{pubstate}
+  \literal{nodate}
+}
 \renewbibmacro*{author}{%
   \ifboolexpr{
     test \ifuseauthor
@@ -445,7 +459,9 @@ test {\iffieldundef{mainsubtitle}}
 \newbibmacro{pubstate+year}{%
  \iffieldundef{pubstate}%
   {\iffieldundef{year}
-    {\usebibmacro{date+extrayear}}%
+    {\iftoggle{bbx:arthist}
+     {\printdate}
+     {\usebibmacro{date+extrayear}}}%
     {\printfield{year}}}%
  {\printfield{pubstate}}}
 %-----------------------   

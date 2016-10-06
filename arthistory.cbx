@@ -42,38 +42,38 @@
 }  
 
 \newbibmacro{cite:catalog}{%
-\printtext[bibhyperref]{\bibstring{catalog}%
-\setunit{\addspace}%
-\printfield{label}%
-\setunit{\addspace}%
-\printdate}%
-}  
+  \printtext[bibhyperref]{\bibstring{catalog}%
+  \setunit{\addspace}%
+  \printfield{label}%
+  \setunit{\addspace}%
+  \printdate}}  
 
- 
-\renewbibmacro*{cite}{%
-  \ifbool{cbx:firstcitefull}
-    {\usebibmacro{cite:firstcitefull}}
-    {\usebibmacro{cite:normal}}%
-  \ifciteseen{\global\booltrue{cbx:seen}}%
-  {\global\boolfalse{cbx:seen}}%
-%  \usebibmacro{savestuff}%
-}
+
  
 \newbibmacro*{cite:firstcitefull}{%
-  \ifciteseen
-    {\usebibmacro{{cite:normal}}}
-    {\printtext[bibhypertarget]{%
-   \ifentrytype{exhibcatalog}
-      {\usebibmacro{cite:exhibcatalog}
-       \setunit{\printdelim{nameyeardelim}}%
-       \usebibmacro{cite:labelyear+extrayear}}
-       {}%
+  \ifciteseen%
+    {\usebibmacro{{cite:normal}}}%
+    {\usebibmacro{cite:various}%
+    \setunit{\addcolon\addspace}%
     \usedriver
       {\DeclareNameAlias{sortname}{default}}
-      {\thefield{entrytype}}}%
-}}
+      {\thefield{entrytype}}}}
+
+\newbibmacro*{cite:reference}{%
+\printfield[bibhyperref]{title}}
 
 
+\newbibmacro*{cite:various}{%
+\printtext[bibhypertarget]{%
+  \ifentrytype{catalog}%
+    {\usebibmacro{cite:catalog}}%
+    {\ifentrytype{exhibcatalog}%
+      {\usebibmacro{cite:exhibcatalog}}%
+      {\ifentrytype{reference}%
+        {\usebibmacro{cite:reference}}%
+        {\printnames{labelname}%
+         \setunit{\printdelim{nameyeardelim}}%
+        \usebibmacro{cite:labelyear+extrayear}}}}}}
 
 \newbibmacro*{cite:normal}{%
  \global\boolfalse{cbx:loccit}%
@@ -82,22 +82,19 @@
        {\usebibmacro{cite:ibid}}
        {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
           {\usebibmacro{cite:label}%
-           \setunit{\printdelim{nonameyeardelim}}}
-          {\ifentrytype{catalog}
-            {\usebibmacro{cite:catalog}}
-            {\ifentrytype{exhibcatalog}
-          	{\usebibmacro{cite:exhibcatalog}}
-          	{\ifentrytype{reference}%
-          	  {\usebibmacro{cite:reference}}%
-          	  {\printnames{labelname}%
-           \setunit{\printdelim{nameyeardelim}}%
-        \usebibmacro{cite:labelyear+extrayear}}}%
-        }}}}
-    {\usebibmacro{cite:shorthand}}}
+           \setunit{\printdelim{nonameyeardelim}}}%
+          {\usebibmacro{cite:various}}}%
+    {\usebibmacro{cite:shorthand}}}}
 
-\newbibmacro*{cite:reference}{%
-\printfield[bibhyperref]{title}%
+\renewbibmacro*{cite}{%
+  \ifbool{cbx:firstcitefull}
+    {\usebibmacro{cite:firstcitefull}}
+    {\usebibmacro{cite:normal}}%
+  \ifciteseen{\global\booltrue{cbx:seen}}%
+  {\global\boolfalse{cbx:seen}}%
+  \usebibmacro{savestuff}%
 }
+
 \renewbibmacro*{cite:postnote}{%
   \ifbool{cbx:loccit}
     {}
