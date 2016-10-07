@@ -41,7 +41,8 @@
   minnames=1,%
   maxitems=2,%
   maxbibnames=3,%
-  isbn=false,
+  isbn=false, 
+  uniquename=false,
 }
 \AtEveryBibitem{%
 	\clearfield{issn}%
@@ -887,6 +888,7 @@ test {\iffieldundef{mainsubtitle}}
     {\item\usebibmacro{kicklabelfield}{#1}}%
 }
 \docsvlist{shortjournal,shortseries}
+
 
 \endinput
 %% End of file `arthistory.bbx'.
