@@ -42,7 +42,6 @@
   maxitems=2,%
   maxbibnames=3,%
   isbn=false, 
-  uniquename=false,
 }
 \AtEveryBibitem{%
 	\clearfield{issn}%
@@ -56,6 +55,7 @@
 
 \newbool{bbx:width}
 \newtoggle{bbx:jstor}
+\newtoggle{bbx:enddot}
 \newtoggle{bbx:zenon}
 \newtoggle{bbx:urn}
 \newtoggle{bbx:arthist}
@@ -88,6 +88,9 @@
   \settoggle{bbx:urn}{#1}}
 \DeclareBibliographyOption[boolean]{arthist}[true]{%
   \settoggle{bbx:arthist}{#1}}
+\DeclareBibliographyOption[boolean]{enddot}[true]{%
+\settoggle{bbx:enddot}{#1}%
+\renewcommand{\finentrypunct}{\adddot}}
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
 \DeclareEntryOption{tzugl}[true]{\csuse{bool#1}{cbx:tzugl}}
