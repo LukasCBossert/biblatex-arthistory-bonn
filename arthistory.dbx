@@ -15,22 +15,22 @@
 %%%%%%---- @exhibcatalog = Ausstellungskatalog
 \DeclareDatamodelEntrytypes{exhibcatalog}
 \DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes}
+url,urldate,note,year,volume,volumes,sortkey}
 \DeclareDatamodelEntrytypes{exhibcatalog}
 \DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes}
+url,urldate,note,year,volume,volumes,sortkey}
 
 \DeclareDatamodelEntrytypes{inexhibcatalog}
 \DeclareDatamodelEntryfields[inexhibcatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
 %%%%%%---- @catalog = Bestandskatalog
 \DeclareDatamodelEntrytypes{catalog}
 \DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes}
+url,urldate,note,year,volume,volumes,sortkey}
 \DeclareDatamodelEntrytypes{catalog}
 \DeclareDatamodelEntryfields[catalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes}
+url,urldate,note,year,volume,volumes,sortkey}
 \DeclareDatamodelEntrytypes{incatalog}
-\DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
+\DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle,sortkey}
 
 
 
