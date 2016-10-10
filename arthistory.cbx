@@ -39,8 +39,7 @@
   \setunit{\addspace}%
   \printfield{venue}%
     \setunit{\addspace}%
-    \printeventdate}%
-}  
+    \printeventdate}}  
 
 \newbibmacro{cite:catalog}{%
   \printtext[bibhyperref]{\bibstring{catalog}%
@@ -48,19 +47,6 @@
   \printfield{label}%
   \setunit{\addspace}%
   \printdate}}  
-
-
- 
-\newbibmacro*{cite:firstcitefull}{%
-  \ifciteseen%
-    {\usebibmacro{{cite:normal}}}%
-    {\usedriver
-      {\DeclareNameAlias{sortname}{default}}
-      {\thefield{entrytype}}}}
-
-\newbibmacro*{cite:reference}{%
-\printfield[bibhyperref]{title}}
-
 
 \newbibmacro*{cite:various}{%
 \printtext[bibhypertarget]{%
@@ -89,10 +75,22 @@
   \ifbool{cbx:firstcitefull}
     {\usebibmacro{cite:firstcitefull}}
     {\usebibmacro{cite:normal}}%
-  \ifciteseen{\global\booltrue{cbx:seen}}%
+  \ifciteseen%
+  {\global\booltrue{cbx:seen}}%
   {\global\boolfalse{cbx:seen}}%
-  \usebibmacro{savestuff}%
-}
+  \usebibmacro{savestuff}}
+
+
+\newbibmacro*{cite:firstcitefull}{%
+\ifciteseen%
+    {\usebibmacro{{cite:normal}}}%
+    {\usedriver
+      {\DeclareNameAlias{sortname}{default}}
+      {\thefield{entrytype}}}}
+
+\newbibmacro*{cite:reference}{%
+\printfield[bibhyperref]{title}}
+
 
 \renewbibmacro*{cite:postnote}{%
   \ifbool{cbx:loccit}
@@ -103,8 +101,7 @@
       \newunit%
       \bibstring{urlseen}%
       \setunit{\addspace}%
-      \usebibmacro{urldate}}}%
-}
+      \usebibmacro{urldate}}}}
     
 \endinput
 %% End of file `arthistory.cbx'.
