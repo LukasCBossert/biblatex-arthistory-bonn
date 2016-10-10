@@ -67,13 +67,11 @@
    {\usebibmacro{cite:shorthand}}}}
 
 \renewbibmacro*{cite}{%
-\ifbool{cbx:firstcitefull}
-\and \ifciteseen
-   {\usebibmacro{cite:normal}}
+  \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}
    {\usedriver
       {\DeclareNameAlias{sortname}{default}}
-      {\thefield{entrytype}}}}
-
+      {\thefield{entrytype}}}
+   {\usebibmacro{cite:normal}}}
 
 
 \renewbibmacro*{cite:postnote}{%
