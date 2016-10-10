@@ -24,3 +24,7 @@
 *.idx
 
 .$arthistory-examples.bib$
+
+*.gz(busy)
+
+*.bib$

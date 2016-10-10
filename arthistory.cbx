@@ -15,24 +15,15 @@
 \ExecuteBibliographyOptions{uniquename=false}
 
 \newbool{cbx:firstcitefull}
-\newbool{cbx:seen}
+
 
 \DeclareFieldFormat{pages}{#1}
 \DeclareFieldFormat{postnote}{#1}
 
 \DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
 
-\newcommand*{\cbx@fseen@names}{}
-\newcommand*{\cbx@tseen@names}{}
-\newrobustcmd*{\cbx@nameseen}[1]{%
-  \iftoggle{blx@footnote}
-  {\listcsxadd{cbx@fseen@names}{#1}}
-  {\listcsxadd{cbx@tseen@names}{#1}}}
-\newrobustcmd*{\cbx@ifnameseen}[1]{%
-  \iftoggle{blx@footnote}%
-  {\xifinlistcs{#1}{cbx@fseen@names}}%
-  {\xifinlistcs{#1}{cbx@tseen@names}}}
- 
+
+
   
 \newbibmacro{cite:exhibcatalog}{%
   \printtext[bibhyperref]{\bibstring{exhibcatalog}%
@@ -40,6 +31,10 @@
   \printfield{venue}%
     \setunit{\addspace}%
     \printeventdate}}  
+
+\newbibmacro*{cite:reference}{%
+  \printfield[bibhyperref]{title}}
+
 
 \newbibmacro{cite:catalog}{%
   \printtext[bibhyperref]{\bibstring{catalog}%
@@ -72,24 +67,13 @@
    {\usebibmacro{cite:shorthand}}}}
 
 \renewbibmacro*{cite}{%
-  \ifbool{cbx:firstcitefull}
-    {\usebibmacro{cite:firstcitefull}}
-    {\usebibmacro{cite:normal}}%
-  \ifciteseen%
-  {\global\booltrue{cbx:seen}}%
-  {\global\boolfalse{cbx:seen}}%
-  \usebibmacro{savestuff}}
-
-
-\newbibmacro*{cite:firstcitefull}{%
-\ifciteseen%
-    {\usebibmacro{{cite:normal}}}%
-    {\usedriver
+\ifbool{cbx:firstcitefull}
+\and \ifciteseen
+   {\usebibmacro{cite:normal}}
+   {\usedriver
       {\DeclareNameAlias{sortname}{default}}
       {\thefield{entrytype}}}}
 
-\newbibmacro*{cite:reference}{%
-\printfield[bibhyperref]{title}}
 
 
 \renewbibmacro*{cite:postnote}{%
