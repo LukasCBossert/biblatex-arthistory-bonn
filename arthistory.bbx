@@ -79,6 +79,7 @@
 \renewcommand{\finentrypunct}{}
 \renewcommand*{\newunitpunct}{\addcomma\space}
 \renewcommand*{\subtitlepunct}{\adddotspace}
+\newcommand*{\exhibbibdaterangesep}{\addspace \printtext{bis} \addspace}%
 %\DeclareDelimFormat{namelabeldelim}{\slash}
 %%-----------------------
 \DeclareBibliographyOption{width}[]{%
@@ -538,7 +539,6 @@ test {\iffieldundef{mainsubtitle}}
   \newunit}
 }
 %-----------------------     
-%-----------------------     
  \newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
   \iffieldundef{eventsubtitle}%
@@ -551,12 +551,12 @@ test {\iffieldundef{mainsubtitle}}
   \printtext[parens]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
   \iffieldundef{eventtitleaddon}
-  {\usebibmacro{exhibonetwo}}%
+  {\usebibmacro{exhibfirstsecond}}%
   {\printfield{eventtitleaddon}}}%
   \newunit%
  }
  
- \newbibmacro*{exhibonetwo}{%
+ \newbibmacro*{exhibfirstsecond}{%
  \usebibmacro{exhibfirst}%
  \iffieldundef{exhibsecondvenue}%
   {}%
@@ -570,6 +570,7 @@ test {\iffieldundef{mainsubtitle}}
   {}%
   {\printfield{exhibfirstmuseum}}%
   \newunit%
+  \renewcommand*{\bibdaterangesep}{\exhibbibdaterangesep}%
   \printexhibfirstdate}
   
 \newbibmacro*{exhibsecond}{%
@@ -579,6 +580,7 @@ test {\iffieldundef{mainsubtitle}}
   {}%
   {\printfield{exhibsecondmuseum}}%
   \newunit%
+  \renewcommand*{\bibdaterangesep}{\exhibbibdaterangesep}%
   \printexhibseconddate}
 %-----------------------     
 \DeclareBibliographyAlias{collection}{book}
