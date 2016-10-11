@@ -120,6 +120,11 @@
 \DeclareFieldFormat{parens}{\mkbibparens{#1}}
 \DeclareFieldFormat{brackets}{\mkbibbrackets{#1}}
 \DeclareFieldFormat{urldate}{#1}
+\DeclareFieldFormat{arthistdate}{%
+\printtext[brackets]{%
+  \thefield{arthistday}\adddot%
+  \thefield{arthistmonth}\adddot%
+  \thefield{arthistyear}}}
 \DeclareFieldFormat{superedition}{\textsuperscript{#1}}
 \DeclareFieldFormat{eprint:urn}{%
   \textsc{urn}%
@@ -250,8 +255,6 @@
  {} 
  {\usebibmacro{bbx:parunit}%
  \printfield{arthist}%
-% \setunit*{\addspace}%
-% \printtext{\printarthistdate}
  }
 }
 %-----------------------
@@ -466,6 +469,8 @@ test {\iffieldundef{mainsubtitle}}
  \newunit}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
+\printarthistdate%
+\setunit*{\addspace}%
  \iffieldundef{pubstate}%
   {\iffieldundef{year}
     {\iftoggle{bbx:arthist}
