@@ -55,6 +55,7 @@
 	
 
 \newbool{bbx:width}
+\newbool{bbx:publisher}
 \newtoggle{bbx:jstor}
 \newtoggle{bbx:enddot}
 \newtoggle{bbx:zenon}
@@ -83,6 +84,8 @@
 \DeclareBibliographyOption{width}[]{%
   \csuse{booltrue}{bbx:width}% 
   \setlength{\labwidthsameline}{#1}}
+\DeclareBibliographyOption{publisher}[true]{%
+  \csuse{bool#1}{bbx:publisher}}% 
 \DeclareBibliographyOption[boolean]{jstor}[true]{%
   \settoggle{bbx:jstor}{#1}}
 \DeclareBibliographyOption[boolean]{urn}[true]{%
@@ -481,11 +484,12 @@ test {\iffieldundef{mainsubtitle}}
 %-----------------------   
 \renewbibmacro*{publisher+location+date}{%
   \printlist{location}%
-%  \iflistundef{publisher}
-%    {\setunit*{\space}}
-%    {\setunit*{\space}}%
-%  \printlist{publisher}%
-  \setunit*{\space}%
+  \ifbool{bbx:publisher}
+    {\iflistundef{publisher}
+      {}
+      {\setunit{\addcolon\addspace}%
+	  \printlist{publisher}}}%
+    {\setunit*{\space}}
   %\usebibmacro{pubstate+year}%
   \usebibmacro{edition+year}%
 \newunit}
@@ -534,10 +538,11 @@ test {\iffieldundef{mainsubtitle}}
   \newunit}
 }
 %-----------------------     
-\newbibmacro*{exhibcat}{%
+%-----------------------     
+ \newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
-%  \iffieldundef{eventsubtitle}%
-   % {}%
+  \iffieldundef{eventsubtitle}%
+    {}%
     {\setunit{\subtitlepunct}%
      \printfield{eventsubtitle}}%
   \newunit\newblock
@@ -545,9 +550,36 @@ test {\iffieldundef{mainsubtitle}}
   \setunit{\addspace}%
   \printtext[parens]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
-  \printfield{eventtitleaddon}}%
+  \iffieldundef{eventtitleaddon}
+  {\usebibmacro{exhibonetwo}}%
+  {\printfield{eventtitleaddon}}}%
   \newunit%
  }
+ 
+ \newbibmacro*{exhibonetwo}{%
+ \usebibmacro{exhibfirst}%
+ \iffieldundef{exhibsecondvenue}%
+  {}%
+  {\setunit{\addsemicolon\addspace}%
+  \usebibmacro{exhibsecond}}}
+  
+ \newbibmacro*{exhibfirst}{%
+ \printfield{exhibfirstvenue}%
+  \newunit%
+  \iffieldundef{exhibfirstmuseum}%
+  {}%
+  {\printfield{exhibfirstmuseum}}%
+  \newunit%
+  \printexhibfirstdate}
+  
+\newbibmacro*{exhibsecond}{%
+  \printfield{exhibsecondvenue}%
+  \newunit%
+  \iffieldundef{exhibsecondmuseum}%
+  {}%
+  {\printfield{exhibsecondmuseum}}%
+  \newunit%
+  \printexhibseconddate}
 %-----------------------     
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{catalog}{book}

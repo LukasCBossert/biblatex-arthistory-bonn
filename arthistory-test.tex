@@ -1,4 +1,4 @@
-\documentclass[ngerman]{scrbook}
+\documentclass[english,ngerman]{scrbook}
 \usepackage{babel}
 \usepackage{libertine}
 
@@ -6,12 +6,37 @@
 \usepackage[           
   backend=biber,
   style=arthistory,
+%  publisher,
 %  firstcitefull=true,
 %  enddot=true,
   width=10em,
 ]{biblatex}
 \addbibresource{arthistory-examples.bib}
 
+\iflanguage{ngerman}{%
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \pertype{exhibcatalog}
+      \step[fieldsource=exhibfirstvenue]
+      \step[fieldsource=exhibsecondvenue]
+      \step[fieldsource=eventdate]
+      \step[fieldset=sortkey, fieldvalue={Ausst.-Kat. [[exhibfirstvenue]]/[[exhibsecondvenue]] [[eventdate]]}]
+    }
+} }
+}
+{%
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \pertype{exhibcatalog}
+      \step[fieldsource=exhibfirstvenue]
+      \step[fieldsource=exhibsecondvenue]
+      \step[fieldsource=eventdate]
+      \step[fieldset=sortkey, fieldvalue={Exhib. cat. [[exhibfirstvenue]]/[[exhibsecondvenue]] [[eventdate]]}]
+    }
+} }
+}
 
 \usepackage{hyperref}
 \begin{document}
