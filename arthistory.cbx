@@ -28,12 +28,21 @@
 \newbibmacro{cite:exhibcatalog}{%
   \printtext[bibhyperref]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
-  \printfield{venue}%
+  \iffieldundef{venue}%
+  {\printfield{exhibfirstvenue}%
+    \iffieldundef{exhibsecondvenue}%
+    {}%
+    {\setunit{\multilistdelim}%
+    \printfield{exhibsecondvenue}}}
+  {\printfield{venue}}%
     \setunit{\addspace}%
-    \printeventdate}}  
+  \printeventdate}}
 
 \newbibmacro*{cite:reference}{%
-  \printfield[bibhyperref]{title}}
+  \printtext[bibhyperref]{%
+  \iffieldundef{sorttitle}%
+  {\printfield{title}}%
+  {\printfield{sorttitle}}}}
 
 
 \newbibmacro{cite:catalog}{%
