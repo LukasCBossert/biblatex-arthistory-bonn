@@ -538,10 +538,11 @@ test {\iffieldundef{mainsubtitle}}
   \newunit}
 }
 %-----------------------     
-\newbibmacro*{exhibcat}{%
+%-----------------------     
+ \newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
-%  \iffieldundef{eventsubtitle}%
-   % {}%
+  \iffieldundef{eventsubtitle}%
+    {}%
     {\setunit{\subtitlepunct}%
      \printfield{eventsubtitle}}%
   \newunit\newblock
@@ -549,9 +550,36 @@ test {\iffieldundef{mainsubtitle}}
   \setunit{\addspace}%
   \printtext[parens]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
-  \printfield{eventtitleaddon}}%
+  \iffieldundef{eventtitleaddon}
+  {\usebibmacro{exhibonetwo}}%
+  {\printfield{eventtitleaddon}}}%
   \newunit%
  }
+ 
+ \newbibmacro*{exhibonetwo}{%
+ \usebibmacro{exhibfirst}%
+ \iffieldundef{exhibsecondvenue}%
+  {}%
+  {\setunit{\addsemicolon\addspace}%
+  \usebibmacro{exhibsecond}}}
+  
+ \newbibmacro*{exhibfirst}{%
+ \printfield{exhibfirstvenue}%
+  \newunit%
+  \iffieldundef{exhibfirstmuseum}%
+  {}%
+  {\printfield{exhibfirstmuseum}}%
+  \newunit%
+  \printexhibfirstdate}
+  
+\newbibmacro*{exhibsecond}{%
+  \printfield{exhibsecondvenue}%
+  \newunit%
+  \iffieldundef{exhibsecondmuseum}%
+  {}%
+  {\printfield{exhibsecondmuseum}}%
+  \newunit%
+  \printexhibseconddate}
 %-----------------------     
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{catalog}{book}
