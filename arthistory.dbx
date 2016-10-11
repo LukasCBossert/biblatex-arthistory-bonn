@@ -34,7 +34,6 @@ url,urldate,note,year,volume,volumes,sortkey}
 
 
 
-
 \DeclareDatamodelEntryfields[book]{dissdate,disstype}
 \DeclareDatamodelFields[type=field,datatype=date]{dissdate}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{disstype}
