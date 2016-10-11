@@ -108,8 +108,14 @@ cf. %\cref{citeauthorformat}.
 \DescribeMacro{enddot}
 Every bibliography entry will end with a dot.
 
+\DescribeMacro{firstcitefull}
+The first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+
 \DescribeMacro{width}
-|width={value}| defines the bibliography width between label and reference; cf. %\cref{width}.
+
+\DescribeMacro{publisher}
+The publisher is being listed in the bibliography entries.
+
 
 \subsection{Entry Options}
 A single bibliography entry can contain a value in its |options|-field.
@@ -117,11 +123,14 @@ Depending on the option it changes the behavior of how that entry is cited.
 Beside their distinct properties all of these options have in common that the separating comma between citation and page record is missing. 
 Actually this concerns citation of ancient texts and corpora where usually the |shorthand|-field is printed in citations.
 
+\subsubsection{arthist}
+\enquote{H-ArtHist} is a popular newsletter for... %Fortsetzen
+
 \subsubsection{shorthand}\label{sec:shorthand}
 %\DescribeMacro{shorthand}
 Entering a shorthand will replace the otherwise automatically generated, document type-appropriate citation short form by the typed-in content.
 
-You need to make use of this option when entering a primary source in your bibliography file (along with the option |source|). The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
+You need to make use of this option when entering a primary source in your bibliography file (along with the option |source|, see \cref{sec:source}). The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
 
 Here is an example of Casanova's Theory of painting:
 \begin{bibexample}[label=CasanovaMalerei]{{@}Book\{CasanovaMalerei,…\}}
@@ -148,7 +157,7 @@ Defining a |shorttitle| can be especially useful when encyclopediae whose title 
 \subsubsection{sortkey}
 When entering a (exhibiton) catalogs.
 
-\subsubsection{source}
+\subsubsection{source}\label{sec:source}
 %\DescribeMacro{source}
 This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
 If enabled, the entry can be listed in a separate bibliography for primary sources.
