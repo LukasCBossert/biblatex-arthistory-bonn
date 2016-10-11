@@ -28,7 +28,13 @@
 \newbibmacro{cite:exhibcatalog}{%
   \printtext[bibhyperref]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
-  \printfield{venue}%
+  \iffieldundef{venue}%
+  {\printfield{exhibfirstvenue}%
+    \iffieldundef{exhibsecondvenue}%
+    {}%
+    {\setunit{\multilistdelim}%
+    \printfield{exhibsecondvenue}}}
+  {\printfield{venue}}%
     \setunit{\addspace}%
     \printeventdate}}  
     
@@ -37,6 +43,7 @@
   \iffieldundef{shorttitle}%
   {\printfield{title}}%
   {\printfield{shorttitle}}}}
+
 
 
 \newbibmacro{cite:catalog}{%

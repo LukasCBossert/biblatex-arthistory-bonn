@@ -11,29 +11,33 @@
 \ProvidesFile{arthistory.dbx}%
   [2016/09/25 v0.1  arthistory, dbx-Datei]
                 
-\DeclareDatamodelFields[type=field,datatype=literal]{eventsubtitle}                
-%%%%%%---- @exhibcatalog = Ausstellungskatalog
-\DeclareDatamodelEntrytypes{exhibcatalog}
-\DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes,sortkey}
+\DeclareDatamodelFields[type=field,datatype=literal]{eventsubtitle}  
+\DeclareDatamodelFields[type=field,datatype=date]{exhibfirstdate}
+\DeclareDatamodelFields[type=field,datatype=date]{exhibseconddate}
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstvenue}     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondvenue}                                                                                                                                                                     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstmuseum}
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondmuseum}     
+%%%%%%---- @exhibcatalog/ @inexhibcatalog = Ausstellungskatalog
 \DeclareDatamodelEntrytypes{exhibcatalog}
 \DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
 url,urldate,note,year,volume,volumes,sortkey}
 
 \DeclareDatamodelEntrytypes{inexhibcatalog}
 \DeclareDatamodelEntryfields[inexhibcatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle}
-%%%%%%---- @catalog = Bestandskatalog
-\DeclareDatamodelEntrytypes{catalog}
-\DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
-url,urldate,note,year,volume,volumes,sortkey}
+
+
+%%%%%%---- @catalog/@incatalog = Bestandskatalog
 \DeclareDatamodelEntrytypes{catalog}
 \DeclareDatamodelEntryfields[catalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,
 url,urldate,note,year,volume,volumes,sortkey}
+
 \DeclareDatamodelEntrytypes{incatalog}
 \DeclareDatamodelEntryfields[incatalog]{author,title,subtitle,titleaddon,pages,url,urldate,year,note,volume,volumes,crossref,eventsubtitle,sortkey}
 
 
 
+%--- more new fields
 \DeclareDatamodelEntryfields[book]{dissdate,disstype}
 \DeclareDatamodelFields[type=field,datatype=date]{dissdate}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{disstype}

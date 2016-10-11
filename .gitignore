@@ -28,3 +28,5 @@
 *.gz(busy)
 
 *.bib$
+
+*.out
