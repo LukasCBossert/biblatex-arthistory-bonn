@@ -55,6 +55,7 @@
 	
 
 \newbool{bbx:width}
+\newbool{bbx:publisher}
 \newtoggle{bbx:jstor}
 \newtoggle{bbx:enddot}
 \newtoggle{bbx:zenon}
@@ -83,6 +84,8 @@
 \DeclareBibliographyOption{width}[]{%
   \csuse{booltrue}{bbx:width}% 
   \setlength{\labwidthsameline}{#1}}
+\DeclareBibliographyOption{publisher}[true]{%
+  \csuse{bool#1}{bbx:publisher}}% 
 \DeclareBibliographyOption[boolean]{jstor}[true]{%
   \settoggle{bbx:jstor}{#1}}
 \DeclareBibliographyOption[boolean]{urn}[true]{%
@@ -481,11 +484,12 @@ test {\iffieldundef{mainsubtitle}}
 %-----------------------   
 \renewbibmacro*{publisher+location+date}{%
   \printlist{location}%
-%  \iflistundef{publisher}
-%    {\setunit*{\space}}
-%    {\setunit*{\space}}%
-%  \printlist{publisher}%
-  \setunit*{\space}%
+  \ifbool{bbx:publisher}
+    {\iflistundef{publisher}
+      {}
+      {\setunit{\addcolon\addspace}%
+	  \printlist{publisher}}}%
+    {\setunit*{\space}}
   %\usebibmacro{pubstate+year}%
   \usebibmacro{edition+year}%
 \newunit}
