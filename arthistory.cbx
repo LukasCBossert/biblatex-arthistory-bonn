@@ -31,9 +31,12 @@
   \printfield{venue}%
     \setunit{\addspace}%
     \printeventdate}}  
-
+    
 \newbibmacro*{cite:reference}{%
-  \printfield[bibhyperref]{title}}
+  \printtext[bibhyperref]{%
+  \iffieldundef{sorttitle}%
+  {\printfield{title}}%
+  {\printfield{sorttitle}}}}
 
 
 \newbibmacro{cite:catalog}{%
