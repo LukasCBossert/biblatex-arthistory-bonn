@@ -43,7 +43,7 @@ The style is compatible with English and German, since all |bibstrings| used are
 |arthistory| is a citation style that complies with the citation and bibliography rules of \enquote{Kunsthistorisches Institut der Universität Bonn} (KHI).\footnote{Website: \url{https://www.khi.uni-bonn.de}.} In particular, it introduces
 \begin{itemize}
 	\item new entry types for exhibition catalogs and inventory catalogs,
-	\item special citation short forms for catalogs as well as primary sources, and
+	\item special citation short forms for catalogs, encyclopediae as well as primary sources, and
 	\item a tabular bibliography that lists each entry's citation short form and its full citation, sorted by the citation short forms.
 \end{itemize}
 Various options are available to adjust to common practices not covered by the KHI's rules.
@@ -140,6 +140,10 @@ Here is an example of Casanova's Theory of painting:
 As Casanova's text is being published in a book, in the usual case its citation would automatically consist of the author's name and the year of the publication.
 However, you will notice that the citation footnote is an exact copy of the |source| option's content.
 \printbib[6em]{CasanovaMalerei}
+
+\subsubsection{shorttitle}
+Defining a |shorttitle| can be especially useful when encyclopediae whose title starts with an article are being cited.
+%Include Grove encyclopedia!
 
 \subsubsection{source}
 %\DescribeMacro{source}
@@ -325,6 +329,10 @@ This is for catalogs of temporary exhibitions.
 }
 \end{bibexample}
 \printbib[6em]{AusstellungBonn2005}
+
+\subsection{reference}
+\DescribeMacro{@Reference}
+This entry type is suited for encyclopediae. 
 
 \subsection{review}
 This is for reviews of dissertation or habilitation theses, conference proceedings, other scientific publications, exhibitions etc.
