@@ -58,6 +58,7 @@
 \newbool{bbx:publisher}
 \newtoggle{bbx:jstor}
 \newtoggle{bbx:enddot}
+\newtoggle{bbx:endpages}
 \newtoggle{bbx:zenon}
 \newtoggle{bbx:urn}
 \newtoggle{bbx:arthist}
@@ -130,20 +131,22 @@
   \ifhyperref%
     {\href{http://www.nbn-resolving.org/#1}{\nolinkurl{#1}}}%
     {\nolinkurl{#1}}}
-
 \DeclareFieldFormat{eprint:jstor}{%
   \textsc{jstor}%
   \addcolon\space%
   \ifhyperref%
     {\href{http://www.jstor.org/stable/#1}{\nolinkurl{#1}}}%
     {\nolinkurl{#1}}}
-
 \DeclareFieldFormat{eprint:arthist}{%
   \textsc{h-arthist}%
   \addcolon\space%
   \ifhyperref%
     {\href{http://arthist.net/reviews/#1}{arthist.net/reviews/\nolinkurl{#1}}}%
     {arthist.net/reviews/\nolinkurl{#1}}}  
+%-----------------------
+\DeclareBibliographyOption[boolean]{endpages}[true]{%
+\settoggle{bbx:endpages}{#1}%
+\DeclareFieldFormat{pages}{\pno\ #1}}
 %-----------------------
 \DeclareNameAlias{sortname}{family-given}
 %-----------------------
