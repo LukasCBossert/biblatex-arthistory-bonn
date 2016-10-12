@@ -97,6 +97,8 @@
 \DeclareBibliographyOption[boolean]{enddot}[true]{%
 \settoggle{bbx:enddot}{#1}%
 \renewcommand{\finentrypunct}{\adddot}}
+\DeclareBibliographyOption[boolean]{endpages}[true]{%
+\settoggle{bbx:endpages}{#1}}
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
 \DeclareEntryOption{tzugl}[true]{\csuse{bool#1}{cbx:tzugl}}
@@ -112,7 +114,7 @@
 \DeclareFieldFormat*{maintitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1}
 \DeclareFieldFormat{seriestitle}{#1}
-\DeclareFieldFormat{pages}{#1}
+\DeclareFieldFormat{pages}{\iftoggle{bbx:endpages}{\pno\ #1}{#1}}
 \DeclareFieldFormat{edition}{%
     \ifinteger{#1}
     {\textsuperscript{#1}}
@@ -143,10 +145,6 @@
   \ifhyperref%
     {\href{http://arthist.net/reviews/#1}{arthist.net/reviews/\nolinkurl{#1}}}%
     {arthist.net/reviews/\nolinkurl{#1}}}  
-%-----------------------
-\DeclareBibliographyOption[boolean]{endpages}[true]{%
-\settoggle{bbx:endpages}{#1}%
-\DeclareFieldFormat{pages}{\pno\ #1}}
 %-----------------------
 \DeclareNameAlias{sortname}{family-given}
 %-----------------------
