@@ -61,7 +61,7 @@
 \newtoggle{bbx:endpages}
 \newtoggle{bbx:zenon}
 \newtoggle{bbx:urn}
-\newtoggle{bbx:arthist}
+\newbool{bbx:arthist}
 
 \newsavebox\arthist@labelbox
 \newlength{\labwidthsameline}
@@ -97,8 +97,9 @@
 \DeclareBibliographyOption[boolean]{enddot}[true]{%
 \settoggle{bbx:enddot}{#1}%
 \renewcommand{\finentrypunct}{\adddot}}
-\DeclareBibliographyOption[boolean]{endpages}[true]{%
-\settoggle{bbx:endpages}{#1}}
+\DeclareBibliographyOption{endpages}[true]{%
+  \csuse{booltrue}{bbx:endpages}}
+  
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
 \DeclareEntryOption{tzugl}[true]{\csuse{bool#1}{cbx:tzugl}}
@@ -114,7 +115,7 @@
 \DeclareFieldFormat*{maintitle}{#1}
 \DeclareFieldFormat{journaltitle}{#1}
 \DeclareFieldFormat{seriestitle}{#1}
-\DeclareFieldFormat{pages}{\iftoggle{bbx:endpages}{\pno\ #1}{#1}}
+\DeclareFieldFormat{pages}{\ifbool{bbx:endpages}{\pno\ #1}{#1}}
 \DeclareFieldFormat{edition}{%
     \ifinteger{#1}
     {\textsuperscript{#1}}
