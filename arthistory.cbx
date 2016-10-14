@@ -16,13 +16,13 @@
 
 \newbool{cbx:firstcitefull}
 
-
-\DeclareFieldFormat{pages}{#1}
-\DeclareFieldFormat{postnote}{#1}
-
 \DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
 
-
+\DeclareFieldFormat{postnote}{%
+  \ifbool{bbx:endpages}
+    {\mkpageprefix[pagination]{#1}}
+    {#1}}
+    
 
   
 \newbibmacro{cite:exhibcatalog}{%

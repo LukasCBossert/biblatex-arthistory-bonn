@@ -1,4 +1,4 @@
-\documentclass[english,ngerman,]{scrbook}
+\documentclass[english,ngerman]{scrbook}
 \usepackage{babel}
 \usepackage{libertine}
 
@@ -9,7 +9,7 @@
 %  publisher,
 %  firstcitefull=true,
 %  enddot=true,
-%endpages,
+endpages,
   width=10em,
 ]{biblatex}
 \addbibresource{arthistory-examples.bib}
@@ -19,10 +19,10 @@
 \begin{document}
 \footcite{GroveEncycl2011}
 \footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
-\footnote{\cite{GroveEncycl2011}.}
+\footnote{\cite[23]{GroveEncycl2011}.}
 \footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
 \footnote{\cite{AusstellungBern2000}; \cite{AusstellungBonn2005}}
-\footnote{\cites{AusstellungBonn2005}}
+\footnote{\cites[32]{AusstellungBonn2005}}
 \footnote{\cites{AusstellungBonn2005}}
 \footnote{\cites{Brossette2002}}
 \footnote{\cites{Brossette2002}}
