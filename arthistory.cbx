@@ -94,6 +94,16 @@
       \bibstring{urlseen}%
       \setunit{\addspace}%
       \usebibmacro{urldate}}}}
+
+\DeclareCiteCommand{\smartcite}[\iffootnote\textnormal\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareMultiCiteCommand{\smartcites}
+    [\iffootnote\textnormal\mkbibfootnote]{\smartcite}{\multicitedelim}
     
 \endinput
 %% End of file `arthistory.cbx'.
