@@ -6,7 +6,7 @@
 \usepackage[           
   backend=biber,
   style=arthistory,
-	autocite=footnote,
+%	autocite=footnote,
 %  publisher,
 %  firstcitefull=true,
 %  enddot=true,
@@ -35,9 +35,14 @@ endpages,
 
 \footcite{KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
 
-Quellen (shorthand)\footcite{ugonio1588}\footcite{ugonio1588}
-\autocite{ugonio1588}
-\footnote{An example can be found in \autocites{ugonio1588,Brossette2002}.}
+Quellen (shorthand)\\
+footcite\footcite{ugonio1588}\\
+footcite\footcite{ugonio1588}\\
+autocite:\autocite{ugonio1588}\\
+footnote\footnote{An example can be found in \autocite{ugonio1588,Brossette2002}.}\\
+%-------
+smartcite: \smartcite{dombrowski1997}\\
+footnote-smartcite: \footnote{\smartcite{dombrowski1997}}
 \nocite{*}
 \printbibliography
 
