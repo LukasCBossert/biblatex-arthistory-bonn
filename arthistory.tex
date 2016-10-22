@@ -29,7 +29,7 @@ Comments and criticisms are welcome.}}
 \maketitle
  
  \begin{abstract}
-\noindent This citation style covers the citation and bibliography rules of the Kunsthistorisches Institut der Universität Bonn.
+\noindent This citation style covers the citation and bibliography rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}.
 Various options are available to change and adjust the outcome according to one's own preferences. 
 The style is compatible with English and German, since all |bibstrings| used are defined in both languages.
  \end{abstract}
@@ -40,12 +40,14 @@ The style is compatible with English and German, since all |bibstrings| used are
 \end{multicols}
 
 \section{Introduction}
-|arthistory| is a citation style that complies with the citation and bibliography rules of \enquote{Kunsthistorisches Institut der Universität Bonn} (KHI).\footnote{Website: \url{https://www.khi.uni-bonn.de}.} In particular, it introduces
+|arthistory| is a citation style that complies with the citation and bibliography rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}\footnote{Website: \url{https://www.khi.uni-bonn.de}.} (henceforth KHI). In particular, it introduces
 \begin{itemize}
-	\item new entry types for exhibition catalogs and inventory catalogs,
-	\item special citation short forms for catalogs, encyclopediae as well as primary sources, and
+	\item new entry types for exhibition catalogs and inventory catalogs, and
+	%\item special citation short forms for catalogs, encyclopediae as well as primary sources, and
 	\item a tabular bibliography that lists each entry's citation short form and its full citation, sorted by the citation short forms.
 \end{itemize}
+The special citation short forms for catalogs, encyclopediae as well as primary sources described in KHI's guideline are being achieved by using |bib|\LaTeX 's standard bibliography entry options.
+
 Various options are available to adjust to common practices not covered by the KHI's rules.
 %Fortsetzen
 
@@ -84,7 +86,7 @@ Here is some additional information from the UK \TeX\ FAQ:
 \bibliography*@\marg{|bib|-file}@*
 \end{code}
 
-Without any further options the style follows the rules of the Kunsthistorisches Institut der Universität Bonn.
+Without any further options the style follows the rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}.
 No additional settings are needed,
 but you can change the outcome by using some options which are explained below.\footnote{For an easy and unproblematic compiling we suggest to use \hologo{XeLaTeX} or \hologo{LuaTeX}.}
 
@@ -106,10 +108,13 @@ You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \
 cf. %\cref{citeauthorformat}.
 
 \DescribeMacro{enddot}
-Every bibliography entry will end with a dot.
+When including |enddot=true|, every bibliography entry will end with a dot.
+
+\DescribeMacro{endpages}
+When including |endpages| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain numbers.
 
 \DescribeMacro{firstcitefull}
-The first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+With |firstcitefull=true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
 
 \DescribeMacro{width}
 |width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
@@ -168,117 +173,130 @@ In addition to that, you should define a |shorthand| that differs from the usual
 
 
 \subsection{Cite commands}\label{cite-commands}
+|arthistory| supports most/all standard |bib|\LaTeX citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe how standard citation commands can be employed to abide by the KHI's citation rules.
+
+
 \DescribeMacro{\cite}%
-As always citing is done with \cs{cite}:
+The standard \cs{cite} command invokes a authoryear-style citation without any parentheses. Because of the KHI's requirements, \cs{cite} will typically be invoked from within a footnote:
 \begin{code}
-\cite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
+\footnote{
+  *@\ldots@*
+  \cite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+  *@\ldots@*
+}
 \end{code}
 
 \meta{prenote} sets a short preliminary note (e.\,g. \enquote{Vgl.}) and \meta{postnote} is usually used for page numbers.
 If only one optional argument is used then it is \oarg{postnote}.
 \begin{code}
-\cite*@\oarg{postnote}\marg{bibtex-key}%@*
+\footnote{*@\ldots@*\cite*@\oarg{postnote}\marg{bibtex-key}\ldots@*}
 \end{code}
 The \meta{bibtex-key} corresponds to the key from the bibliography file.
 
+\DescribeMacro{\footcite}
+The same as manually adding a footnote first and \cs{cite} subsequently can be achieved in one step via the \cs{footcite} command:
+\begin{code}
+\footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
+\end{code}
+This command will be useful if nothing more than a citation with very short prenotes and/or postnotes is needed. When a citation is embedded in a text paragraph, the former combination of \cs{footnote} and \cs{cite} is advisable.
+
+As noted above, all the well-documented citation commands of the |bib|\LaTeX package are supported.
 \DescribeMacro{\cites}
-If one wants to cite several authors or works a very convenient way is the following using the \cs{cites}-command:
+E.g., if one wants to cite several authors or works a very convenient way is the following, using the \cs{cites}-command (typically in a footnote):
 \begin{code}
 \cites(pre-prenote)(post-postnote)
   *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
   *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
   *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
 \end{code}
- 
- \DescribeMacro{\footcite}
- There is also the possibility to put the citation into a footnote at once:
- \begin{code}
-\footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code}
+Other examples are \cs{parencite},\cs{textcite} and their multi-entry alternatives, and commands such as \cs{citeauthor} and \cs{citetitle}.
 
-\DescribeMacro{\parencite}
-Sometimes a citation has to be put in parentheses. 
-Therefore we implemented the command \cs{parencite}:
-\begin{code}
-\parencite*@\oarg{postnote}\marg{bibtex-key}%@*
-\end{code} 
-This cite command takes care of the correct corresponding parentheses and brackets.
-Especially in |@Inreference| citations the parentheses  change to (square) brackets.
+\DescribeMacro{smartcite}\DescribeMacro{autocite}
+Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than in \enquote{standard} |bib|\LaTeX styles. When appearing in a footnote, both commands will behave as |arthistory|'s \cs{cite} rather than \cs{parencite}. In addition to that, by default \cs{autocite} appearing in the text body behaves like \cs{footcite}.
 
-
-\DescribeMacro{\parencites}
-Of course there is also the possibility to cite several authors/works in parentheses.
-This is done with \cs{parencites}:
-\begin{code}
-\parencites(pre-prenote)(post-postnote)%
-*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
-*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
-*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
-\end{code}
- 
-\DescribeMacro{\textcite}
-Beside the listed \cs{cite} commands above there is a third way of citing:
-\cs{textcite} is useful if the author should be mentioned in the text and
-the remaining components such as year and page will immediately follow in parentheses. 
-\begin{code}
-\textcite*@\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
-
-\DescribeMacro{\textcites}
-And again there is also a \cs{textcites} in case of several authors: 
-\begin{code}
-\textcites(pre-prenote)(post-postnote)%
-  *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
-  *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
-  *@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
-\end{code}
-
-
-
-Futhermore you can use following \cs{cite} commands:
-\DescribeMacro{\footcite} 
-\begin{code}
-\footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
-
-\begin{example}
-\footcite{Schlegel1992}
-\end{example}
-
-
-\DescribeMacro{\footcitetext} 
-\begin{code}
-\footcitetext*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
-
-\begin{example}
-\footcitetext{Schlegel1992}
-\end{example}
-
-
-\DescribeMacro{\smartcite} 
-\begin{code}
-\smartcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
-
-\begin{example}
-\smartcite{Schlegel1992}
-\end{example}
-
-
-
-
-
-
-\DescribeMacro{\citeauthor}\DescribeMacro{\citetitle}\label{citeauthor}%
-Furthermore and in addition to the ›normal‹ \cs{cite}-commands one can also cite only the author or the work title in the text and in the footnotes.
-\begin{code}
-\citeauthor*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
-  and for the works 
-\begin{code}
-\citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
-\end{code} 
+%\DescribeMacro{\parencite}
+%Sometimes a citation has to be put in parentheses. 
+%Therefore we implemented the command \cs{parencite}:
+%\begin{code}
+%\parencite*@\oarg{postnote}\marg{bibtex-key}%@*
+%\end{code} 
+%This cite command takes care of the correct corresponding parentheses and brackets.
+%Especially in |@Inreference| citations the parentheses  change to (square) brackets.
+%
+%
+%\DescribeMacro{\parencites}
+%Of course there is also the possibility to cite several authors/works in parentheses.
+%This is done with \cs{parencites}:
+%\begin{code}
+%\parencites(pre-prenote)(post-postnote)%
+%*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
+%*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
+%*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
+%\end{code}
+ %
+%\DescribeMacro{\textcite}
+%Beside the listed \cs{cite} commands above there is a third way of citing:
+%\cs{textcite} is useful if the author should be mentioned in the text and
+%the remaining components such as year and page will immediately follow in parentheses. 
+%\begin{code}
+%\textcite*@\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
+%
+%\DescribeMacro{\textcites}
+%And again there is also a \cs{textcites} in case of several authors: 
+%\begin{code}
+%\textcites(pre-prenote)(post-postnote)%
+  %*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
+  %*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*%
+  %*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}\ldots@*
+%\end{code}
+%
+%
+%
+%Futhermore you can use following \cs{cite} commands:
+%\DescribeMacro{\footcite} 
+%\begin{code}
+%\footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
+%
+%\begin{example}
+%\footcite{Schlegel1992}
+%\end{example}
+%
+%
+%\DescribeMacro{\footcitetext} 
+%\begin{code}
+%\footcitetext*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
+%
+%\begin{example}
+%\footcitetext{Schlegel1992}
+%\end{example}
+%
+%
+%\DescribeMacro{\smartcite} 
+%\begin{code}
+%\smartcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
+%
+%\begin{example}
+%\smartcite{Schlegel1992}
+%\end{example}
+%
+%
+%
+%
+%
+%
+%\DescribeMacro{\citeauthor}\DescribeMacro{\citetitle}\label{citeauthor}%
+%Furthermore and in addition to the ›normal‹ \cs{cite}-commands one can also cite only the author or the work title in the text and in the footnotes.
+%\begin{code}
+%\citeauthor*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
+  %and for the works 
+%\begin{code}
+%\citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
+%\end{code} 
 
 \section{Entry types}
 \subsection{article}
