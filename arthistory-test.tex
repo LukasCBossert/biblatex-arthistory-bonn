@@ -6,18 +6,43 @@
 \usepackage[           
   backend=biber,
   style=arthistory,
-%	autocite=footnote,
 %  publisher,
-%  firstcitefull=true,
+  firstcitefull=true,
 %  enddot=true,
-endpages,
+	endpages,
   width=10em,
 ]{biblatex}
 \addbibresource{arthistory-examples.bib}
 
+\renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}
+    {}
+    {\ifboolexpr{
+       test {\iftoggle{cbx:citepages}}
+       and
+       test {\iffieldpages{postnote}}
+     }
+       {\setunit{\addspace}%
+        \bibstring{thiscite}%
+        \setunit{\addspace}}
+       {\setunit{\postnotedelim}}%
+     \printfield{postnote}}}
+
+\DeclareFieldFormat{pages}{%
+  #1%
+  \ifboolexpr{ test {\ifcitation} and not test {\ifblank{#1}} }
+    {\global\toggletrue{cbx:citepages}}
+    {}}
+
+\newtoggle{cbx:citepages}
+\AtEveryCitekey{\global\togglefalse{cbx:citepages}}
 
 \usepackage{hyperref}
+
+
 \begin{document}
+\footcite[17]{LoosOrnament}
+\footcite[17\psq]{LoosOrnament}
 \footcite{GroveEncycl2011}
 \footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
 \footnote{\cite[23]{GroveEncycl2011}.}
