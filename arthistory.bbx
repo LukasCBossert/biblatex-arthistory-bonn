@@ -544,6 +544,11 @@ test {\iffieldundef{mainsubtitle}}
   \newunit}
 }
 %-----------------------     
+\newbibmacro*{volume-volumes}{%
+\iffieldundef{volume}
+  {\printfield{volumes}}
+  {}}
+%-----------------------     
  \newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
   \iffieldundef{eventsubtitle}%
@@ -644,7 +649,8 @@ test {\iffieldundef{mainsubtitle}}
 {\printfield{volume}%
 \printfield{part}}
 {}%
-  \printfield{volumes}%
+\newunit
+\usebibmacro{volume-volumes}%
 \setunit{\addspace}%
   \usebibmacro{series+number+diss+date}%
    \newunit\newblock
@@ -682,7 +688,7 @@ test {\iffieldundef{mainsubtitle}}
      \printfield{part}}
     {}%
   \newunit
-  \printfield{volumes}%
+\usebibmacro{volume-volumes}%
   \newunit\newblock
   \usebibmacro{series+number}%
   \printfield{note}%
@@ -719,7 +725,7 @@ test {\iffieldundef{mainsubtitle}}
      \printfield{part}}
     {}%
   \newunit
-  \printfield{volumes}%
+\usebibmacro{volume-volumes}%
   \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
@@ -763,7 +769,7 @@ test {\iffieldundef{mainsubtitle}}
      \printfield{part}}
     {}%
   \newunit
-  \printfield{volumes}%
+\usebibmacro{volume-volumes}%
 \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
@@ -807,7 +813,7 @@ test {\iffieldundef{mainsubtitle}}
      \printfield{part}}
     {}%
   \newunit
-  \printfield{volumes}%
+\usebibmacro{volume-volumes}%
 \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
@@ -848,7 +854,7 @@ test {\iffieldundef{mainsubtitle}}
      \printfield{part}}
     {}%
   \newunit
-  \printfield{volumes}%
+\usebibmacro{volume-volumes}%
   \usebibmacro{series+number}%
   \printfield{note}%
   \newunit\newblock
