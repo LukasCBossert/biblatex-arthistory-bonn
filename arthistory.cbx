@@ -107,6 +107,32 @@
 
 \DeclareMultiCiteCommand{\smartcites}
     [\iffootnote\textnormal\mkbibfootnote]{\smartcite}{\multicitedelim}
+
+
+% Neu: "hier S." %%%%%%%%%%%%%%%%%%%%%%% 
+\renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}
+    {}
+    {\ifboolexpr{
+       test {\iftoggle{cbx:citepages}}
+       and
+       test {\iffieldpages{postnote}}
+     }
+       {\setunit{\addcomma\addspace}%
+        \bibstring{thiscite}%
+        \setunit{\addspace}}
+       {\setunit{\postnotedelim}}%
+     \printfield{postnote}}}
+
+\DeclareFieldFormat{pages}{%
+  #1%
+  \ifboolexpr{ test {\ifcitation} and not test {\ifblank{#1}} }
+    {\global\toggletrue{cbx:citepages}}
+    {}}
+
+\newtoggle{cbx:citepages}
+\AtEveryCitekey{\global\togglefalse{cbx:citepages}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
 \endinput
 %% End of file `arthistory.cbx'.
