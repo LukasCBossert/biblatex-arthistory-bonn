@@ -82,7 +82,7 @@
 \renewbibmacro*{cite}{%
   \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}
    {\usedriver
-      {\DeclareNameAlias{sortname}{default}}
+      {\DeclareNameAlias{sortname}{family-given}}
       {\thefield{entrytype}}}
    {\usebibmacro{cite:normal}}}
 
