@@ -14,10 +14,13 @@
 \DeclareDatamodelFields[type=field,datatype=literal]{eventsubtitle}  
 \DeclareDatamodelFields[type=field,datatype=date]{exhibfirstdate}
 \DeclareDatamodelFields[type=field,datatype=date]{exhibseconddate}
+\DeclareDatamodelFields[type=field,datatype=date]{exhibthirddate}
 \DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstvenue}     
-\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondvenue}                                                                                                                                                                     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondvenue}     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibthirdvenue}                                                                                                                                                                     
 \DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstmuseum}
-\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondmuseum}     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondmuseum}
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibthirdmuseum}    
 %%%%%%---- @exhibcatalog/ @inexhibcatalog = Ausstellungskatalog
 \DeclareDatamodelEntrytypes{exhibcatalog}
 \DeclareDatamodelEntryfields[exhibcatalog]{date,editor,venue,institution,options,eventtitle,eventsubtitle,eventtitleaddon,eventdate,

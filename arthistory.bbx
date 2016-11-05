@@ -561,17 +561,21 @@ test {\iffieldundef{mainsubtitle}}
   \printtext[parens]{\bibstring{exhibcatalog}%
   \setunit{\addspace}%
   \iffieldundef{eventtitleaddon}
-  {\usebibmacro{exhibfirstsecond}}%
+  {\usebibmacro{exhibfirstsecondthird}}%
   {\printfield{eventtitleaddon}}}%
   \newunit%
  }
  
- \newbibmacro*{exhibfirstsecond}{%
+ \newbibmacro*{exhibfirstsecondthird}{%
  \usebibmacro{exhibfirst}%
  \iffieldundef{exhibsecondvenue}%
   {}%
   {\setunit{\addsemicolon\addspace}%
-  \usebibmacro{exhibsecond}}}
+  \usebibmacro{exhibsecond}%
+  \iffieldundef{exhibthirdvenue}%
+    {}%
+    {\setunit{\addsemicolon\addspace}%
+    \usebibmacro{exhibthird}}}}
   
  \newbibmacro*{exhibfirst}{%
  \printfield{exhibfirstvenue}%
@@ -592,6 +596,16 @@ test {\iffieldundef{mainsubtitle}}
   \newunit%
   \renewcommand*{\bibdaterangesep}{\exhibbibdaterangesep}%
   \printexhibseconddate}
+
+\newbibmacro*{exhibthird}{%
+  \printfield{exhibthirdvenue}%
+  \newunit%
+  \iffieldundef{exhibthirdmuseum}%
+  {}%
+  {\printfield{exhibthirdmuseum}}%
+  \newunit%
+  \renewcommand*{\bibdaterangesep}{\exhibbibdaterangesep}%
+  \printexhibthirddate}
 %-----------------------     
 \DeclareBibliographyAlias{collection}{book}
 \DeclareBibliographyAlias{catalog}{book}

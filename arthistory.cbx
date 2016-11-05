@@ -36,7 +36,11 @@
     \iffieldundef{exhibsecondvenue}%
     {}%
     {\setunit{\multilistdelim}%
-    \printfield{exhibsecondvenue}}}
+    \printfield{exhibsecondvenue}
+    \iffieldundef{exhibthirdvenue}%
+  	  {}%
+      {\setunit{\multilistdelim}%
+      \printfield{exhibthirdvenue}}}}
   {\printfield{venue}}%
     \setunit{\addspace}%
     \printeventdate}}  
