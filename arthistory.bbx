@@ -97,7 +97,7 @@
 \DeclareBibliographyOption[boolean]{enddot}[true]{%
 \settoggle{bbx:enddot}{#1}%
 \renewcommand{\finentrypunct}{\adddot}}
-\DeclareBibliographyOption{endpages}[true]{
+\DeclareBibliographyOption{endpages}[true]{%
   \csuse{bool#1}{bbx:endpages}}
 \ExecuteBibliographyOptions{jstor,urn,arthist}
 %%-----------------------  
@@ -117,7 +117,10 @@
 \DeclareFieldFormat{pages}{%
   \ifbool{bbx:endpages}
     {\mkpageprefix[bookpagination]{#1}}
-    {#1}}
+    {#1}%
+  \ifboolexpr{test {\ifcitation} and not test {\ifblank{#1}}}
+    {\global\toggletrue{cbx:citepages}}
+    {}}
 \DeclareFieldFormat{edition}{%
     \ifinteger{#1}
     {\textsuperscript{#1}}
@@ -241,24 +244,21 @@
  {}%
  {\usebibmacro{bbx:parunit}%
  \printfield{jstor}%
- }
-}
+ }}
 %----------------------- 
 \newbibmacro*{urn}{%
  \iffieldundef{urn}
  {} 
  {\usebibmacro{bbx:parunit}%
  \printfield{urn}%
- }
-}
+ }}
 %----------------------- 
 \newbibmacro*{arthist}{%
  \iffieldundef{arthist}
  {} 
  {\usebibmacro{bbx:parunit}%
  \printfield{arthist}%
- }
-}
+ }}
 %-----------------------
 \renewbibmacro*{url+urldate}{%
  \usebibmacro{bbx:parunit}%
