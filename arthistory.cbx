@@ -1,5 +1,5 @@
 % arthistory --%
-% Copyright (c) 2016 Lukas C. Bossert
+% Copyright (c) 2016 Lukas C. Bossert | Thorsten Kemper
 %  
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -18,15 +18,23 @@
   }
   
 \newbool{cbx:firstcitefull}
+\newtoggle{cbx:citepages}
+\newbool{cbx:editorfamilygiven}
 
-\DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
+\AtEveryCitekey{\global\togglefalse{cbx:citepages}}
+\DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}
+\DeclareBibliographyOption{editorfamilygiven}[true]{\csuse{bool#1}{cbx:editorfamilygiven}
+  \DeclareNameAlias{editor}{family-given}}
 
 \DeclareFieldFormat{postnote}{%
   \ifbool{bbx:endpages}
     {\mkpageprefix[pagination]{#1}}
     {#1}}
     
-
+\DeclareNameAlias{default}{family-given}
+\DeclareNameAlias{sortname}{family-given}
+\DeclareNameAlias{editor}{given-family}
+\DeclareNameAlias{byeditor}{editor}
   
 \newbibmacro{cite:exhibcatalog}{%
   \printtext[bibhyperref]{\bibstring{exhibcatalog}%
@@ -86,7 +94,9 @@
 \renewbibmacro*{cite}{%
   \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}
    {\usedriver
-      {\DeclareNameAlias{sortname}{family-given}}
+      {%
+  %    \DeclareNameAlias{sortname}{family-given}
+      }
       {\thefield{entrytype}}}
    {\usebibmacro{cite:normal}}}
 
@@ -126,9 +136,6 @@
         \setunit{\addspace}}
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
-
-\newtoggle{cbx:citepages}
-\AtEveryCitekey{\global\togglefalse{cbx:citepages}}
     
 \endinput
 %% End of file `arthistory.cbx'.

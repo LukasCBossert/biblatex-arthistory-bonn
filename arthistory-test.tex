@@ -9,20 +9,28 @@
 %  publisher,
   firstcitefull=true,
 %  enddot=true,
-	endpages,
+%	endpages,
   width=10em,
+  editorfamilygiven,
 ]{biblatex}
+
+
+
 \addbibresource{arthistory-examples.bib}
 
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 
 \begin{document}
-\footcite[17]{LoosOrnament}
+\footcite[17]{Satzinger2004}
+
+\footcite[17]{Smith2004}
+
 \footcite[Vgl.][17\psq]{LoosOrnament}
 \footcite[Siehe][]{GroveEncycl2011}
 \footcite{Hani1983}
 \footnote{\cites(Man beachte)(){AusstellungBern2000}{AusstellungBonn2005}}
+\iffalse
 \footnote{\cite[23]{GroveEncycl2011}.}
 \footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
 \footnote{\cite{AusstellungBern2000}; \cite{AusstellungBonn2005}}
@@ -48,6 +56,7 @@ smartcite: \smartcite{dombrowski1997}\\
 footnote-smartcite: \footnote{\autocite{dombrowski1997}}
 
 \nocite{*}
+\fi
 %\printbibliography
 \printbibheading[%
     heading=bibliography,%
