@@ -12,7 +12,6 @@
 \def\arthist@version{0.1}
 \def\arthist@bbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory bibliography style (LCB|TK)}
 \def\arthist@cbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory  citation style (LCB|TK)}
-%\def\arch@dbxid{\arthist@date\space v\arthist@version\space biblatex-archaeologie  data (LCB)}
 \def\arthist@lbxid{\arthist@date\space v\arthist@version\space biblatex-arthistory localization (LCB|TK)}
 
 \ProvidesFile{arthistory.bbx}%
@@ -33,10 +32,8 @@
   language=auto,%
   autolang=other,%
   bibencoding=utf8,%
-  %abbreviate=true,%
   urldate=long,%
   sorting=nyt,%
-%  labeldateparts=true,
   maxnames=3,% 
   minnames=1,%
   maxitems=2,%
@@ -151,10 +148,6 @@
     {\href{http://arthist.net/reviews/#1}{arthist.net/reviews/\nolinkurl{#1}}}%
     {arthist.net/reviews/\nolinkurl{#1}}}  
 %-----------------------
-%\DeclareNameAlias{default}{family-given}%{given-family}
-%\DeclareNameAlias{sortname}{default}%{family-given}
-%\DeclareNameAlias{editor}{family-given}
-%-----------------------
 \DeclareFieldAlias{jstor}{eprint:jstor}
 \DeclareFieldAlias{urn}{eprint:urn}
 \DeclareFieldAlias{arthist}{eprint:arthist}
@@ -163,6 +156,7 @@
 \DeclareRedundantLanguages{english,american}{english,american,british,%
  canadian,australian,newzealand,USenglish,UKenglish}
 \DeclareLanguageMapping{ngerman}{arthistory-ngerman}
+\DeclareLanguageMapping{german}{arthistory-ngerman}
 \DeclareLanguageMapping{english}{arthistory-english}
 %-----------------------
 \DeclareSortingScheme{shortseries}{\sort{\field{shortseries}}}
