@@ -128,12 +128,6 @@
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
 
-\DeclareFieldFormat{pages}{%
-  #1%
-  \ifboolexpr{ test {\ifcitation} and not test {\ifblank{#1}} }
-    {\global\toggletrue{cbx:citepages}}
-    {}}
-
 \newtoggle{cbx:citepages}
 \AtEveryCitekey{\global\togglefalse{cbx:citepages}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
