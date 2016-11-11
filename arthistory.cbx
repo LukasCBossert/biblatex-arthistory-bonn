@@ -16,7 +16,7 @@
   uniquename=false,
   autocite=footnote,
   }
-  \RequirePackage{xpatch}
+\RequirePackage{xpatch}
 \newbool{cbx:firstcitefull}
 \newtoggle{cbx:citepages}
 \newbool{cbx:allnamesfamilygiven}
@@ -135,6 +135,7 @@
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
 
+%http://tex.stackexchange.com/a/158481/98739
 \xpatchbibmacro{date+extrayear}{%
   \printtext[parens]%
 }{%
