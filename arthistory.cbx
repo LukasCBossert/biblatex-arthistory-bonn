@@ -17,7 +17,6 @@
   autocite=footnote,
   }
   
-%\newbool{cbx:citepages}
 \newbool{cbx:firstcitefull}
 
 \DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}%
@@ -114,33 +113,22 @@
     [\iffootnote\textnormal\mkbibfootnote]{\smartcite}{\multicitedelim}
 
 
-% Neu: "hier S." %%%%%%%%%%%%%%%%%%%%%%% 
 \renewbibmacro*{postnote}{%
   \iffieldundef{postnote}
     {}
-    {\ifboolexpr{%<<<------ wird nicht angewendet?!
-      bool {cbx:firstcitefull}
-      and not test {\ifciteseen}}
+    {\ifboolexpr{
+       test {\iftoggle{cbx:citepages}}
+       and
+       test {\iffieldpages{postnote}}
+     }
        {\setunit{\addcomma\addspace}%
         \bibstring{thiscite}%
         \setunit{\addspace}}
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
 
-<<<<<<< HEAD
-%\DeclareFieldFormat{pages}{%
-%  #1%
-%  \ifboolexpr{ test {\ifcitation} and not test {\ifblank{#1}} }
-%    {\global\toggletrue{cbx:citepages}}
-%    {}}
-%
-%\newtoggle{cbx:citepages}
-%\AtEveryCitekey{\global\togglefalse{cbx:citepages}}
-=======
 \newtoggle{cbx:citepages}
 \AtEveryCitekey{\global\togglefalse{cbx:citepages}}
->>>>>>> Hier-S-nach-Audrey
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
 \endinput
 %% End of file `arthistory.cbx'.

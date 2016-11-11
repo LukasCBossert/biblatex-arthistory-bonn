@@ -207,8 +207,7 @@
   {\ifcsdef{\strfield{series}}%
     {\skipentry}%
     {\savefieldcs{series}{\strfield{series}}}%
-  }%
-} 
+  }} 
 \defbibcheck{shortjournal}{%
   \iffieldundef{shortjournal}%
     {\skipentry}%
@@ -218,8 +217,7 @@
     {\ifcsdef{\strfield{journaltitle}}%
     {\skipentry}%
     {\savefieldcs{journaltitle}{\strfield{journaltitle}}}%
-    }%
-}
+    }}
 %-----------------------     
 \newbibmacro*{bbx:parunit}{%
  \ifbibliography{%
@@ -229,43 +227,35 @@
  \clearlist{pageref}%
  \setunit{\addcomma\newline\nobreak}%
  }%
- {\setunit{\addcomma\addspace}}%
-}
+ {\setunit{\addcomma\addspace}}}
  %----------------------- 
 \renewbibmacro*{eprint}{%
  \usebibmacro{bbx:parunit}%
  \iffieldundef{eprinttype}%
  {\printfield{eprint}}%
- {\printfield[eprint:\strfield{eprinttype}]{eprint}}%
-}
+ {\printfield[eprint:\strfield{eprinttype}]{eprint}}}
 %----------------------- 
 \newbibmacro*{jstor}{%
  \iffieldundef{jstor}%
  {}%
  {\usebibmacro{bbx:parunit}%
- \printfield{jstor}%
- }}
+ \printfield{jstor}}}
 %----------------------- 
 \newbibmacro*{urn}{%
  \iffieldundef{urn}
  {} 
  {\usebibmacro{bbx:parunit}%
- \printfield{urn}%
- }}
+ \printfield{urn}}}
 %----------------------- 
 \newbibmacro*{arthist}{%
  \iffieldundef{arthist}
  {} 
  {\usebibmacro{bbx:parunit}%
- \printfield{arthist}%
- }}
+ \printfield{arthist}}}
 %-----------------------
 \renewbibmacro*{url+urldate}{%
  \usebibmacro{bbx:parunit}%
- \iffieldundef{url}{}{\printfield{url}%
-% \setunit*{\addspace}%
-% \printtext{\printurldate}%
-}}
+ \iffieldundef{url}{}{\printfield{url}}}
 %----------------------- 
 \renewbibmacro*{doi+eprint+url}{%
  \usebibmacro{bbx:parunit}%
@@ -274,8 +264,7 @@
  \iftoggle{bbx:jstor}{\usebibmacro{jstor}}{}%
  \iftoggle{bbx:urn}{\usebibmacro{urn}}{}%
  \iftoggle{bbx:url}{\usebibmacro{url+urldate}}{}%
- \iftoggle{bbx:arthist}{\usebibmacro{arthist}}{}%
-}
+ \iftoggle{bbx:arthist}{\usebibmacro{arthist}}{}}
 %-----------------------
 \renewbibmacro*{in:}{%
 \newunit
@@ -388,14 +377,12 @@ test {\iffieldundef{mainsubtitle}}
 \renewbibmacro*{addendum+pubstate}{\printfield{addendum}}
 %-----------------------    
 \newbibmacro*{related:reviewof}[1]{%
- \usebibmacro*{related:default}{#1}%
-}
+ \usebibmacro*{related:default}{#1}}
 %-----------------------    
 \newbibmacro{savestuff}{%
  \savename{editor}{\bbx@lasteditor}%
  \savefield{namehash}{\bbx@lasthash}%
- \savefield{booktitle}{\bbx@lastbooktitle}%
-}
+ \savefield{booktitle}{\bbx@lastbooktitle}}
 %----------------------- 
 \DeclareLabeldate{%
   \field{date}
