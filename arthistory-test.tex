@@ -2,6 +2,7 @@
 \usepackage{babel}
 \usepackage{libertine}
 
+
 \usepackage{csquotes}
 \usepackage[           
   backend=biber,
@@ -14,21 +15,22 @@
  % allnamesfamilygiven,
 ]{biblatex}
 
-
-
 \addbibresource{arthistory-examples.bib}
 
 \usepackage{hyperref}
 
 
 \begin{document}
+\footcite{Eimer1970}
+\footcite{vonengelberg}
+\footcite{Eimer1970a}
+
 \footcites(Man beachte)(){AusstellungBonn2005}{AusstellungBern2000}
 \footnote{\cites(Man beachte)(){Giese}{AusstellungBern2000}}
 \footcites(Man beachte)(){KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
 \footcites(Man beachte)(){KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
 \footnote{\cites(Man beachte)(){Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
 \footnote{\cites(Man beachte)(){Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
-\iffalse
 \footcite[17]{Satzinger2004}
 
 \footcite[17]{Smith2004}
@@ -62,7 +64,7 @@ smartcite: \smartcite{dombrowski1997}\\
 footnote-smartcite: \footnote{\autocite{dombrowski1997}}
 
 \nocite{*}
-\fi
+
 %\printbibliography
 \printbibheading[%
     heading=bibliography,%

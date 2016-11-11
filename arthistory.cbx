@@ -16,7 +16,7 @@
   uniquename=false,
   autocite=footnote,
   }
-  
+  \RequirePackage{xpatch}
 \newbool{cbx:firstcitefull}
 \newtoggle{cbx:citepages}
 \newbool{cbx:allnamesfamilygiven}
@@ -78,7 +78,7 @@
         {\usebibmacro{cite:reference}}%
         {\printnames{labelname}%
          \setunit{\printdelim{nameyeardelim}}%
-        \usebibmacro{cite:labelyear+extrayear}}}}}}
+        \usebibmacro{date+extrayear}}}}}}
 
 \newbibmacro*{cite:normal}{%
  \global\boolfalse{cbx:loccit}%
@@ -134,6 +134,12 @@
         \setunit{\addspace}}
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
-    
+
+\xpatchbibmacro{date+extrayear}{%
+  \printtext[parens]%
+}{%
+  \printtext%
+}{}{}
+   
 \endinput
 %% End of file `arthistory.cbx'.

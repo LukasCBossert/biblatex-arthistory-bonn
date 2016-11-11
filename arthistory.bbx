@@ -461,11 +461,9 @@ test {\iffieldundef{mainsubtitle}}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
  \iffieldundef{pubstate}%
-  {\iffieldundef{year}
-    {\iftoggle{bbx:arthist}
-     {\printdate}
-     {\usebibmacro{date+extrayear}}}%
-    {\printarthistdate\printfield{year}}}%
+  {\iffieldundef{arthist}
+    {\printdate}
+     {\printarthistdate\printfield{year}}}%
  {\printfield{pubstate}}}
 %-----------------------   
 \renewbibmacro*{series+number}{%
@@ -938,7 +936,6 @@ test {\iffieldundef{mainsubtitle}}
     {\item\usebibmacro{kicklabelfield}{#1}}%
 }
 \docsvlist{shortjournal,shortseries}
-
 
 \endinput
 %% End of file `arthistory.bbx'.
