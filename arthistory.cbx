@@ -19,12 +19,12 @@
   
 \newbool{cbx:firstcitefull}
 \newtoggle{cbx:citepages}
-\newbool{cbx:editorfamilygiven}
+\newbool{cbx:allnamesfamilygiven}
 
 \AtEveryCitekey{\global\togglefalse{cbx:citepages}}
 \DeclareBibliographyOption{firstcitefull}[true]{\csuse{bool#1}{cbx:firstcitefull}}
-\DeclareBibliographyOption{editorfamilygiven}[true]{\csuse{bool#1}{cbx:editorfamilygiven}
-  \DeclareNameAlias{editor}{family-given}}
+\DeclareBibliographyOption{allnamesfamilygiven}[true]{\csuse{bool#1}{cbx:allnamesfamilygiven}
+  \DeclareNameAlias{editor}{default}}
 
 \DeclareFieldFormat{postnote}{%
   \ifbool{bbx:endpages}
@@ -94,9 +94,7 @@
 \renewbibmacro*{cite}{%
   \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}
    {\usedriver
-      {%
-  %    \DeclareNameAlias{sortname}{family-given}
-      }
+      {\DeclareNameAlias{sortname}{default}}
       {\thefield{entrytype}}}
    {\usebibmacro{cite:normal}}}
 

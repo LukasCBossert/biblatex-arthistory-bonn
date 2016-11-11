@@ -538,7 +538,7 @@ test {\iffieldundef{mainsubtitle}}
   {\printfield{volumes}}
   {}}
 %-----------------------     
- \newbibmacro*{exhibcat}{%
+\newbibmacro*{exhibcat}{%
   \printfield{eventtitle}%
   \iffieldundef{eventsubtitle}%
     {}%
@@ -682,8 +682,6 @@ test {\iffieldundef{mainsubtitle}}
 \DeclareBibliographyDriver{exhibcatalog}{%
   \usebibmacro{bibindex}%
   \usebibmacro{begentry}%
-  \setunit{\nametitledelim}%
-  \newblock
 \usebibmacro{exhibcat}%
   \newunit
   \iffieldundef{maintitle}
