@@ -1,7 +1,10 @@
-\documentclass[american]{scrbook}
-\usepackage{babel}
+\documentclass{scrbook}
+\usepackage{
+%  babel,
+  polyglossia
+  }
 \usepackage{libertine}
-%\setdefaultlanguage{english}
+\setdefaultlanguage{german}
 
 
 %\usepackage{csquotes}
@@ -9,7 +12,7 @@
   backend=biber,
   style=arthistory,
 %  publisher,
-  firstcitefull=true,
+%  firstcitefull=true,
 %  enddot=true,
 %	endpages,
   width=10em,
@@ -22,6 +25,7 @@
 
 
 \begin{document}
+
 \footcite{Eimer1970}
 \footcite{Eimer1970}
 \footcite{vonengelberg}
