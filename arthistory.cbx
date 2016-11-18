@@ -13,8 +13,8 @@
   \RequireCitationStyle{authoryear-ibid}
 %-----------------------
 \ExecuteBibliographyOptions{
-  uniquename=false,
-  autocite=footnote,
+  uniquename=false,%
+  autocite=footnote,%
   }
 \RequirePackage{xpatch}
 \newbool{cbx:firstcitefull}
@@ -92,10 +92,10 @@
    {\usebibmacro{cite:shorthand}}}}
 
 \renewbibmacro*{cite}{%
-  \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}
-   {\usedriver
-      {\DeclareNameAlias{sortname}{default}}
-      {\thefield{entrytype}}}
+  \ifboolexpr{bool {cbx:firstcitefull} and not test {\ifciteseen}}%
+   {\usedriver%
+      {\DeclareNameAlias{sortname}{default}}%
+      {\thefield{entrytype}}}%
    {\usebibmacro{cite:normal}}}
 
 
@@ -111,27 +111,28 @@
       \usebibmacro{urldate}}}}
 
 \DeclareCiteCommand{\smartcite}[\iffootnote\textnormal\mkbibfootnote]
-  {\usebibmacro{prenote}}
+  {\usebibmacro{prenote}}%
   {\usebibmacro{citeindex}%
-   \usebibmacro{cite}}
-  {\multicitedelim}
+   \usebibmacro{cite}}%
+  {\multicitedelim}%
   {\usebibmacro{postnote}}
 
-\DeclareMultiCiteCommand{\smartcites}
-    [\iffootnote\textnormal\mkbibfootnote]{\smartcite}{\multicitedelim}
+\DeclareMultiCiteCommand{\smartcites}[\iffootnote\textnormal\mkbibfootnote]
+{\smartcite}%
+{\multicitedelim}%
 
 
 \renewbibmacro*{postnote}{%
-  \iffieldundef{postnote}
-    {}
-    {\ifboolexpr{
-       test {\iftoggle{cbx:citepages}}
+  \iffieldundef{postnote}%
+    {}%
+    {\ifboolexpr{%
+       test {\iftoggle{cbx:citepages}}%
        and
-       test {\iffieldpages{postnote}}
-     }
+       test {\iffieldpages{postnote}}%
+     }%
        {\setunit{\addcomma\addspace}%
         \bibstring{thiscite}%
-        \setunit{\addspace}}
+        \setunit{\addspace}}%
        {\setunit{\postnotedelim}}%
      \printfield{postnote}}}
 
