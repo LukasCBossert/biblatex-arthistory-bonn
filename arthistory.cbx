@@ -37,7 +37,7 @@
 \DeclareNameAlias{byeditor}{editor}
   
 \newbibmacro{cite:exhibcatalog}{%
-  \printtext[bibhyperref]{\bibstring{exhibcatalog}%
+  \bibstring{exhibcatalog}%
   \setunit{\addspace}%
   \iffieldundef{venue}%
   {\printfield{exhibfirstvenue}%
@@ -51,25 +51,24 @@
       \printfield{exhibthirdvenue}}}}
   {\printfield{venue}}%
     \setunit{\addspace}%
-    \printeventdate}}  
+    \printeventdate}
     
 \newbibmacro*{cite:reference}{%
-  \printtext[bibhyperref]{%
   \iffieldundef{shorttitle}%
   {\printfield{title}}%
-  {\printfield{shorttitle}}}}
+  {\printfield{shorttitle}}}
 
 
 
 \newbibmacro{cite:catalog}{%
-  \printtext[bibhyperref]{\bibstring{catalog}%
+  \bibstring{catalog}%
   \setunit{\addspace}%
   \printfield{label}%
   \setunit{\addspace}%
-  \printdate}}  
+  \printdate}
 
 \newbibmacro*{cite:various}{%
-\printtext[bibhypertarget]{%
+\printtext{%
   \ifentrytype{catalog}%
     {\usebibmacro{cite:catalog}}%
     {\ifentrytype{exhibcatalog}%
@@ -96,7 +95,7 @@
    {\usedriver%
       {\DeclareNameAlias{sortname}{default}}%
       {\thefield{entrytype}}}%
-   {\usebibmacro{cite:normal}}}
+   {\printtext[bibhyperref]{\usebibmacro{cite:normal}}}}
 
 
 \renewbibmacro*{cite:postnote}{%
