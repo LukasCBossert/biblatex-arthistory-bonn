@@ -10,6 +10,7 @@
 \usepackage[           
   backend=biber,
   style=arthistory,	% Alternatives: authoryear, archaeologie
+	firstcitefull,
 ]{biblatex}
 \addbibresource{arthistory-examples.bib}
 \usepackage{hyperref}
@@ -17,34 +18,36 @@
 \begin{document}
 
 \paragraph{No warnings}
-\textit{Incollection}: \cite{LoosOrnament}
+\textit{Incollection}: \footcite{LoosOrnament}
 
-Reference: \cite{GroveEncycl2011}, \cite{AllgemeinesKunstlerlexikon}
+\footcite{LoosOrnament}
 
-\textit{Inbook}: \cite{Saint-Denis2008}
+Reference: \footcite{GroveEncycl2011}, \footcite{AllgemeinesKunstlerlexikon}
+
+\footcite{LoosOrnament}
+
+\textit{Inbook}: \footcite{Saint-Denis2008}
 
 \paragraph{Warnings}
-\textit{Incollection}: \cite{korner2003}
+\textit{Incollection}: \footcite{korner2003}
 
-Book: \cite{Satzinger2004}
+Book: \footcite{Satzinger2004}
 
-Article: \cite{Schlegel1992}
+Article: \footcite{Schlegel1992}
 
-Catalog: \cite{KatFrankfurt0510}
+Catalog: \footcite{KatFrankfurt0510}
 
-Inreference: \cite{Petri2011}
+Inreference: \footcite{Petri2011}
 
-Review: \cite{Dobler2003}
+Review: \footcite{Dobler2003}
 
-Exhibcatalog: \cite{AusstellungNewYork2013}\cite{AusstellungBonn2005}
+Exhibcatalog: \footcite{AusstellungNewYork2013}\footcite{AusstellungBonn2005}
 
-Inexhibcatalog: \cite{Giese}\cite{Tjarks2005}
+Inexhibcatalog: \footcite{Giese}\footcite{Tjarks2005}
 
-PhDThesis: \cite{strupp1993}
+PhDThesis: \footcite{strupp1993}
 
-\textit{Inbook}: \cite{Burckhardt2000}
-
-\bigskip
+\textit{Inbook}: \footcite{Burckhardt2000}
 
 %\nocite{*}
 \printbibliography
