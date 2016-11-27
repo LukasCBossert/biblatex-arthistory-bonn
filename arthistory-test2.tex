@@ -1,0 +1,82 @@
+\documentclass[ngerman]{scrbook}
+\usepackage{
+  babel,
+%  polyglossia
+  }
+%\usepackage{libertine}
+%\setdefaultlanguage{german}
+
+
+\usepackage{csquotes}
+\usepackage[           
+  backend=biber,
+  style=arthistory,
+%  publisher,
+%  firstcitefull=true,
+%  enddot=true,
+%	endpages,
+%  width=10em,
+%  allnamesfamilygiven,
+]{biblatex}
+
+\addbibresource{arthistory-examples.bib}
+
+\usepackage[pdfpagelabels]{hyperref}
+
+
+
+\begin{document}
+\clearpage
+\cite{Satzinger2004}
+\clearpage
+
+\footcite{Eimer1970}
+\footcite{Eimer1970}
+\footcite{vonengelberg}
+\iffalse
+
+\footcites(Man beachte)(){AusstellungBonn2005}{AusstellungBern2000}
+\footnote{\cites(Man beachte)(){Giese}{AusstellungBern2000}}
+\footcites(Man beachte)(){KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
+\footcites(Man beachte)(){KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
+\footnote{\cites(Man beachte)(){Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
+\footnote{\cites(Man beachte)(){Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
+\footcite[17]{Satzinger2004}
+
+\footcite[17]{Smith2004}
+
+\footcite[Vgl.][17\psq]{LoosOrnament}
+\footcite[Siehe][]{GroveEncycl2011}
+\footcite{Hani1983}
+
+\footnote{\cite[23]{GroveEncycl2011}.}
+\footnote{\cites{AusstellungBern2000,AusstellungBonn2005}}
+\footnote{\cite{AusstellungBern2000}; \cite{AusstellungBonn2005}}
+\footnote{\cites[32]{AusstellungBonn2005}}
+\footnote{\cites{AusstellungBonn2005}}
+\footnote{\cites{Brossette2002}}
+\footnote{\Cites{Brossette2002}}
+\footnote{\cites(Man beachte)(){Brossette2002,delbeke2014,digioia2006,dombrowski1997,fagiolodellarco1967}}
+\footnote{\cites{fagiolodellarco1967}}
+
+\footcite[23]{bierbaum2014}
+\footcite[25]{AllgemeinesKunstlerlexikon}
+
+\footcites(Man beachte)(){KatArchitekturzchng2013,KatFrankfurt2010,KatSORRusche2010}
+
+Quellen (shorthand)\\
+footcite\footcite{ugonio1588}\\
+footcite\footcite{ugonio1588}\\
+autocite:\autocite{ugonio1588}\\
+footnote\footnote{An example can be found in \autocite{ugonio1588,Brossette2002}.}\\
+%-------
+smartcite: \smartcite{dombrowski1997}\\
+footnote-smartcite: \footnote{\autocite{dombrowski1997}}
+\fi
+\nocite{*}
+
+
+\printbibliography
+
+
+\end{document}
