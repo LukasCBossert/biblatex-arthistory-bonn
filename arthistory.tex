@@ -102,6 +102,9 @@ For that please see the excellent documentation of  |bib|\LaTeX.
 
 \subsection{Preamble options}\label{preamble_options}
 
+\DescribeMacro{allnamesfamilygiven}
+When enabled, last names will precede first names in all instances.
+
 \DescribeMacro{citeauthorformat}
 You can chose how the name of authors or editors are displayed within your text when they are cited with \cs{citeauthor}\marg{bibtex-key}.
 You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}; 
@@ -115,6 +118,9 @@ When including |endpages| in the options, bibliography entries' page numbers wil
 
 \DescribeMacro{firstcitefull}
 With |firstcitefull=true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+
+\DescribeMacro{namelinked}
+When included and |hyperref| loaded, both name and year in a short citation will link to the respective bibliography entry.
 
 \DescribeMacro{width}
 |width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
@@ -132,6 +138,18 @@ Actually this concerns citation of ancient texts and corpora where usually the |
 \subsubsection{arthist}
 \enquote{H-ArtHist} is a popular newsletter for... %Fortsetzen
 |arthist=|\marg{value} will print...
+
+\subsubsection{institution}
+For the institution where a thesis was defended.
+
+
+
+\subsubsection{keywords = source}\label{sec:source}
+%\DescribeMacro{source}
+This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
+If enabled, the entry can be listed in a separate bibliography for primary sources.
+
+In addition to that, you should define a |shorthand| that differs from the usual author year citation of regular scientific works in order to comply with the KHI's citation rules, cf. \cref{sec:shorthand}.
 
 \subsubsection{shorthand}\label{sec:shorthand}
 %\DescribeMacro{shorthand}
@@ -164,12 +182,8 @@ Defining a |shorttitle| can be especially useful when encyclopediae whose title 
 \subsubsection{sortkey}
 When entering a (exhibiton) catalogs.
 
-\subsubsection{source}\label{sec:source}
-%\DescribeMacro{source}
-This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
-If enabled, the entry can be listed in a separate bibliography for primary sources.
-
-In addition to that, you should define a |shorthand| that differs from the usual author year citation of regular scientific works in order to comply with the KHI's citation rules, cf. \cref{sec:shorthand}.
+\subsubsection{type}
+To specify the type of thesis. Possible values are HABIL,PHDTHESIS
 
 
 \subsection{Cite commands}\label{cite-commands}

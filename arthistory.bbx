@@ -425,8 +425,8 @@ test {\iffieldundef{mainsubtitle}}
      \clearname{translator}}
     {}}
 %-----------------------      
-\newbibmacro{diss+date}{%
-  \iffieldequalstr{disstype}{tzugl}%
+\newbibmacro{thesis+date}{%
+  \iffieldequalstr{thesistype}{tzugl}%
     {\bibstring{tzugl}}%
     {\bibstring{zugl}}%
   \addspace%
@@ -434,7 +434,7 @@ test {\iffieldundef{mainsubtitle}}
     \newunit%
  \printfield{type}%
  \newunit%
-\printdissdate%
+\printthesisdate%
 }
 %-----------------------
 \newbibmacro*{series+number+diss+date}{%
@@ -442,14 +442,14 @@ test {\iffieldundef{mainsubtitle}}
   \iffieldundef{series}
     {\iflistundef{institution}
     {}
-    {\printtext[parens]{\usebibmacro{diss+date}}}}
+    {\printtext[parens]{\usebibmacro{thesis+date}}}}
   {\printtext[parens]{\printfield{series}%
 \newunit
   \printfield{number}%
   \iflistundef{institution}
   {}
   {\setunit*{\addsemicolon\addspace}%
-  \usebibmacro{diss+date}}}}%
+  \usebibmacro{thesis+date}}}}%
  \newunit}
 %-----------------------  
 \newbibmacro{pubstate+year}{%
@@ -879,7 +879,7 @@ test {\iffieldundef{mainsubtitle}}
   \usebibmacro{title}%
   \newunit\newblock
   \usebibmacro{byauthor}%
-  \printtext[parens]{\usebibmacro{diss+date}}%
+  \printtext[parens]{\usebibmacro{thesis+date}}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
   \newunit

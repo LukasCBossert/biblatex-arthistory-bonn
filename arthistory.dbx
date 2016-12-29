@@ -41,9 +41,9 @@ url,urldate,note,year,volume,volumes,sortkey}
 
 
 %--- more new fields
-\DeclareDatamodelEntryfields[book]{dissdate,disstype}
-\DeclareDatamodelFields[type=field,datatype=date]{dissdate}
-\DeclareDatamodelFields[type=field,datatype=verbatim]{disstype}
+\DeclareDatamodelEntryfields[book]{thesisdate,thesistype}
+\DeclareDatamodelFields[type=field,datatype=date]{thesisdate}
+\DeclareDatamodelFields[type=field,datatype=verbatim]{thesistype}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{urn}
 \DeclareDatamodelEntryfields{urn}
 \DeclareDatamodelFields[type=field,datatype=verbatim]{jstor}
