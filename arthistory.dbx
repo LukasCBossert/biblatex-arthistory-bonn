@@ -15,9 +15,9 @@
 \DeclareDatamodelFields[type=field,datatype=date]{exhibfirstdate}
 \DeclareDatamodelFields[type=field,datatype=date]{exhibseconddate}
 \DeclareDatamodelFields[type=field,datatype=date]{exhibthirddate}
-\DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstvenue}     
-\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondvenue}     
-\DeclareDatamodelFields[type=field,datatype=literal]{exhibthirdvenue}                                                                                                                                                                     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstlocation}     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondlocation}     
+\DeclareDatamodelFields[type=field,datatype=literal]{exhibthirdlocation}                                                                                                                                                                     
 \DeclareDatamodelFields[type=field,datatype=literal]{exhibfirstmuseum}
 \DeclareDatamodelFields[type=field,datatype=literal]{exhibsecondmuseum}
 \DeclareDatamodelFields[type=field,datatype=literal]{exhibthirdmuseum}    

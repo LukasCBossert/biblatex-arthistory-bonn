@@ -34,3 +34,7 @@
 *.ilg
 
 *.ind
+
+*.tcp
+
+*.tps

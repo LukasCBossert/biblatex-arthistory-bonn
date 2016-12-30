@@ -113,21 +113,20 @@ cf. %\cref{citeauthorformat}.
 \DescribeMacro{enddot}
 When including |enddot=true|, every bibliography entry will end with a dot.
 
-\DescribeMacro{endpages}
-When including |endpages| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain numbers.
-
 \DescribeMacro{firstcitefull}
-With |firstcitefull=true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+With |firstcitefull = true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
 
 \DescribeMacro{namelinked}
 When included and |hyperref| loaded, both name and year in a short citation will link to the respective bibliography entry.
 
-\DescribeMacro{width}
-|width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
+\DescribeMacro{pagesfull}
+When including |endpages| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain page numbers.
 
 \DescribeMacro{publisher}
 The publisher is being listed in the bibliography entries.
 
+\DescribeMacro{width}
+|width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
 
 \subsection{Entry Options}
 A single bibliography entry can contain a value in its |options|-field.
@@ -138,6 +137,39 @@ Actually this concerns citation of ancient texts and corpora where usually the |
 \subsubsection{arthist}
 \enquote{H-ArtHist} is a popular newsletter for... %Fortsetzen
 |arthist=|\marg{value} will print...
+
+\subsubsection{exhibfirstdate}
+Specifies the time span of an exhibition an |Exhibcatalog| is based on. Dates of the first and last day of the respective exhibition are to be entered in the format \meta{year}|-|\meta{month}|-|\meta{day}. A typical entry may be
+\begin{code}
+@Exhibcatalog{AusstellungBonn2005,
+  *@\ldots@*
+  exhibfirstdate = {2005-11-25/2006-03-19},
+  *@\ldots@*
+}.
+\end{code}
+If an exhibition has more than one date, use |exhibseconddate| and |exhibthirddate| accordingly.
+
+\subsubsection{exhibfirstlocation}
+For the city in which an exhibition has been shown. E.g.,
+\begin{code}
+@Exhibcatalog{AusstellungBonn2005,
+  *@\ldots@*
+  exhibfirstlocation = {Bonn},
+  *@\ldots@*
+}.
+\end{code}
+If an exhibition has more than one date, use |exhibsecondlocation| and |exhibthirdlocation| accordingly.
+
+\subsubsection{exhibfirstmuseum}
+For the venue---usually a museum---where an exhibition is shown. E.g.,
+\begin{code}
+@Exhibcatalog{AusstellungBonn2005,
+  *@\ldots@*
+  exhibfirstmuseum = {Kunst- und Ausstellungshalle der Bundesrepublik Deutschland},
+  *@\ldots@*
+}.
+\end{code}
+If an exhibition has more than one date, use |exhibsecondmuseum| and |exhibthirdmuseum| accordingly.
 
 \subsubsection{institution}
 For the institution where a thesis was defended.
@@ -184,7 +216,7 @@ Defining a |shorttitle| can be especially useful when encyclopediae whose title 
 %Include Grove encyclopedia!
 
 \subsubsection{sortkey}
-When entering a (exhibiton) catalogs.
+When entering (exhibiton) catalogs.
 
 \subsubsection{type}
 To specify the type of thesis. Possible values are HABIL,PHDTHESIS

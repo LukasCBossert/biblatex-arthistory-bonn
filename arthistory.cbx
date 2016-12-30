@@ -29,7 +29,7 @@
 \DeclareBibliographyOption{namelinked}[true]{\csuse{bool#1}{cbx:namelinked}}
 
 \DeclareFieldFormat{postnote}{%
-  \ifbool{bbx:endpages}
+  \ifbool{bbx:pagesfull}
     {\mkpageprefix[pagination]{#1}}
     {#1}}
     
@@ -42,15 +42,15 @@
   \bibstring{exhibcatalog}%
   \setunit{\addspace}%
   \iffieldundef{venue}%
-  {\printfield{exhibfirstvenue}%
-    \iffieldundef{exhibsecondvenue}%
+  {\printfield{exhibfirstlocation}%
+    \iffieldundef{exhibsecondlocation}%
     {}%
     {\setunit{\multilistdelim}%
-    \printfield{exhibsecondvenue}
-    \iffieldundef{exhibthirdvenue}%
+    \printfield{exhibsecondlocation}
+    \iffieldundef{exhibthirdlocation}%
   	  {}%
       {\setunit{\multilistdelim}%
-      \printfield{exhibthirdvenue}}}}
+      \printfield{exhibthirdlocation}}}}
   {\printfield{venue}}%
     \setunit{\addspace}%
     \printtext[bibhyperref]{\printeventdate}}
