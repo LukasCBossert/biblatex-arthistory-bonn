@@ -51,6 +51,7 @@ The special citation short forms for catalogs, encyclopediae as well as primary 
 Various options are available to adjust to common practices not covered by the KHI's rules.
 %Fortsetzen
 
+
 \section{Installation}
 |arthistory| is part of the distributions MiK\TeX \footnote{Website: \url{http://www.miktex.org}.} 
 and \TeX Live\footnote{Website: \url{http://www.tug.org/texlive}.}~-- thus, you
@@ -77,7 +78,8 @@ Here is some additional information from the UK \TeX\ FAQ:
 }
 %%introduction from biblatex-dw copied and applied. might to be rewritten.
 
-\section{Usage}
+
+\section{Loading the package}
  \DescribeMacro{arthistory} The name of the bib\LaTeX-style is |arthistory| which has to be activated in the preamble. 
 
 \begin{code}
@@ -95,50 +97,29 @@ a single bibliography.
 However, since |arthistory| supports citation styles for catalogs and primary sources that differ from the standard citations of common scientific contributions, we suggest having them listed in separate bibliographies. 
 Further information can be found below. %  (\cref{bibliographie}).
 
-\section{Overview}\label{overview}
-There follows a quick overview of possible options of the style |arthistory|. 
-Furthermore you can -- at your own risk -- also use the conventional |bib|\LaTeX-options relating to indent, etc. 
-For that please see the excellent documentation of  |bib|\LaTeX.
 
-\subsection{Preamble options}\label{preamble_options}
+%\section{Overview}\label{overview}
+%There follows a quick overview of possible options of the style |arthistory|. 
+%Furthermore you can -- at your own risk -- also use the conventional |bib|\LaTeX-options relating to indent, etc. 
+%For that please see the excellent documentation of  |bib|\LaTeX.
 
-\DescribeMacro{allnamesfamilygiven}
-When enabled, last names will precede first names in all instances.
 
-\DescribeMacro{citeauthorformat}
-You can chose how the name of authors or editors are displayed within your text when they are cited with \cs{citeauthor}\marg{bibtex-key}.
-You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}; 
-cf. %\cref{citeauthorformat}.
+\section{Bibliography entries}
+Besides loading |arthistory|, in order to comply with the KHI's bibliography rules, users' actions will be required mostly when entering bibliography items.
 
-\DescribeMacro{enddot}
-When including |enddot=true|, every bibliography entry will end with a dot.
+\subsection{Entry options}
+%A single bibliography entry can contain a value in its |options|-field.
+%Depending on the option it changes the behavior of how that entry is cited.
+%Beside their distinct properties all of these options have in common that the separating comma between citation and page record is missing. 
+%Actually this concerns citation of ancient texts and corpora where usually the |shorthand|-field is printed in citations.
 
-\DescribeMacro{firstcitefull}
-With |firstcitefull = true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+\subsubsection{\texttt{arthistory}-specific options}
 
-\DescribeMacro{namelinked}
-When included and |hyperref| loaded, both name and year in a short citation will link to the respective bibliography entry.
-
-\DescribeMacro{pagesfull}
-When including |endpages| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain page numbers.
-
-\DescribeMacro{publisher}
-The publisher is being listed in the bibliography entries.
-
-\DescribeMacro{width}
-|width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
-
-\subsection{Entry Options}
-A single bibliography entry can contain a value in its |options|-field.
-Depending on the option it changes the behavior of how that entry is cited.
-Beside their distinct properties all of these options have in common that the separating comma between citation and page record is missing. 
-Actually this concerns citation of ancient texts and corpora where usually the |shorthand|-field is printed in citations.
-
-\subsubsection{arthist}
+\DescribeMacro{arthist}
 \enquote{H-ArtHist} is a popular newsletter for... %Fortsetzen
 |arthist=|\marg{value} will print...
 
-\subsubsection{exhibfirstdate}
+\DescribeMacro{exhibfirstdate}
 Specifies the time span of an exhibition an |Exhibcatalog| is based on. Dates of the first and last day of the respective exhibition are to be entered in the format \meta{year}|-|\meta{month}|-|\meta{day}. A typical entry may be
 \begin{code}
 @Exhibcatalog{AusstellungBonn2005,
@@ -149,7 +130,7 @@ Specifies the time span of an exhibition an |Exhibcatalog| is based on. Dates of
 \end{code}
 If an exhibition has more than one date, use |exhibseconddate| and |exhibthirddate| accordingly.
 
-\subsubsection{exhibfirstlocation}
+\DescribeMacro{exhibfirstlocation}
 For the city in which an exhibition has been shown. E.g.,
 \begin{code}
 @Exhibcatalog{AusstellungBonn2005,
@@ -160,7 +141,7 @@ For the city in which an exhibition has been shown. E.g.,
 \end{code}
 If an exhibition has more than one date, use |exhibsecondlocation| and |exhibthirdlocation| accordingly.
 
-\subsubsection{exhibfirstmuseum}
+\DescribeMacro{exhibfirstmuseum}
 For the venue---usually a museum---where an exhibition is shown. E.g.,
 \begin{code}
 @Exhibcatalog{AusstellungBonn2005,
@@ -171,23 +152,27 @@ For the venue---usually a museum---where an exhibition is shown. E.g.,
 \end{code}
 If an exhibition has more than one date, use |exhibsecondmuseum| and |exhibthirdmuseum| accordingly.
 
-\subsubsection{institution}
-For the institution where a thesis was defended.
-
-\subsubsection{thesisdate}
+\DescribeMacro{thesisdate}
 The year when a PhD (or \enquote{Habilitation}) thesis was defended.
 
-\subsubsection{thesistype = tzugl}
+\DescribeMacro{thesistype = tzugl}
 To be used when a publication (typically a book) is partly based on a submitted PhD (or \enquote{Habilitation}) thesis.
 
-\subsubsection{keywords = source}\label{sec:source}
+
+\subsubsection{Important standard \texttt{bib}\LaTeX options}
+Here, we list otherwise standard |bib|\LaTeX options that are essential to comply by the KHI's bibliography rules.
+
+\DescribeMacro{institution}
+For the institution where a thesis was defended.
+
+\DescribeMacro{keywords = source}\label{sec:source}
 %\DescribeMacro{source}
 This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
 If enabled, the entry can be listed in a separate bibliography for primary sources.
 
 In addition to that, you should define a |shorthand| that differs from the usual author year citation of regular scientific works in order to comply with the KHI's citation rules, cf. \cref{sec:shorthand}.
 
-\subsubsection{shorthand}\label{sec:shorthand}
+\DescribeMacro{shorthand}\label{sec:shorthand}
 %\DescribeMacro{shorthand}
 Entering a shorthand will replace the otherwise automatically generated, document type-appropriate citation short form by the typed-in content.
 
@@ -211,20 +196,157 @@ As Casanova's text is being published in a book, in the usual case its citation 
 However, you will notice that the citation footnote is an exact copy of the |source| option's content.
 \printbib[6em]{CasanovaMalerei}
 
-\subsubsection{shorttitle}
+\DescribeMacro{shorttitle}
 Defining a |shorttitle| can be especially useful when encyclopediae whose title starts with an article are being cited.
 %Include Grove encyclopedia!
 
-\subsubsection{sortkey}
+\DescribeMacro{sortkey}
 When entering (exhibiton) catalogs.
 
-\subsubsection{type}
+\DescribeMacro{type}
 To specify the type of thesis. Possible values are HABIL,PHDTHESIS
 
 
-\subsection{Cite commands}\label{cite-commands}
-|arthistory| supports most/all standard |bib|\LaTeX citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe how standard citation commands can be employed to abide by the KHI's citation rules.
+\subsection{Entry types}
 
+
+\subsubsection{\texttt{arthistory}-specific entry types}
+
+\DescribeMacro{@catalog}
+This entry type marks catalogs of the permanent inventory of a museum's art collection (\enquote{Bestandskatalog}).
+\begin{bibexample}[label=KatSORRusche2010]{{@}catalog\{KatSORRusche2010,…\}}
+@Catalog{KatSORRusche2010,
+  editor   = {Raupp, Hans-Joachim},
+  title    = {Historien und Allegorien},
+  year     = {2010},
+  location = {Münster and Hamburg and London},
+  label    = {S{{\O}}R Rusche},
+  number   = {4},
+  series   = {Niederländische Malerei des 17. Jahrhunderts der S{{\O}}R Rusche-Sammlung},
+}
+\end{bibexample}
+\printbib[6em]{KatSORRusche2010}
+
+\DescribeMacro{@exhibcatalog}
+This is for catalogs of temporary exhibitions.
+\begin{bibexample}[label=AusstellungBonn2005]{{@}exhibcatalog\{AusstellungBonn2005,…\}}
+@Exhibcatalog{AusstellungBonn2005,
+  editor          = {Jutta Frings},
+  year            = {2005},
+  location        = {Leipzig},
+  eventdate       = {2005/2006},
+  eventsubtitle   = {Kunst und Kultur der Päpste II 1572--1676},
+  eventtitle      = {Barock im Vatikan},
+  eventtitleaddon = {Bonn, Kunst- und Ausstellungshalle der Bundesrepublik Deutschland, 25. November 2005 bis 19. März 2006; Berlin, Martin-Gropius-Bau, 12. April bis 10. Juli 2006},
+  keywords        = {Ausstellung},
+  venue           = {Bonn/Berlin},
+}
+\end{bibexample}
+\printbib[6em]{AusstellungBonn2005}
+
+
+\subsubsection{Standard \texttt{bib}\LaTeX types}
+
+\DescribeMacro{@article}
+\begin{bibexample}[label=Schlegel1992]{{@}Article\{Schlegel1992,…\}}
+@Article{Schlegel1992,
+  author       = {Schlegel, Ursula},
+  title        = {Ein Terracottamodell des Bartolomeo Ammannati},
+  journaltitle = {Paragona/Arte},
+  volume       = {43},
+  pages        = {25--30},
+  year         = {1992},
+  number       = {503},
+}
+\end{bibexample}
+\printbib[6em]{Schlegel1992}
+
+\DescribeMacro{@book}
+\begin{bibexample}[label=vonrosen2009]{{@}Book\{vonrosen2009,…\}}
+@Book{vonrosen2009,
+  author   = {von Rosen, Valeska},
+  title    = {Caravaggio und die Grenzen des Darstellbaren},
+  subtitle = {Ambiguität, Ironie und Performativität in der Malerei um 1600},
+  location = {Berlin},
+  year     = {2009},
+}
+\end{bibexample}
+\printbib[6em]{vonrosen2009}
+
+\DescribeMacro{@Reference}
+This entry type is suited for encyclopediae. 
+
+\DescribeMacro{@Review}
+This is for reviews of dissertation or habilitation theses, conference proceedings, other scientific publications, exhibitions etc.
+For a full citation of a review you are asked to name the reviewed work in detail.
+The following example will show an easy way to combine the review with the reviewed work.
+First we have the reviewed work:
+\begin{bibexample}[label=Heesen2012]{{@}Book\{Heesen2012,…\}}
+@Book{Heesen2012,
+  author     = {te Heesen, Anke},
+  title      = {Theorien des Museums},
+  publisher  = {Junius Verlag},
+  location   = {Hamburg},
+  year       = {2012},
+  titleaddon = {Zur Einführung},
+}
+\end{bibexample}
+followed by the review itself:
+\begin{bibexample}[label=Bonnet2013]{{@}Review\{Bonnet2013,…\}}
+@Review{@Review{Bonnet2013,
+  author       = {Bonnet, Anne-Marie},
+  number       = {10},
+  volume       = {14},
+  journaltitle = {Kunstform},
+  related      = {Heesen2012},
+  relatedtype  = {reviewof},
+  year         = {2013},
+  url          = {http://www.arthistoricum.net/kunstform/rezension/ausgabe/2013/10/22240/},
+}
+\end{bibexample}
+You may have noticed that the review (|Bonnet2013|) is connected to the entry |Heesen2012| by the field |related|.
+In addition we need to qualify the relation between the connected entries:
+This is done with |relatedtype = {reviewof}|.
+This so-called |bibstring| is reserved for reviews and contains the translation of \emph{Review of}, e.\,g. \emph{Rezension von} in German, which will be printed in squared brackets.
+%You don’t have to type in all relevant information of the reviewed work in the entry of the review, 
+%since they will be inserted automatically and dynamically with the  |related|-function. 
+%So whenever settings in the reviewed work are changed the print of the review will be automatically adjusted. 
+%Furthermore, even if the review is cited, the reviewed work won't be listed in the bibliography until it is explicitly cited in the text.
+\printbib[6em]{Bonnet2013}
+
+
+\section{Preamble options}\label{preamble_options}
+In this section we describe options that can be loaded along with |bib|\LaTeX in the document preamble. With one exception, every option will lead to a deviation from the rules advised by the KHI guide; several options listed will allow the user to adhere to bibliography practices common in the field. If you do not intend to deviate at all, you can skip this section.
+
+\DescribeMacro{allnamesfamilygiven}
+When enabled, last names will precede first names in all instances.
+
+\DescribeMacro{citeauthorformat}
+You can chose how the name of authors or editors are displayed within your text when they are cited with \cs{citeauthor}\marg{bibtex-key}.
+You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}; 
+cf. %\cref{citeauthorformat}.
+
+\DescribeMacro{enddot}
+When including |enddot=true|, every bibliography entry will end with a dot.
+
+\DescribeMacro{firstcitefull}
+With |firstcitefull = true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed.
+
+\DescribeMacro{namelinked}
+When included and |hyperref| loaded, both name and year in a short citation will link to the respective bibliography entry.
+
+\DescribeMacro{pagesfull}
+When including |pagesfull| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain page numbers.
+
+\DescribeMacro{publisher}
+The publisher is being listed in the bibliography entries.
+
+\DescribeMacro{width}
+|width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
+
+
+\section{Cite commands}\label{cite-commands}
+|arthistory| supports most/all standard |bib|\LaTeX citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe, for users with little experience in \LaTeX or |bib|\LaTeX, how standard citation commands can be employed to abide by the KHI's citation rules.
 
 \DescribeMacro{\cite}%
 The standard \cs{cite} command invokes a authoryear-style citation without any parentheses. Because of the KHI's requirements, \cs{cite} will typically be invoked from within a footnote:
@@ -347,113 +469,6 @@ Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than 
 %\begin{code}
 %\citetitle*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}@*
 %\end{code} 
-
-\section{Entry types}
-\subsection{article}
-\DescribeMacro{@article}
-\begin{bibexample}[label=Schlegel1992]{{@}Article\{Schlegel1992,…\}}
-@Article{Schlegel1992,
-  author       = {Schlegel, Ursula},
-  title        = {Ein Terracottamodell des Bartolomeo Ammannati},
-  journaltitle = {Paragona/Arte},
-  volume       = {43},
-  pages        = {25--30},
-  year         = {1992},
-  number       = {503},
-}
-\end{bibexample}
-
-\printbib[6em]{Schlegel1992}
-
-\subsection{book}
-\DescribeMacro{@book}
-\begin{bibexample}[label=vonrosen2009]{{@}Book\{vonrosen2009,…\}}
-@Book{vonrosen2009,
-  author   = {von Rosen, Valeska},
-  title    = {Caravaggio und die Grenzen des Darstellbaren},
-  subtitle = {Ambiguität, Ironie und Performativität in der Malerei um 1600},
-  location = {Berlin},
-  year     = {2009},
-}
-\end{bibexample}
-\printbib[6em]{vonrosen2009}
-
-\subsection{catalog}
-This entry type marks catalogs of the permanent inventory of a museum's art collection (\enquote{Bestandskatalog}).
-\DescribeMacro{@catalog}
-\begin{bibexample}[label=KatSORRusche2010]{{@}catalog\{KatSORRusche2010,…\}}
-@Catalog{KatSORRusche2010,
-  editor   = {Raupp, Hans-Joachim},
-  title    = {Historien und Allegorien},
-  year     = {2010},
-  location = {Münster and Hamburg and London},
-  label    = {S{{\O}}R Rusche},
-  number   = {4},
-  series   = {Niederländische Malerei des 17. Jahrhunderts der S{{\O}}R Rusche-Sammlung},
-}
-\end{bibexample}
-\printbib[6em]{KatSORRusche2010}
-
-\subsection{exhibition catalog}
-This is for catalogs of temporary exhibitions.
-\DescribeMacro{@exhibcatalog}
-\begin{bibexample}[label=AusstellungBonn2005]{{@}exhibcatalog\{AusstellungBonn2005,…\}}
-@Exhibcatalog{AusstellungBonn2005,
-  editor          = {Jutta Frings},
-  year            = {2005},
-  location        = {Leipzig},
-  eventdate       = {2005/2006},
-  eventsubtitle   = {Kunst und Kultur der Päpste II 1572--1676},
-  eventtitle      = {Barock im Vatikan},
-  eventtitleaddon = {Bonn, Kunst- und Ausstellungshalle der Bundesrepublik Deutschland, 25. November 2005 bis 19. März 2006; Berlin, Martin-Gropius-Bau, 12. April bis 10. Juli 2006},
-  keywords        = {Ausstellung},
-  venue           = {Bonn/Berlin},
-}
-\end{bibexample}
-\printbib[6em]{AusstellungBonn2005}
-
-\subsection{reference}
-\DescribeMacro{@Reference}
-This entry type is suited for encyclopediae. 
-
-\subsection{review}
-This is for reviews of dissertation or habilitation theses, conference proceedings, other scientific publications, exhibitions etc.
-\DescribeMacro{@Review}
-For a full citation of a review you are asked to name the reviewed work in detail.
-The following example will show an easy way to combine the review with the reviewed work.
-First we have the reviewed work:
-\begin{bibexample}[label=Heesen2012]{{@}Book\{Heesen2012,…\}}
-@Book{Heesen2012,
-  author     = {te Heesen, Anke},
-  title      = {Theorien des Museums},
-  publisher  = {Junius Verlag},
-  location   = {Hamburg},
-  year       = {2012},
-  titleaddon = {Zur Einführung},
-}
-\end{bibexample}
-followed by the review itself:
-\begin{bibexample}[label=Bonnet2013]{{@}Review\{Bonnet2013,…\}}
-@Review{@Review{Bonnet2013,
-  author       = {Bonnet, Anne-Marie},
-  number       = {10},
-  volume       = {14},
-  journaltitle = {Kunstform},
-  related      = {Heesen2012},
-  relatedtype  = {reviewof},
-  year         = {2013},
-  url          = {http://www.arthistoricum.net/kunstform/rezension/ausgabe/2013/10/22240/},
-}
-\end{bibexample}
-You may have noticed that the review (|Bonnet2013|) is connected to the entry |Heesen2012| by the field |related|.
-In addition we need to qualify the relation between the connected entries:
-This is done with |relatedtype = {reviewof}|.
-This so-called |bibstring| is reserved for reviews and contains the translation of \emph{Review of}, e.\,g. \emph{Rezension von} in German, which will be printed in squared brackets.
-%You don’t have to type in all relevant information of the reviewed work in the entry of the review, 
-%since they will be inserted automatically and dynamically with the  |related|-function. 
-%So whenever settings in the reviewed work are changed the print of the review will be automatically adjusted. 
-%Furthermore, even if the review is cited, the reviewed work won't be listed in the bibliography until it is explicitly cited in the text.
-\printbib[6em]{Bonnet2013}
 
 
 \end{document}
