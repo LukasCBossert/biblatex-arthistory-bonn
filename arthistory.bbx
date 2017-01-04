@@ -104,7 +104,10 @@
 \DeclareFieldFormat{subtitle}{#1}
 \DeclareFieldFormat{booktitle}{#1}
 \DeclareFieldFormat{editortype}{\mkbibparens{#1}}
-\DeclareFieldFormat[article,review]{year}{\mkbibparens{#1}}
+\DeclareFieldFormat[article,review]{year}{%
+  \iffieldundef{arthist}
+    {\mkbibparens{#1}}
+    {#1}}
 \DeclareFieldFormat[article,review]{date}{\mkbibparens{#1}}
 \DeclareFieldFormat{booksubtitle}{#1}
 \DeclareFieldFormat{titlecase}{#1}
