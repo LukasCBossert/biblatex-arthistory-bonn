@@ -38,3 +38,8 @@
 *.tcp
 
 *.tps
+*.fdb_latexmk
+
+*.fls
+
+*.lb
