@@ -115,7 +115,7 @@ Besides loading |arthistory|, in order to comply with the KHI's bibliography rul
 |arthist=|\marg{value} will print...
 
 \DescribeMacro{eventsubtitle}
-Use this field to specify the subtitle of an exhibition a given |exhibcatalog| is based on.
+Use this field to specify the subtitle of an exhibition a given |exhibcatalog| (see \cref{sec:arth-etypes}) is based on. See also |eventtitle| in \cref{sec:bibl-efields}.
 
 \DescribeMacro{exhibfirstdate}
 Specifies the time span of an exhibition an |Exhibcatalog| is based on. Dates of the first and last day of the respective exhibition are to be entered in the format \meta{year}|-|\meta{month}|-|\meta{day}. A typical entry may be
@@ -403,7 +403,32 @@ Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than 
 \section{Separate bibliographies}\label{sec:sepbib}
 Here, we describe how you can list separate bibliographies for primary sources and secondary literature (and possibly catalogs as well). This can be achieved by standard |bib|\LaTeX{} procedures; experienced users will want to skip this section.
 
-You may have noticed that we listed the option |keywords = {source}| in \cref{bibl-efields} and that we used it in \cref{sec:arth-etypes}.
+You may have noticed that we listed the option |keywords = {source}| in \cref{sec:bibl-efields} and that we used it in \cref{sec:arth-etypes} when describing the entry type |@Exhibcatalog|. The sole purpose for this is to prepare listing a separate bibliography for primary sources.
+
+If you would like to include a separate bibliography for (exhibition) catalogs as well, each catalog entry must contain a common keyword such as |keywords = {catalog}|.
+
+To include separate bibliographies in the document, instead of typing |printbibliography|, include
+\begin{code}
+\printbibheading[%
+  heading=bibliography,%
+  title={Bibliography}]
+\printbibliography[%
+  keyword=source,%
+  heading=subbibliography,
+  title={Primary sources}]
+\printbibliography[%
+  notkeyword=catalog,%
+  notkeyword=source,%
+  heading=subbibliography,%
+  title={Secondary literature}]
+\printbibliography[%
+  keyword=catalog,%
+  heading=subbibliography,%
+  title={Exhibition catalogs}]
+\end{code}
+As you will notice, the first lines specify a heading for the bibliography as a whole. The next four lines make sure that a subbibliography be printed that lists \emph{only} those entries that include the keyword \enquote{source} (and nothing else). The next four lines lead to printing a subbibliography for all bibliography entries that do not have the keywords \enquote{source} or \enquote{catalog} -- hence, everything we would like to call standard secondary literature. The last block is for catalogs.
+
+Note: If you include entries of the type |@InExhibcatalog| that are linked to an |@Exhibcatalog| via a |crossref| field, this article will \enquote{inherit} its parent catalog's keyword and be listed in the catalogs' subbibliography. If you do not want this, simply add something like |keywords = {InCatalog}| to the |@InExhibcatalog| entry. This will have the article listed in the secondary literature subbibliography.
 
 %\DescribeMacro{\parencite}
 %Sometimes a citation has to be put in parentheses. 
