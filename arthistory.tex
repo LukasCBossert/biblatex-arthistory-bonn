@@ -2,7 +2,7 @@
 % Copyright (c) 2016 Lukas C. Bossert 
 %  
 % This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
+% conditions of the LaTeX{} Project Public License, either version 1.3
 % of this license or (at your option) any later version.
 % The latest version of this license is in
 %   http://www.latex-project.org/lppl.txt
@@ -17,7 +17,7 @@ english
 \input{arthistory-preamble.tex}
 
 \begin{document}
-\title{\texttt{arthistory} -- \\\texttt{bib\LaTeX} for art historians\footnote{The development of the code is done at \url{https://github.com/LukasCBossert/biblatex-arthistory}: 
+\title{\texttt{arthistory} -- \\\texttt{bib\LaTeX} for art historians\footnote{The development of the code is done at \url{https://github.com/LukasCBossert/biblatex-arthistory}. 
 Comments and criticisms are welcome.}}
 
 \author{Lukas C. Bossert\protect\\%
@@ -30,8 +30,9 @@ Comments and criticisms are welcome.}}
  
  \begin{abstract}
 \noindent This citation style covers the citation and bibliography rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}.
+It introduces bibliography entry types for catalogs and features a tabular bibliography, among other things.
 Various options are available to change and adjust the outcome according to one's own preferences. 
-The style is compatible with English and German, since all |bibstrings| used are defined in both languages.
+The style is compatible with English and German.
  \end{abstract}
 
 
@@ -46,16 +47,16 @@ The style is compatible with English and German, since all |bibstrings| used are
 	%\item special citation short forms for catalogs, encyclopediae as well as primary sources, and
 	\item a tabular bibliography that lists each entry's citation short form and its full citation, sorted by the citation short forms.
 \end{itemize}
-The special citation short forms for catalogs, encyclopediae as well as primary sources described in KHI's guideline are being achieved by using |bib|\LaTeX 's standard bibliography entry options.
+The special citation short forms for catalogs, encyclopediae as well as primary sources described in KHI's guideline are being achieved by using |bib|\LaTeX{}'s standard bibliography entry options.
 
-Various options are available to adjust to common practices not covered by the KHI's rules.
+Various options are available to adjust to common practices not covered by the KHI's advised rules.
 %Fortsetzen
 
 
 \section{Installation}
-|arthistory| is part of the distributions MiK\TeX \footnote{Website: \url{http://www.miktex.org}.} 
-and \TeX Live\footnote{Website: \url{http://www.tug.org/texlive}.}~-- thus, you
-can easily install it using the respective package manager. 
+|arthistory| is part of the distributions MiK\TeX{} %\footnote{Website: \url{http://www.miktex.org}.} 
+and \TeX{} Live%\footnote{Website: \url{http://www.tug.org/texlive}.}~-- thus,
+and you can easily install it using the respective package manager. 
 If you would like to
 install |arthistory| manually, do the following:
 Download the folder |arthistory| with all relevant files from the CTAN-server\footnote{\url{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/arthistory.zip}} and copy it to the \texttt{\$LOCALTEXMF} directory of
@@ -70,7 +71,7 @@ Here is some additional information from the UK \TeX\ FAQ:
     Where to install packages}
   \item \href{%
     http://www.tex.ac.uk/cgi-bin/texfaq2html?label=inst-wlcf}{%
-    Installing files \enquote{where \LaTeX /TeX\ can find them}}
+    Installing files \enquote{where \LaTeX{} /TeX\ can find them}}
   \item \href{%
     http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst}{%
     \enquote{Private} installations of files}
@@ -80,7 +81,7 @@ Here is some additional information from the UK \TeX\ FAQ:
 
 
 \section{Loading the package}
- \DescribeMacro{arthistory} The name of the bib\LaTeX-style is |arthistory| which has to be activated in the preamble. 
+ \DescribeMacro{arthistory} The name of the bib\LaTeX{} style is |arthistory|. It has to be activated in the preamble.
 
 \begin{code}
 \usepackage[style=arthistory,%
@@ -88,15 +89,13 @@ Here is some additional information from the UK \TeX\ FAQ:
 \bibliography*@\marg{|bib|-file}@*
 \end{code}
 
-Without any further options the style follows the rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}.
+Without enabling any further options, the style follows the rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}.
 No additional settings are needed,
-but you can change the outcome by using some options which are explained below.\footnote{For an easy and unproblematic compiling we suggest to use \hologo{XeLaTeX} or \hologo{LuaTeX}.}
+but you can change the outcome by using some options which are explained below.%\footnote{For an easy and unproblematic compiling we suggest to use \hologo{XeLaTeX} or \hologo{LuaTeX}.}
 
 At the end of your document you can write the command |\printbibliography| to print 
 a single bibliography.
-However, since |arthistory| supports citation styles for catalogs and primary sources that differ from the standard citations of common scientific contributions, we suggest having them listed in separate bibliographies. 
-Further information can be found below. %  (\cref{bibliographie}).
-
+However, since |arthistory| supports citation styles for catalogs and primary sources that differ from the standard citations of common scientific contributions, we suggest having them listed in separate bibliographies, see \cref{sec:sepbib}.
 
 %\section{Overview}\label{overview}
 %There follows a quick overview of possible options of the style |arthistory|. 
@@ -107,17 +106,16 @@ Further information can be found below. %  (\cref{bibliographie}).
 \section{Bibliography entries}
 Besides loading |arthistory|, in order to comply with the KHI's bibliography rules, users' actions will be required mostly when entering bibliography items.
 
-\subsection{Entry options}
-%A single bibliography entry can contain a value in its |options|-field.
-%Depending on the option it changes the behavior of how that entry is cited.
-%Beside their distinct properties all of these options have in common that the separating comma between citation and page record is missing. 
-%Actually this concerns citation of ancient texts and corpora where usually the |shorthand|-field is printed in citations.
+\subsection{Entry fields}
 
 \subsubsection{\texttt{arthistory}-specific options}
 
 \DescribeMacro{arthist}
 \enquote{H-ArtHist} is a popular newsletter for... %Fortsetzen
 |arthist=|\marg{value} will print...
+
+\DescribeMacro{eventsubtitle}
+Use this field to specify the subtitle of an exhibition a given |exhibcatalog| is based on.
 
 \DescribeMacro{exhibfirstdate}
 Specifies the time span of an exhibition an |Exhibcatalog| is based on. Dates of the first and last day of the respective exhibition are to be entered in the format \meta{year}|-|\meta{month}|-|\meta{day}. A typical entry may be
@@ -159,8 +157,23 @@ The year when a PhD (or \enquote{Habilitation}) thesis was defended.
 To be used when a publication (typically a book) is partly based on a submitted PhD (or \enquote{Habilitation}) thesis.
 
 
-\subsubsection{Important standard \texttt{bib}\LaTeX options}
-Here, we list otherwise standard |bib|\LaTeX options that are essential to comply by the KHI's bibliography rules.
+\subsubsection{Important standard \texttt{bib}\LaTeX{} options}\label{sec:bibl-efields}
+Here, we list otherwise standard |bib|\LaTeX{} options that are essential to comply by the KHI's bibliography rules.
+
+\DescribeMacro{eventdate}
+Use this field to specify the year(s) of an exhibition a given |exhibcatalog| is based on. In case the exhibition covered two subsequent years, enter them as \meta{first year}|/|\meta{second year}. An example would be
+\begin{code}
+@Exhibcatalog{AusstellungBonn2005,
+  *@\ldots@*
+  eventdate = {2005/2006},
+  *@\ldots@*
+}.
+\end{code}
+Note specifying this field has the sole purpose of generating the correct citation short form.
+You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, and the fields |date| or |year| for the publication itself. 
+
+\DescribeMacro{eventtitle}
+Use this field to specify the name of an exhibition a given |exhibcatalog| is based on.
 
 \DescribeMacro{institution}
 For the institution where a thesis was defended.
@@ -168,15 +181,15 @@ For the institution where a thesis was defended.
 \DescribeMacro{keywords = source}\label{sec:source}
 %\DescribeMacro{source}
 This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
-If enabled, the entry can be listed in a separate bibliography for primary sources.
+If enabled, the entry can be listed in a separate bibliography for primary sources. (Actually you don't need to use the term \enquote*{source} -- you can pick any term you like.) Also see \cref{sec:sepbib}.
 
-In addition to that, you should define a |shorthand| that differs from the usual author year citation of regular scientific works in order to comply with the KHI's citation rules, cf. \cref{sec:shorthand}.
+In addition to that, you should define a |shorthand| that differs from the usual author year citation of regular scientific works in order to comply with the KHI's citation rules.
 
 \DescribeMacro{shorthand}\label{sec:shorthand}
 %\DescribeMacro{shorthand}
 Entering a shorthand will replace the otherwise automatically generated, document type-appropriate citation short form by the typed-in content.
 
-You need to make use of this option when entering a primary source in your bibliography file (along with the option |source|, see \cref{sec:source}). The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
+You need to make use of this option when entering a primary source in your bibliography file (along with the option |keywords = source|). The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
 
 Here is an example of Casanova's Theory of painting:
 \begin{bibexample}[label=CasanovaMalerei]{{@}Book\{CasanovaMalerei,…\}}
@@ -210,7 +223,7 @@ To specify the type of thesis. Possible values are HABIL,PHDTHESIS
 \subsection{Entry types}
 
 
-\subsubsection{\texttt{arthistory}-specific entry types}
+\subsubsection{\texttt{arthistory}-specific entry types}\label{sec:arth-etypes}
 
 \DescribeMacro{@catalog}
 This entry type marks catalogs of the permanent inventory of a museum's art collection (\enquote{Bestandskatalog}).
@@ -245,7 +258,7 @@ This is for catalogs of temporary exhibitions.
 \printbib[6em]{AusstellungBonn2005}
 
 
-\subsubsection{Standard \texttt{bib}\LaTeX types}
+\subsubsection{Standard \texttt{bib}\LaTeX{} types}
 
 \DescribeMacro{@article}
 \begin{bibexample}[label=Schlegel1992]{{@}Article\{Schlegel1992,…\}}
@@ -316,7 +329,7 @@ This so-called |bibstring| is reserved for reviews and contains the translation 
 
 
 \section{Preamble options}\label{preamble_options}
-In this section we describe options that can be loaded along with |bib|\LaTeX in the document preamble. With one exception, every option will lead to a deviation from the rules advised by the KHI guide; several options listed will allow the user to adhere to bibliography practices common in the field. If you do not intend to deviate at all, you can skip this section.
+In this section we describe options that can be loaded along with |bib|\LaTeX{} in the document preamble. With one exception, every option will lead to a deviation from the rules advised by the KHI guide; several options listed will allow the user to adhere to bibliography practices common in the field. If you do not intend to deviate at all, you can skip this section.
 
 \DescribeMacro{allnamesfamilygiven}
 When enabled, last names will precede first names in all instances.
@@ -342,11 +355,11 @@ When including |pagesfull| in the options, bibliography entries' page numbers wi
 The publisher is being listed in the bibliography entries.
 
 \DescribeMacro{width}
-|width=|\marg{value} defines the bibliography width between label and reference; cf. %\cref{width}.
+|width=|\meta{value} defines the bibliography width between label and reference.
 
 
 \section{Cite commands}\label{cite-commands}
-|arthistory| supports most/all standard |bib|\LaTeX citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe, for users with little experience in \LaTeX or |bib|\LaTeX, how standard citation commands can be employed to abide by the KHI's citation rules.
+|arthistory| supports most/all standard |bib|\LaTeX{} citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe, for users with little experience in \LaTeX{} or |bib|\LaTeX, how standard citation commands can be employed to abide by the KHI's citation rules.
 
 \DescribeMacro{\cite}%
 The standard \cs{cite} command invokes a authoryear-style citation without any parentheses. Because of the KHI's requirements, \cs{cite} will typically be invoked from within a footnote:
@@ -372,7 +385,7 @@ The same as manually adding a footnote first and \cs{cite} subsequently can be a
 \end{code}
 This command will be useful if nothing more than a citation with very short prenotes and/or postnotes is needed. When a citation is embedded in a text paragraph, the former combination of \cs{footnote} and \cs{cite} is advisable.
 
-As noted above, all the well-documented citation commands of the |bib|\LaTeX package are supported.
+As noted above, all the well-documented citation commands of the |bib|\LaTeX{} package are supported.
 \DescribeMacro{\cites}
 E.g., if one wants to cite several authors or works a very convenient way is the following, using the \cs{cites}-command (typically in a footnote):
 \begin{code}
@@ -384,7 +397,13 @@ E.g., if one wants to cite several authors or works a very convenient way is the
 Other examples are \cs{parencite},\cs{textcite} and their multi-entry alternatives, and commands such as \cs{citeauthor} and \cs{citetitle}.
 
 \DescribeMacro{smartcite}\DescribeMacro{autocite}
-Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than in \enquote{standard} |bib|\LaTeX styles. When appearing in a footnote, both commands will behave as |arthistory|'s \cs{cite} rather than \cs{parencite}. In addition to that, by default \cs{autocite} appearing in the text body behaves like \cs{footcite}.
+Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than in \enquote{standard} |bib|\LaTeX{} styles. When appearing in a footnote, both commands will behave as |arthistory|'s \cs{cite} rather than \cs{parencite}. In addition to that, by default \cs{autocite} appearing in the text body behaves like \cs{footcite}.
+
+
+\section{Separate bibliographies}\label{sec:sepbib}
+Here, we describe how you can list separate bibliographies for primary sources and secondary literature (and possibly catalogs as well). This can be achieved by standard |bib|\LaTeX{} procedures; experienced users will want to skip this section.
+
+You may have noticed that we listed the option |keywords = {source}| in \cref{bibl-efields} and that we used it in \cref{sec:arth-etypes}.
 
 %\DescribeMacro{\parencite}
 %Sometimes a citation has to be put in parentheses. 
