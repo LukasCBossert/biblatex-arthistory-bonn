@@ -41,7 +41,7 @@ The style is compatible with English and German.
 \end{multicols}
 
 \section{Introduction}
-|arthistory| is a citation style that complies with the citation and bibliography rules of the \enquote*{Kunsthistorisches Institut der Universität Bonn}\footnote{Website: \url{https://www.khi.uni-bonn.de}.} (henceforth KHI). In particular, it introduces
+|arthistory| is a citation style that complies with the citation and bibliography rules of the Institute of History of Art at the University of Bonn, or \enquote*{Kunsthistorisches Institut der Universität Bonn}\footnote{Website: \url{https://www.khi.uni-bonn.de}.} (henceforth KHI). In particular, it introduces
 \begin{itemize}
 	\item new entry types for exhibition catalogs and inventory catalogs, and
 	%\item special citation short forms for catalogs, encyclopediae as well as primary sources, and
@@ -158,7 +158,7 @@ To be used when a publication (typically a book) is partly based on a submitted 
 
 
 \subsubsection{Important standard \texttt{bib}\LaTeX{} options}\label{sec:bibl-efields}
-Here, we list otherwise standard |bib|\LaTeX{} options that are essential to comply by the KHI's bibliography rules.
+Here, we list otherwise standard |bib|\LaTeX{} options that are essential to comply with the KHI's bibliography rules.
 
 \DescribeMacro{eventdate}
 Use this field to specify the year(s) of an exhibition a given |exhibcatalog| is based on. In case the exhibition covered two subsequent years, enter them as \meta{first year}|/|\meta{second year}. An example would be
@@ -217,32 +217,38 @@ Defining a |shorttitle| can be especially useful when encyclopediae whose title 
 When entering (exhibiton) catalogs.
 
 \DescribeMacro{type}
-To specify the type of thesis. Possible values are HABIL,PHDTHESIS
+To specify the type of thesis. Possible values are |phdthesis| and |habil| for German \foreignquote{german}{Habilitationen}.
 
 
 \subsection{Entry types}
 
+In this subsection we will bring the entry fields outlined above to life.
 
 \subsubsection{\texttt{arthistory}-specific entry types}\label{sec:arth-etypes}
 
-\DescribeMacro{@catalog}
+\DescribeMacro{@Catalog}
 This entry type marks catalogs of the permanent inventory of a museum's art collection (\enquote{Bestandskatalog}).
 \begin{bibexample}[label=KatSORRusche2010]{{@}catalog\{KatSORRusche2010,…\}}
 @Catalog{KatSORRusche2010,
-  editor   = {Raupp, Hans-Joachim},
+  editor   = {Hans-Joachim Raupp},
   title    = {Historien und Allegorien},
   year     = {2010},
   location = {Münster and Hamburg and London},
+  keywords = {Ausstellung},
   label    = {S{{\O}}R Rusche},
   number   = {4},
   series   = {Niederländische Malerei des 17. Jahrhunderts der S{{\O}}R Rusche-Sammlung},
+  sortkey  = {Kat. S{{\O}}R Rusche 2010},
 }
 \end{bibexample}
 \printbib[6em]{KatSORRusche2010}
+Note that we defined the field |keywords| in order to allow us to print a separate bibliography for (exhibition) catalogs later.
+Moreover, we defined a |sortkey|, according to which the bibliography entry will be sorted in the respective (sub) bibliography.%
+\footnote{Note that in this case the |sortkey| is actually identical to the short citation printed in the text or in the left column of the bibliography, so that we could have defined it as a |shorthand| and left out the |label| entry. However, we intend to sort automatically in a future update, rendering a |sortkey| unneccesary.}
 
-\DescribeMacro{@exhibcatalog}
+\DescribeMacro{@Exhibcatalog}
 This is for catalogs of temporary exhibitions.
-\begin{bibexample}[label=AusstellungBonn2005]{{@}exhibcatalog\{AusstellungBonn2005,…\}}
+\begin{bibexample}[label=AusstellungBonn2005]{{@}Exhibcatalog\{AusstellungBonn2005,…\}}
 @Exhibcatalog{AusstellungBonn2005,
   editor          = {Jutta Frings},
   year            = {2005},
@@ -250,17 +256,24 @@ This is for catalogs of temporary exhibitions.
   eventdate       = {2005/2006},
   eventsubtitle   = {Kunst und Kultur der Päpste II 1572--1676},
   eventtitle      = {Barock im Vatikan},
-  eventtitleaddon = {Bonn, Kunst- und Ausstellungshalle der Bundesrepublik Deutschland, 25. November 2005 bis 19. März 2006; Berlin, Martin-Gropius-Bau, 12. April bis 10. Juli 2006},
+  exhibfirstdate  = {2005-11-25/2006-03-19},
+  exhibfirstmuseum = {Kunst- und Ausstellungshalle der Bundesrepublik Deutschland},
+  exhibfirstlocation = {Bonn},
+  exhibseconddate = {2006-04-12/2006-07-10},
+  exhibsecondmuseum = {Martin-Gropius-Bau},
+  exhibsecondlocation = {Berlin},
   keywords        = {Ausstellung},
-  venue           = {Bonn/Berlin},
+  sortkey         = {Ausst.-Kat. Bonn/Berlin 2005},
 }
 \end{bibexample}
 \printbib[6em]{AusstellungBonn2005}
+Defining a common keyword for catalogs allows us to print a separate subbibliography later. In order to sort the entry properly, we defined a |sortkey|. Note that it suffices to include but the first exhibition year in the key. The actual short citation is being generated automatically and utilizes the field |eventdate|.
 
+The exhibition's title is listed in |eventtitle| and |eventsubtitle|, while time and places are defined below. As usual, the fields |year| and |location| refer to the published book itself, and not the actual exhibition.
 
 \subsubsection{Standard \texttt{bib}\LaTeX{} types}
 
-\DescribeMacro{@article}
+\DescribeMacro{@Article}
 \begin{bibexample}[label=Schlegel1992]{{@}Article\{Schlegel1992,…\}}
 @Article{Schlegel1992,
   author       = {Schlegel, Ursula},
@@ -274,58 +287,125 @@ This is for catalogs of temporary exhibitions.
 \end{bibexample}
 \printbib[6em]{Schlegel1992}
 
-\DescribeMacro{@book}
-\begin{bibexample}[label=vonrosen2009]{{@}Book\{vonrosen2009,…\}}
-@Book{vonrosen2009,
-  author   = {von Rosen, Valeska},
-  title    = {Caravaggio und die Grenzen des Darstellbaren},
-  subtitle = {Ambiguität, Ironie und Performativität in der Malerei um 1600},
-  location = {Berlin},
-  year     = {2009},
+\DescribeMacro{@Book}
+Our first |book| example illustrates how to handle qualification theses along the way.
+\begin{bibexample}[label=Kanz2002]{{@}Book\{Kanz2002,…\}}
+@Book{Kanz2002,
+  author      = {Kanz, Roland},
+  title       = {Die Kunst des Capriccio},
+  subtitle    = {Kreativer Eigensinn in Renaissance und Barock},
+  location    = {München and Berlin},
+  year        = {2002},
+  series      = {Kunstwissenschaftliche Studien},
+  number      = {103},
+  thesisdate  = {2000},
+  institution = {Düsseldorf, Univ.},
+  type        = {habil},
 }
 \end{bibexample}
-\printbib[6em]{vonrosen2009}
+\printbib[6em]{Kanz2002}
+Apart from standard fields, we defined a |thesisdate|, the |institution| at which the thesis was defended, and the thesis |type|, a \foreignquote{german}{Habilitation} in this case.
+
+While the book in example \ref{Kanz2002} is based on the submitted thesis in its entirety, the following example is only partly based on a submitted PhD thesis.
+\begin{bibexample}[label=Dobler2009]{{@}Book\{Dobler2009,…\}}
+@Book{Dobler2009,
+  location = {München},
+  title = {Die Juristenkapellen Rivaldi, Cerri und Antamoro: Form, Funktion und Intention römischer Familienkapellen im Sei- und Settecento},
+  series = {Römische Studien der Bibliotheca Hertziana},
+  number = {22},
+  author = {Dobler, Ralph-Miklas},
+  date = {2009},
+  thesisdate = {2004},
+  institution = {Berlin, Freie Univ.},
+  type = {phdthesis},
+  thesistype = {tzugl},
+}
+\end{bibexample}
+\printbib[6em]{Dobler2009}
+
+Our third |book| example illustrates how to deal with primary sources.
+\begin{bibexample}[label=PalladioArchitektur]{{@}Book\{PalladioArchitektur,…\}}
+@Book{PalladioArchitektur,
+  author     = {Palladio, Andrea},
+  title      = {Die vier Bücher zur Architektur},
+  location   = {Zürich and München},
+  year       = {1993},
+  edition    = {4},
+  editor     = {Beyer, Andreas and Schütte, Ulrich},
+  translator = {Beyer, Andreas and Schütte, Ulrich},
+  shorthand  = {Palladio, Vier Bücher zur Architektur},
+  keywords   = {source},
+}
+\end{bibexample}
+\printbib[6em]{PalladioArchitektur}
+First, we defined a |shorthand| to override the short citation that would have been generated otherwise. Second, we added a keyword so that we will be able to print a separate bibliography for primary sources later.
 
 \DescribeMacro{@Reference}
-This entry type is suited for encyclopediae. 
+This entry type is suited for encyclopediae.
+\begin{bibexample}[label=AllgemeinesKunstlerlexikon]{{@}Book\{AllgemeinesKunstlerlexikon,…\}}
+@Reference{AllgemeinesKunstlerlexikon,
+  editor      = {Beyer, Andreas and others},
+  editora     = {Günter Meißner},
+  editoratype = {founder},
+  title       = {Allgemeines Künstlerlexikon},
+  subtitle    = {Die Bildenden Künstler aller Zeiten und Völker},
+  date        = {1992/open},
+  volume      = {1\psqq},
+  note        = {Bd. 1--3 Leipzig, Bd. 4--64 München},
+  publisher   = {De Gruyter},
+  location    = {Berlin},
+  shorthand   = {Allgemeines Künstlerlexikon},
+}
+\end{bibexample}
+\printbib[6em]{AllgemeinesKunstlerlexikon}
+Most importantly, we defined the field |shorthand| to override the standard short citation label.
+
+Because this encyclopedia consists of a large number of volumes, it adds a couple of peculiarities. First, in addition to its current |editor|, its founder is listed in the fields |editora| and |editoratype|.
+
+Next, when the field |publisher| is defined, the publishing house's name will be printed before that encyclopedia's title, irrespective of whether the preamble option |publisher| is enabled or not (see \cref{preamble_options}).
+
+Third, because the publisher's location changed twice in the course of publishing past volumes, we have added a |note| that lists past locations.
 
 \DescribeMacro{@Review}
 This is for reviews of dissertation or habilitation theses, conference proceedings, other scientific publications, exhibitions etc.
-For a full citation of a review you are asked to name the reviewed work in detail.
-The following example will show an easy way to combine the review with the reviewed work.
-First we have the reviewed work:
-\begin{bibexample}[label=Heesen2012]{{@}Book\{Heesen2012,…\}}
-@Book{Heesen2012,
-  author     = {te Heesen, Anke},
-  title      = {Theorien des Museums},
-  publisher  = {Junius Verlag},
-  location   = {Hamburg},
-  year       = {2012},
-  titleaddon = {Zur Einführung},
+For a full citation of a review it is wise to make a separate bibliography entries for the reviewed work and for the review itself.%
+\footnote{The reviewed work will not be listed in the bibliography unless it is cited directly in the text.}
+The following example will show an easy way to combine the review with the referred work.
+We start with the latter:
+\begin{bibexample}[label=Brossette2002]{{@}Book\{Brossette2002,…\}}
+@Book{Brossette2002,
+  author   = {Brossette, Ursula},
+  title    = {Inszenierung des Sakralen},
+  subtitle = {Das Theatralische Raum- und Ausstattungsprogramm süddeutscher Barockkirchen in seinem liturgischen und zeremoniellen Kontext},
+  location = {Weimar},
+  year     = {2002},
+  series   = {Marburger Studien zur Kunst- und Kulturgeschichte},
+  number   = {4},
 }
 \end{bibexample}
 followed by the review itself:
-\begin{bibexample}[label=Bonnet2013]{{@}Review\{Bonnet2013,…\}}
-@Review{@Review{Bonnet2013,
-  author       = {Bonnet, Anne-Marie},
-  number       = {10},
-  volume       = {14},
-  journaltitle = {Kunstform},
-  related      = {Heesen2012},
+\begin{bibexample}[label=vonEngelberg2003]{{@}Review\{vonEngelberg2003,…\}}
+@Review{vonEngelberg2003,
+  author       = {von Engelberg, Meinrad},
+  journaltitle = {H-ArtHist},
+  related      = {Brossette2002},
   relatedtype  = {reviewof},
-  year         = {2013},
-  url          = {http://www.arthistoricum.net/kunstform/rezension/ausgabe/2013/10/22240/},
-}
-\end{bibexample}
-You may have noticed that the review (|Bonnet2013|) is connected to the entry |Heesen2012| by the field |related|.
+  arthist      = {35},
+  year         = {2003},
+  arthistdate  = {2003-11-12},
+}\end{bibexample}
+\printbib[6em]{vonEngelberg2003}
+You may have noticed that the review (|vonEngelberg2003|) is connected to the entry |Brossette2002| by the field |related|.
 In addition we need to qualify the relation between the connected entries:
 This is done with |relatedtype = {reviewof}|.
-This so-called |bibstring| is reserved for reviews and contains the translation of \emph{Review of}, e.\,g. \emph{Rezension von} in German, which will be printed in squared brackets.
+This so-called |bibstring| is reserved for reviews and contains the translation of \enquote{Review of}, e.\,g. \enquote{Rezension von} in German, which will be printed in squared brackets.
 %You don’t have to type in all relevant information of the reviewed work in the entry of the review, 
 %since they will be inserted automatically and dynamically with the  |related|-function. 
 %So whenever settings in the reviewed work are changed the print of the review will be automatically adjusted. 
 %Furthermore, even if the review is cited, the reviewed work won't be listed in the bibliography until it is explicitly cited in the text.
-\printbib[6em]{Bonnet2013}
+The review in this example was published in the newsletter H-ArtHist, as the |journaltitle| indicates. We have defined to fields for H-ArtHist reviews. First, |arthistdate| specifies the publication day of the newsletter. \emph{Important:} For technical reasons, you will have to specify the field |year| or |date| as well!
+
+Second, H-ArtHist reviews are numbered chronologically. Use |arthist| to name the actual number of the review (here |arthist = {35}|); this will automatically generate the review's correct URL in the bibliography.
 
 
 \section{Preamble options}\label{preamble_options}
