@@ -20,7 +20,7 @@
 %\setmonofont[Scale= MatchLowercase]{AnonymousPro}
 \usepackage[
 	backend=biber,
-	style=arthistory,
+	style=arthistory-bonn,
 ]{biblatex}
 \renewcommand\bibfont{\normalfont\footnotesize}
 \usepackage{metalogo}
@@ -57,7 +57,7 @@ draft=false,
 \pagestyle{scrheadings}
 \clearscrheadfoot
 
-\ihead{\normalfont\footnotesize \texttt{bib}\LaTeX-style \texttt{arthistory \arthistoryversion
+\ihead{\normalfont\footnotesize \texttt{bib}\LaTeX-style \texttt{arthistory-bonn \arthistoryversion
 } \copyright\ by Lukas C. Bossert | Thorsten Kemper}%
 \rofoot{\normalfont\footnotesize  \textbf{\sffamily \thepage}}
 \lofoot{\normalfont\footnotesize  \href{digitales-altertum.de}{digitales-altertum.de}}
@@ -80,7 +80,7 @@ draft=false,
 \makeindex
 
 \defbibheading{empty}{}
-\addbibresource{arthistory-examples.bib}
+\addbibresource{arthistory-bonn-examples.bib}
 %\usepackage{caption}
 
 \usepackage[
@@ -266,7 +266,7 @@ listing and text,
 \usepackage{hyperxmp}
 \usepackage{hyperref}
 \hypersetup{					% setup the hyperref-package options
-	pdftitle={bib\LaTeX-arthistory},	% 	- title (PDF meta)
+	pdftitle={bib\LaTeX-arthistory-bonn},	% 	- title (PDF meta)
 	pdfsubject={},% 	- subject (PDF meta)
 	pdfauthor={Lukas C. Bossert, Thorsten Kemper},	% 	- author (PDF meta)
 	pdfauthortitle={},
@@ -279,7 +279,7 @@ of this license or (at your option) any later version.},
 	pdflang={de},
 	pdfcaptionwriter={Lukas C. Bossert},
 	pdfkeywords={biblatex, art history, humanities},
-%	pdfproducer={XeLaTeX},
+	pdfproducer={LuaLaTeX},
 	pdflicenseurl={http://www.latex-project.org/lppl.txt},
 	plainpages=false,			% 	- 
   colorlinks   = true, %Colours links instead of ugly boxes
