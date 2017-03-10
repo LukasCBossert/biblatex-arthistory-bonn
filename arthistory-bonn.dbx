@@ -53,4 +53,4 @@ url,urldate,note,year,volume,volumes,sortkey}
 \DeclareDatamodelFields[type=field,datatype=date]{arthistdate}
 \DeclareDatamodelEntryfields{arthistdate}
 \endinput
-%% End of file `arthistory.dbx'.
+%% End of file `arthistory-bonn.dbx'.

@@ -45,3 +45,5 @@
 *.lb
 
 *.sav
+
+*.sublime*
