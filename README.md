@@ -1,13 +1,13 @@
-bibLaTeX-arthistory    
+bibLaTeX-arthistory-bonn    
 ======= 
 
 
 
 bibLaTeX-style of the art historian institute, University Bonn
 ---
-_2016/09/25 v0.1_
+_2017/03/11 v1.0_
 
-Copyright (c) 2016 Lukas C. Bossert
+Copyright (c) 2017 Lukas C. Bossert and Thorsten Kemper
 
 Email: [lukas@digitales-altertum.de](mailto:lukas@digitales-altertum.de)
 
