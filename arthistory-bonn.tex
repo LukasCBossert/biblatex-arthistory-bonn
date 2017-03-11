@@ -54,7 +54,7 @@ Various options are available to adjust to common practices not covered by the K
 
 
 \section{Installation}
-|arthistory-bonn| is part of the distributions MiK\TeX{} and \TeX{} Live and you can easily install it using the respective package manager. 
+|arthistory-bonn| is part of the distributions MiK\TeX{} and \TeX Live and you can easily install it using the respective package manager. 
 If you would like to install |arthistory-bonn| manually, do the following:
 Download the folder |arthistory-bonn| with all relevant files from the CTAN-server\footnote{\url{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/arthistory-bonn.zip}} and copy it to the \texttt{\$LOCALTEXMF} directory of
  your system.\footnote{If you don't know what that is, have a look at
@@ -68,7 +68,7 @@ Here is some additional information from the UK \TeX\ FAQ:
     Where to install packages}
   \item \href{%
     http://www.tex.ac.uk/cgi-bin/texfaq2html?label=inst-wlcf}{%
-    Installing files \enquote{where \LaTeX{} /TeX\ can find them}}
+    Installing files \enquote{where \LaTeX /\TeX\ can find them}}
   \item \href{%
     http://www.tex.ac.uk/cgi-bin/texfaq2html?label=privinst}{%
     \enquote{Private} installations of files}
@@ -77,7 +77,7 @@ Here is some additional information from the UK \TeX\ FAQ:
 
 
 \section{Loading the package}
- \DescribeMacro{arthistory-bonn} The name of the bib\LaTeX{} style is |arthistory-bonn|. It has to be activated in the preamble.
+ \DescribeMacro{arthistory-bonn} The name of the bib\LaTeX style is |arthistory-bonn|. It has to be activated in the preamble.
 
 \begin{code}
 \usepackage[style=arthistory-bonn,%
@@ -127,7 +127,7 @@ Specifies the time span of an exhibition an |exhibcatalog| is based on. Dates of
 \DescribeMacro{exhibseconddate,\\exhibthirddate}If an exhibition has more than one date, use |exhibseconddate| and |exhibthirddate| accordingly.
 
 \DescribeMacro{exhibfirstlocation}
-For the city in which an exhibition has been shown. E.g.,
+For the city in which an exhibition has been shown; e.\,g.,
 \begin{code}
 @Exhibcatalog{AusstellungBonn2005,
   *@\ldots@*
@@ -138,7 +138,7 @@ For the city in which an exhibition has been shown. E.g.,
 \DescribeMacro{exhibsecondlocation,\\exhibthirdlocation}If an exhibition has more than one date, use |exhibsecondlocation| and |exhibthirdlocation| accordingly.
 
 \DescribeMacro{exhibfirstmuseum}
-For the venue---usually a museum---where an exhibition is shown. E.g.,
+For the venue---usually a museum---where an exhibition is shown; e.\,g.,
 \begin{code}
 @Exhibcatalog{AusstellungBonn2005,
   *@\ldots@*
@@ -168,8 +168,14 @@ Use this field to specify the year(s) of an exhibition a given |exhibcatalog| is
   *@\ldots@*
 }.
 \end{code}
+<<<<<<< HEAD
 Note that specifying this field has the sole purpose of generating the correct citation short form.
 You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, and the fields |date| or |year| for the publication itself. 
+=======
+Note specifying this field has the sole purpose of generating the correct citation short form.
+You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, 
+and the fields |date| or |year| for the publication itself. 
+>>>>>>> 4f0f6faf012d1bb030313f799018ae047978aa94
 
 \DescribeMacro{eventtitle}
 Use this field to specify the name of an exhibition a given |exhibcatalog| is based on.
@@ -179,16 +185,20 @@ For the institution at which a thesis was defended.
 
 \DescribeMacro{keywords=\{source\}}
 %\DescribeMacro{source}
-This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti, etc). %cf. \cref{source}.
-If enabled, the entry can be listed in a separate bibliography for primary sources. (Actually you don't need to use the term \enquote*{source} -- you can pick any term you like.) Also see \cref{sec:sepbib}.
+This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti etc). %cf. \cref{source}.
+If enabled, the entry can be listed in a separate bibliography for primary sources. 
+(Actually you don't need to use the term \enquote*{source} -- you can pick any term you like.) 
+Also see \cref{sec:sepbib}.
 
-In addition to that, you should define a |shorthand| that differs from the usual author-year citation of \enquote*{regular}, modern scientific works in order to comply with the KHI's citation rules.
+In addition to that, you should define a |shorthand| that differs from the usual author-year citation of \enquote*{regular}, 
+modern scientific works in order to comply with the KHI's citation rules.
 
 \DescribeMacro{shorthand}\label{sec:shorthand}
 %\DescribeMacro{shorthand}
 Entering a shorthand will replace the otherwise automatically generated, document type-appropriate citation short form by the typed-in content.
 
-You need to make use of this option when entering a primary source in your bibliography file (along with the option |keywords=\{source\}|). The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
+You need to make use of this option when entering a primary source in your bibliography file (along with the option |keywords=\{source\}|). 
+The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
 
 Here is an example of Casanova's Theory of painting:
 \begin{bibexample}[label=CasanovaMalerei]{{@}Book\{CasanovaMalerei,…\}}
@@ -266,9 +276,12 @@ This is for catalogs of temporary exhibitions.
 }
 \end{bibexample}
 \printbib[6em]{AusstellungBonn2005}
-Defining a common keyword for catalogs (line 14) allows us to print a separate subbibliography later. In order to sort the entry properly, we defined a |sortkey|. Note that it suffices to include but the first exhibition year in the key. The actual short citation is being generated automatically and utilizes the field |eventdate|.
+Defining a common keyword for catalogs (line 14) allows us to print a separate subbibliography later. In order to sort the entry properly, we defined a |sortkey|. 
+Note that it suffices to include but the first exhibition year in the key. The actual short citation is being generated automatically and utilizes the field |eventdate|.
 
-The exhibition's title is listed in |eventtitle| and |eventsubtitle|, while time and places are defined in lines 7--13. As usual, the fields |year| and |location| refer to the published book itself, and not the actual exhibition.
+The exhibition's title is listed in |eventtitle| and |eventsubtitle|, 
+while time and places are defined in lines 7--13. 
+As usual, the fields |year| and |location| refer to the published book itself, and not the actual exhibition.
 
 \subsubsection{Standard \texttt{bib}\LaTeX{} types}
 
@@ -338,7 +351,8 @@ Our third |book| example illustrates how to deal with primary sources.
 }
 \end{bibexample}
 \printbib[6em]{PalladioArchitektur}
-First, we defined a |shorthand| to override the short citation that would have been generated otherwise. Second, we added a keyword so that we will be able to print a separate bibliography for primary sources later.
+First, we defined a |shorthand| to override the short citation that would have been generated otherwise. 
+Second, we added a keyword so that we will be able to print a separate bibliography for primary sources later.
 
 \DescribeMacro{@Reference}
 This entry type is suited for encyclopediae.
@@ -360,9 +374,11 @@ This entry type is suited for encyclopediae.
 \printbib[6em]{AllgemeinesKunstlerlexikon}
 Most importantly, we defined the field |shorthand| to override the standard short citation label.
 
-Because this encyclopedia consists of a large number of volumes, it adds a couple of peculiarities. First, in addition to its current |editor|, its founder is listed in the fields |editora| and |editoratype|.
+Because this encyclopedia consists of a large number of volumes, it adds a couple of peculiarities. 
+First, in addition to its current |editor|, its founder is listed in the fields |editora| and |editoratype|.
 
-Next, when the field |publisher| is defined, the publishing house's name will be printed before that encyclopedia's title, irrespective of whether the preamble option |publisher| is enabled or not (see \cref{preamble_options}).
+Next, when the field |publisher| is defined, the publishing house's name will be printed before that encyclopedia's title, 
+irrespective of whether the preamble option |publisher| is enabled or not (see \cref{preamble_options}).
 
 Third, because the publisher's location changed twice in the course of publishing past volumes, we have added a |note| that lists past locations.
 
@@ -399,21 +415,28 @@ This is done with |relatedtype={reviewof}|, which is reserved for reviews and tr
 %So whenever settings in the reviewed work are changed the print of the review will be automatically adjusted. 
 %Furthermore, even if the review is cited, the reviewed work won't be listed in the bibliography until it is explicitly cited in the text.
 
-The review in this example was published in the newsletter H-ArtHist, as the |journaltitle| indicates. We have defined two fields for H-ArtHist reviews. First, |arthistdate| specifies the publication day of the newsletter. \emph{Important:} For technical reasons, you will have to specify the field |year| or |date| as well!
+The review in this example was published in the newsletter H-ArtHist, as the |journaltitle| indicates. 
+We have defined two fields for H-ArtHist reviews. 
+First, |arthistdate| specifies the publication day of the newsletter. 
+\emph{Important:} For technical reasons, you will have to specify the field |year| or |date| as well!
 
-Second, H-ArtHist reviews' URLs differ only by a number. Instead of entering the entire URL, read off the number and add it to |arthist| (here |arthist = {35}|); this will automatically generate the review's correct URL in the bibliography.
+Second, H-ArtHist reviews' URLs differ only by a number. 
+Instead of entering the entire URL, read off the number and add it to |arthist| (here |arthist = {35}|); 
+this will automatically generate the review's correct URL in the bibliography.
 
 
 \section{Preamble options}\label{preamble_options}
-In this section we describe options that can be loaded along with |bib|\LaTeX{} in the document preamble. With one exception, every option will lead to a deviation from the rules advised by the KHI first-year students' guideline; several options listed will allow the user to adhere to bibliography practices common in the field. If you do not intend to deviate at all, you can skip this section.
+In this section we describe options that can be loaded along with |bib|\LaTeX{} in the document preamble. 
+With one exception, every option will lead to a deviation from the rules advised by the KHI first-year students' guideline; 
+several options listed will allow the user to adhere to bibliography practices common in the field. 
+If you do not intend to deviate at all, you can skip this section.
 
 \DescribeMacro{allnamesfamilygiven}
 When enabled, last names will precede first names in all instances.
 
 \DescribeMacro{citeauthorformat}
 You can chose how the name of authors or editors are displayed within your text when they are cited with \cs{citeauthor}\marg{bibtex-key}.
-You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}; 
-cf. %\cref{citeauthorformat}.
+You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}.
 
 \DescribeMacro{enddot}
 When including |enddot=true|, every bibliography entry will end with a dot.
@@ -425,7 +448,8 @@ With |firstcitefull = true|, the first time (and \emph{only} the first time) a w
 When included and |hyperref| loaded, both name and year in a short citation will link to the respective bibliography entry.
 
 \DescribeMacro{pagesfull}
-When including |pagesfull| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). The same holds for citation postnotes if they contain page numbers.
+When including |pagesfull| in the options, bibliography entries' page numbers will be preceded by \enquote{pp.} (or \enquote{S.} in German). 
+The same holds for citation postnotes if they contain page numbers.
 
 \DescribeMacro{publisher}
 The publisher is being listed in the bibliography entries.
@@ -435,7 +459,8 @@ The publisher is being listed in the bibliography entries.
 
 
 \section{Cite commands}\label{cite-commands}
-|arthistory-bonn| supports most/all standard |bib|\LaTeX{} citation commands. We refer the reader said package's documentation to learn more about the full set of commands. In the following, we will describe, for users with little experience in \LaTeX{} or |bib|\LaTeX, how standard citation commands can be employed to abide by the KHI's citation rules.
+|arthistory-bonn| supports most/all standard |bib|\LaTeX{} citation commands. We refer the reader said package's documentation to learn more about the full set of commands. 
+In the following, we will describe, for users with little experience in \LaTeX{} or |bib|\LaTeX, how standard citation commands can be employed to abide by the KHI's citation rules.
 
 \DescribeMacro{\cite}%
 The standard \cs{cite} command invokes a authoryear-style citation without any parentheses. Because of the KHI's requirements, \cs{cite} will typically be invoked from within a footnote:
@@ -459,7 +484,8 @@ The same as manually adding a footnote first and \cs{cite} subsequently can be a
 \begin{code}
 \footcite*@\oarg{prenote}\oarg{postnote}\marg{bibtex-key}%@*
 \end{code}
-This command will be useful if nothing more than a citation with very short prenotes and/or postnotes is needed. When a citation is embedded in a text paragraph, the former combination of \cs{footnote} and \cs{cite} is advisable.
+This command will be useful if nothing more than a citation with very short prenotes and/or postnotes is needed. 
+When a citation is embedded in a text paragraph, the former combination of \cs{footnote} and \cs{cite} is advisable.
 
 %As noted above, all the well-documented citation commands of the |bib|\LaTeX{} package are supported.
 \DescribeMacro{\cites}
@@ -473,7 +499,9 @@ If one wants to cite several authors or works at once, a very convenient way is 
 Other examples are \cs{parencite},\cs{textcite} and their multi-entry alternatives, and commands such as \cs{citeauthor} and \cs{citetitle}.
 
 \DescribeMacro{smartcite}\DescribeMacro{autocite}
-Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than in \enquote{standard} |bib|\LaTeX{} styles. When appearing in a footnote, both commands will behave as |arthistory-bonn|'s \cs{cite} rather than \cs{parencite}. In addition to that, by default \cs{autocite} appearing in the text body behaves like \cs{footcite}.
+Note that \cs{smartcite} and \cs{autocite} behave a little bit differently than in \enquote{standard} |bib|\LaTeX{} styles. 
+When appearing in a footnote, both commands will behave as |arthistory-bonn|'s \cs{cite} rather than \cs{parencite}. 
+In addition to that, by default \cs{autocite} appearing in the text body behaves like \cs{footcite}.
 
 
 \section{Separate bibliographies}\label{sec:sepbib}
@@ -504,7 +532,9 @@ To include separate bibliographies in the document, instead of typing |printbibl
 \end{code}
 As you will notice, the first lines specify a heading for the bibliography as a whole. The next four lines make sure that a subbibliography be printed that lists \emph{only} those entries that include the keyword \enquote{source} (and nothing else). The next four lines lead to printing a subbibliography for all bibliography entries that do not have the keywords \enquote{source} or \enquote{catalog} -- hence, everything we would like to call standard secondary literature. The last block is for catalogs.
 
-Note: If you include entries of the type |@InExhibcatalog| that are linked to an |@Exhibcatalog| via a |crossref| field, this article will \enquote{inherit} its parent catalog's keyword and be listed in the catalogs' subbibliography. If you do not want this, simply add something like |keywords = {InCatalog}| to the |@InExhibcatalog| entry. This will have the article listed in the secondary literature subbibliography.
+Note: If you include entries of the type |@InExhibcatalog| that are linked to an |@Exhibcatalog| via a |crossref| field, this article will \enquote*{inherit} its parent catalog's keyword and be listed in the catalogs' subbibliography. 
+If you do not want this, simply add something like |keywords = {InCatalog}| to the |@InExhibcatalog| entry. 
+This will have the article listed in the secondary literature subbibliography.
 
 %\DescribeMacro{\parencite}
 %Sometimes a citation has to be put in parentheses. 
