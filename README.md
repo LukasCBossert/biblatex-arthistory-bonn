@@ -13,10 +13,10 @@ Email: [lukas@digitales-altertum.de](mailto:lukas@digitales-altertum.de)
 
 This citation-style covers the citation and bibliography rules of 
 the 
-[__Kunsthistorisches Institut der Universität Bonn__](http://www.XXX).
+[__Kunsthistorisches Institut der Universität Bonn__](https://www.khi.uni-bonn.de/).
 ---
 *Der Stil setzt die Zitations- und Bibliographievorgaben 
-des [__Kunsthistorisches Institut der Universität Bonn__ ](http://www.dainst.org/dai/meldungen) (Stand 2014, 5. Auflage) um.*
+des [__Kunsthistorisches Institut der Universität Bonn__](https://www.khi.uni-bonn.de/) aus dem Leitfaden [__"Aufbau und Gestaltung von Seminararbeiten"__](https://www.khi.uni-bonn.de/studium-und-lehre/links/leitfaden-5.-auflage/at_download/file) (Stand 2014, 5. Auflage) um.*
 
 ---
 
@@ -24,24 +24,24 @@ This style contains:
 
 documentation:
 
-- arthistory.pdf
-- arthistory.tex
+- arthistory-bonn.pdf
+- arthistory-bonn.tex
 
 mandatory:
 
-* arthistory.cbx
-* arthistory.bbx
-* arthistory.dbx
+* arthistory-bonn.cbx
+* arthistory-bonn.bbx
+* arthistory-bonn.dbx
 
 language files:
 
-- arthistory-ngerman.lbx
-- arthistory-english.lbx
+- arthistory-bonn-german.lbx
+- arthistory-bonn-english.lbx
 
 
 additional bibliography:
 
-- arthistory-examples.bib
+- arthistory-bonn-examples.bib
 
 
 
