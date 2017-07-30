@@ -1,0 +1,72 @@
+\documentclass[paper=a4,
+  fontsize=11pt,
+  twoside=true,
+	index=totoc,						% Index im Inhaltsverzeichnis
+	listof=totoc,					% Abb.- und Tab.verzeichnis im Inhalt
+	bibliography=totoc,		% Literaturverzeichnis im Inhalt
+	%headings=normal,
+	headings=optiontohead,	% Optional head nicht in ToC
+	numbers=noenddot,
+	captions=tableabove,
+	greek,french,italian,english,ngerman,
+	draft=false,
+]{scrbook}
+
+\usepackage{ifxetex}
+\ifxetex
+	\usepackage{fontspec}						% Relevant when using XeLaTeX
+	%\setmainfont{Sabon LT Std}
+	%\setmainfont{Times New Roman}		% One can load Windows fonts!
+	\usepackage{libertine}
+\else
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}				% output font encoding
+	\usepackage{textcomp}
+	\usepackage{lmodern}						% To cover all fonts apart from Sabon
+	%\usepackage{lsabon}							% ebgaramond, lsabon, libertine
+	%\usepackage{avant}							% Set sans serif font: helvet,avant,...
+\fi
+\usepackage[style=german,german=guillemets]{csquotes}
+\usepackage{babel}								% Sprachen sind in \documentclass vermerkt
+
+\usepackage[           
+  backend=biber,
+  style=arthistory-bonn,
+	indexing=cite,
+  firstcitefull=true,
+  enddot=true,
+	pagesfull,
+	allnamesfamilygiven,
+  width=10em,
+	isbn=false,
+	doi=false,
+	eprint=false,
+	useprefix=false,
+]{biblatex}
+\addbibresource{arthistory-bonn-examples.bib}
+
+\begin{document}
+%\nocite{*}
+Hello\footcite{Tjarks2005} world.\footcite[A.~3]{Tjarks2005}
+
+Dideldum\footcite{Kanz2002}
+
+Helter\footcite{AusstMuenchen2006} hallo\footcite{Kanz2002} Skelter\footcite{Luettichau2006}.
+
+\footcite{strupp1993}
+
+\footcite{May2011}
+
+\printbibheading[%								statt \printbibliography
+    heading=bibliography,%
+    title={Literaturverzeichnis}]
+\printbibliography[%
+    keyword=source,%
+    heading=subbibliography,
+    title={Primärliteratur}]
+\printbibliography[%
+    %notkeyword=Ausstellung,%
+    notkeyword=source,%
+    heading=subbibliography,%
+    title={Sekundärliteratur}]
+\end{document}
