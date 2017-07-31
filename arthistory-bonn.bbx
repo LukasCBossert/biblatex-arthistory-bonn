@@ -431,13 +431,17 @@ test {\iffieldundef{mainsubtitle}}
 \newbibmacro{thesis+date}{%
   \iffieldequalstr{thesistype}{tzugl}%
     {\bibstring{tzugl}}%
-    {\bibstring{zugl}}%
+    {\ifentrytype{thesis}%
+      {}%
+      {\bibstring{zugl}}}%
   \addspace%
 \printlist{institution}%
     \newunit%
  \printfield{type}%
  \newunit%
-\printthesisdate%
+ \ifentrytype{thesis}%
+  {\usebibmacro{pubstate+year}}%
+  {\printthesisdate}%
 }
 %-----------------------
 \newbibmacro*{series+number+diss+date}{%
@@ -882,7 +886,9 @@ test {\iffieldundef{mainsubtitle}}
   \usebibmacro{title}%
   \newunit\newblock
   \usebibmacro{byauthor}%
-  \printtext[parens]{\usebibmacro{thesis+date}}%
+ % \printtext[parens]{%
+	\usebibmacro{thesis+date}%
+	%}%
   \newunit\newblock
   \usebibmacro{chapter+pages}%
   \newunit
