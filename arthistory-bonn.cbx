@@ -79,7 +79,7 @@
         {\usebibmacro{cite:reference}}%
         {\printnames{labelname}%
          \setunit{\printdelim{nameyeardelim}}%
-        \printtext[bibhyperref]{\usebibmacro{date+extrayear}}}}}}}
+        \printtext[bibhyperref]{\usebibmacro{date+extradate}}}}}}}
 
 \newbibmacro*{cite:normal}{%
  \global\boolfalse{cbx:loccit}%
@@ -140,7 +140,7 @@
      \printfield{postnote}}}
 
 %http://tex.stackexchange.com/a/158481/98739
-\xpatchbibmacro{date+extrayear}{%
+\xpatchbibmacro{date+extradate}{%
   \printtext[parens]%
 }{%
   \printtext%

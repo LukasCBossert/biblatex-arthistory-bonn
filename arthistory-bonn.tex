@@ -33,7 +33,7 @@ Comments and criticisms are welcome.}}
 It introduces bibliography entry types for catalogs and features a tabular bibliography, among other things.
 Various options are available to change and adjust the outcome according to one's own preferences. 
 The style is compatible with English and German.
- \end{abstract}
+\end{abstract}
 
 
 \begin{multicols}{2}
@@ -80,7 +80,7 @@ Here is some additional information from the UK \TeX\ FAQ:
  \DescribeMacro{arthistory-bonn} The name of the bib\LaTeX style is |arthistory-bonn|. It has to be activated in the preamble.
 
 \begin{code}
-\usepackage[style=arthistory-bonn,%
+\usepackage[style = arthistory-bonn,%
           *@\meta{further options}@*]{biblatex}
 \bibliography*@\marg{|bib|-file}@*
 \end{code}
@@ -100,14 +100,14 @@ Besides loading |arthistory-bonn|, in order to comply with the KHI guideline's b
 \subsubsection{\texttt{arthistory-bonn}-specific options}
 
 \DescribeMacro{arthist}
-\enquote{H-ArtHist} is a popular email newsletter for art historians, publishing, among other things, reviews. These reviews share very similar URLs, and |arthist=|\marg{value} will print the URL of the respective piece, where the \meta{value} must be read off the respective URL.
+\enquote{H-ArtHist} is a popular email newsletter for art historians, publishing, among other things, reviews. These reviews share very similar URLs, and |arthist = |\marg{value} will print the URL of the respective piece, where the \meta{value} must be read off the respective URL.
 \DescribeMacro{arthistdate}
-Relatedly, |arthistdate={|\meta{year}|-|\meta{month}|-|\meta{day}|}| specifies the release date of the newsletter issue. A typical entry may contain entries such as
+Relatedly, |arthistdate = {|\meta{year}|-|\meta{month}|-|\meta{day}|}| specifies the release date of the newsletter issue. A typical entry may contain entries such as
 \begin{code}
 @Review{vonEngelberg2003,
   *@\ldots@*
-  arthist      = {35},
-  arthistdate  = {2003-11-12},
+  arthist     = {35},
+  arthistdate = {2003-11-12},
   *@\ldots@*
 }.
 \end{code}
@@ -152,7 +152,7 @@ For the venue---usually a museum---where an exhibition is shown; e.\,g.,
 \DescribeMacro{thesisdate}
 The year when a PhD (or \enquote{Habilitation}) thesis was defended.
 
-\DescribeMacro{thesistype=\{tzugl\}}
+\DescribeMacro{thesistype = \{tzugl\}}
 To be used when a publication (typically a book) is \emph{only partly} based on a submitted PhD (or \enquote{Habilitation}) thesis.
 
 
@@ -168,14 +168,8 @@ Use this field to specify the year(s) of an exhibition a given |exhibcatalog| is
   *@\ldots@*
 }.
 \end{code}
-<<<<<<< HEAD
 Note that specifying this field has the sole purpose of generating the correct citation short form.
-You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, and the fields |date| or |year| for the publication itself. 
-=======
-Note specifying this field has the sole purpose of generating the correct citation short form.
-You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, 
-and the fields |date| or |year| for the publication itself. 
->>>>>>> 4f0f6faf012d1bb030313f799018ae047978aa94
+You will also have to enter the field |exhibfirstdate| (and possibly |exhibseconddate| or even |exhibthirddate|) for the long bibliography entry, and the fields |date| or |year| for the publication itself.
 
 \DescribeMacro{eventtitle}
 Use this field to specify the name of an exhibition a given |exhibcatalog| is based on.
@@ -183,7 +177,7 @@ Use this field to specify the name of an exhibition a given |exhibcatalog| is ba
 \DescribeMacro{institution}
 For the institution at which a thesis was defended.
 
-\DescribeMacro{keywords=\{source\}}
+\DescribeMacro{keywords = \{source\}}
 %\DescribeMacro{source}
 This option is reserved for entries that are primary sources (e.\,g. Alberti, Paleotti etc). %cf. \cref{source}.
 If enabled, the entry can be listed in a separate bibliography for primary sources. 
@@ -197,7 +191,7 @@ modern scientific works in order to comply with the KHI's citation rules.
 %\DescribeMacro{shorthand}
 Entering a shorthand will replace the otherwise automatically generated, document type-appropriate citation short form by the typed-in content.
 
-You need to make use of this option when entering a primary source in your bibliography file (along with the option |keywords=\{source\}|). 
+You need to make use of this option when entering a primary source in your bibliography file (along with the option |keywords = \{source\}|). 
 The entry should consist of a short version of the primary source's author's name and (possibly an abbreviation of) their contribution's title.
 
 Here is an example of Casanova's Theory of painting:
@@ -259,20 +253,20 @@ Moreover, we defined a |sortkey|, according to which the bibliography entry will
 This is for catalogs of temporary exhibitions.
 \begin{bibexample}[label=AusstellungBonn2005]{{@}Exhibcatalog\{AusstellungBonn2005,…\}}
 @Exhibcatalog{AusstellungBonn2005,
-  editor          = {Jutta Frings},
-  year            = {2005},
-  location        = {Leipzig},
-  eventtitle      = {Barock im Vatikan},
-  eventsubtitle   = {Kunst und Kultur der Päpste II 1572--1676},
-  eventdate       = {2005/2006},
-  exhibfirstdate  = {2005-11-25/2006-03-19},
-  exhibfirstmuseum = {Kunst- und Ausstellungshalle der Bundesrepublik Deutschland},
-  exhibfirstlocation = {Bonn},
-  exhibseconddate = {2006-04-12/2006-07-10},
-  exhibsecondmuseum = {Martin-Gropius-Bau},
+  editor              = {Jutta Frings},
+  year                = {2005},
+  location            = {Leipzig},
+  eventtitle          = {Barock im Vatikan},
+  eventsubtitle       = {Kunst und Kultur der Päpste II 1572--1676},
+  eventdate           = {2005/2006},
+  exhibfirstdate      = {2005-11-25/2006-03-19},
+  exhibfirstmuseum    = {Kunst- und Ausstellungshalle der Bundesrepublik Deutschland},
+  exhibfirstlocation  = {Bonn},
+  exhibseconddate     = {2006-04-12/2006-07-10},
+  exhibsecondmuseum   = {Martin-Gropius-Bau},
   exhibsecondlocation = {Berlin},
-  keywords        = {Ausstellung},
-  sortkey         = {Ausst.-Kat. Bonn/Berlin 2005},
+  keywords            = {Ausstellung},
+  sortkey             = {Ausst.-Kat. Bonn/Berlin 2005},
 }
 \end{bibexample}
 \printbib[6em]{AusstellungBonn2005}
@@ -321,16 +315,16 @@ Apart from standard fields, we defined a |thesisdate|, the |institution| at whic
 While the book in example \ref{Kanz2002} is based on the submitted thesis in its entirety, the following example is only partly based on a submitted PhD thesis.
 \begin{bibexample}[label=Dobler2009]{{@}Book\{Dobler2009,…\}}
 @Book{Dobler2009,
-  location = {München},
-  title = {Die Juristenkapellen Rivaldi, Cerri und Antamoro: Form, Funktion und Intention römischer Familienkapellen im Sei- und Settecento},
-  series = {Römische Studien der Bibliotheca Hertziana},
-  number = {22},
-  author = {Dobler, Ralph-Miklas},
-  date = {2009},
-  thesisdate = {2004},
+  location    = {München},
+  title       = {Die Juristenkapellen Rivaldi, Cerri und Antamoro: Form, Funktion und Intention römischer Familienkapellen im Sei- und Settecento},
+  series      = {Römische Studien der Bibliotheca Hertziana},
+  number      = {22},
+  author      = {Dobler, Ralph-Miklas},
+  date        = {2009},
+  thesisdate  = {2004},
   institution = {Berlin, Freie Univ.},
-  type = {phdthesis},
-  thesistype = {tzugl},
+  type        = {phdthesis},
+  thesistype  = {tzugl},
 }
 \end{bibexample}
 \printbib[6em]{Dobler2009}
@@ -409,7 +403,7 @@ The following example will show an easy way to combine the review with the revie
 \printbib[6em]{vonEngelberg2003}
 You may have noticed that the review (|vonEngelberg2003|) is connected to the entry |Brossette2002| by the field |related|.
 In addition we need to qualify the relation between the connected entries:
-This is done with |relatedtype={reviewof}|, which is reserved for reviews and triggers the inclusion of the translation of \enquote{Review of}, e.\,g. \enquote{Rezension von} in German, which will be printed in squared brackets.
+This is done with |relatedtype = {reviewof}|, which is reserved for reviews and triggers the inclusion of the translation of \enquote{Review of}, e.\,g. \enquote{Rezension von} in German, which will be printed in squared brackets.
 %You don’t have to type in all relevant information of the reviewed work in the entry of the review, 
 %since they will be inserted automatically and dynamically with the  |related|-function. 
 %So whenever settings in the reviewed work are changed the print of the review will be automatically adjusted. 
@@ -439,7 +433,7 @@ You can chose how the name of authors or editors are displayed within your text 
 You can chose between the options \meta{initials}, \meta{full}, \meta{family}, \meta{firstfull}.
 
 \DescribeMacro{enddot}
-When including |enddot=true|, every bibliography entry will end with a dot.
+When including |enddot = true|, every bibliography entry will end with a dot.
 
 \DescribeMacro{firstcitefull}
 With |firstcitefull = true|, the first time (and \emph{only} the first time) a work is being cited in the document, a full citation will be printed (in a footnote).
@@ -455,7 +449,7 @@ The same holds for citation postnotes if they contain page numbers.
 The publisher is being listed in the bibliography entries.
 
 \DescribeMacro{width}
-|width=|\meta{value} defines the width of the left bibliography column.
+|width = |\meta{value} defines the width of the left bibliography column.
 
 
 \section{Cite commands}\label{cite-commands}
@@ -511,24 +505,24 @@ You may have noticed that we listed the option |keywords = {source}| in \cref{se
 
 If you would like to include a separate bibliography for (exhibition) catalogs as well, each catalog entry must contain a common keyword such as |keywords = {catalog}|.
 
-To include separate bibliographies in the document, instead of typing |printbibliography|, include
+To include separate bibliographies in the document, instead of simply adding \cs{printbibliography}, include
 \begin{code}
 \printbibheading[%
-  heading=bibliography,%
-  title={Bibliography}]
+  heading = bibliography,%
+  title = {Bibliography}]
 \printbibliography[%
-  keyword=source,%
-  heading=subbibliography,
-  title={Primary sources}]
+  keyword = source,%
+  heading = subbibliography,
+  title = {Primary sources}]
 \printbibliography[%
-  notkeyword=catalog,%
-  notkeyword=source,%
-  heading=subbibliography,%
-  title={Secondary literature}]
+  notkeyword = catalog,%
+  notkeyword = source,%
+  heading = subbibliography,%
+  title = {Secondary literature}]
 \printbibliography[%
-  keyword=catalog,%
-  heading=subbibliography,%
-  title={Exhibition catalogs}]
+  keyword = catalog,%
+  heading = subbibliography,%
+  title = {Exhibition catalogs}]
 \end{code}
 As you will notice, the first lines specify a heading for the bibliography as a whole. The next four lines make sure that a subbibliography be printed that lists \emph{only} those entries that include the keyword \enquote{source} (and nothing else). The next four lines lead to printing a subbibliography for all bibliography entries that do not have the keywords \enquote{source} or \enquote{catalog} -- hence, everything we would like to call standard secondary literature. The last block is for catalogs.
 
