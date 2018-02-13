@@ -5,7 +5,7 @@ bibLaTeX-arthistory-bonn
 
 bibLaTeX-style of the art historian institute, University Bonn
 ---
-_2017/11/15 v1.1_
+_2018/02/13 v1.2_
 
 Copyright (c) 2017 Lukas C. Bossert and Thorsten Kemper
 
